@@ -3,7 +3,6 @@ import GridStackTile from '../GridStackTile/GridStackTile.js';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import styles from './GridStackPanel.module.scss';
-import CloseIcon from '../../icons/close.js';
 import CalendarIcon from '../../icons/calendar.js';
 import ChartLineIcon from '../../icons/chart-line.js';
 import ChartBarIcon from '../../icons/chart-bar.js';
@@ -58,7 +57,6 @@ const GridStackPanel = (props) => {
     const [tileData, setTileData] = useState(initialTileData);
     let grid;
 
-    console.log(tileData);
     useEffect(() => {
         grid = GridStack.init();
         grid.margin('12px');
