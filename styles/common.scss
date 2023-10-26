@@ -1,0 +1,23 @@
+$black: #000;
+$white: #fff;
+$transparent: rgba(255, 255, 255, 0);
+
+$primary: #582c83;
+
+$grey-light: rgb(108, 114, 147);
+$grey-mid: rgb(25, 28, 36);
+$grey-dark: rgb(0, 0, 0);
+
+$extra-large-padding: 38px;
+$large-padding: 24px;
+$standard-padding: 10px;
+$small-padding: 3px;
+
+$header-height: 82px;
+
+$large-font: 20px;
+$medium-font: 15px;
+
+$standard-icon-size: 24px;
+
+$large-padding-and-icon-shim: calc($large-padding + $standard-icon-size + $standard-padding);
