@@ -127,7 +127,7 @@ const GridStackPanel = (props) => {
                 </button>
                 <div className={`${styles.dropDown} ${periodExpanded} ? 'styles.expanded' : ''}`} style={periodExpanded ? { height: (40 * timePeriodOptions.length) + 'px' } : {}}>
                     {timePeriodOptions.map((item, index) =>
-                        <button type="button" className={styles.noIcon} onClick={handleAddTile}>
+                        <button type="button" className={styles.noIcon} onClick={handleAddTile} key={index}>
                             {item.text}
                         </button>
                     )}
