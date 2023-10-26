@@ -2,16 +2,10 @@ import React, { useEffect, useState, useRef, Component } from "react";
 import GridStackTile from '../GridStackTile/GridStackTile.js';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
-import styles from './GridStackPanel.module.scss';
-import CalendarIcon from '../../icons/calendar.js';
-import ChartLineIcon from '../../icons/chart-line.js';
-import ChartBarIcon from '../../icons/chart-bar.js';
-import ChartDonutIcon from '../../icons/chart-donut.js';
-import ChevronDownIcon from '../../icons/chevron-down.js';
-import GaugeIcon from '../../icons/gauge.js';
+import styles from './DashboardContainer.module.scss';
 import DashboardMenu from "../DashboardMenu/DashboardMenu.js";
 
-const GridStackPanel = (props) => {
+const DashboardContainer = (props) => {
     const [periodExpanded, setPeriodExpanded] = useState(false);
     const initialTileData = [
         {
@@ -134,4 +128,4 @@ const GridStackPanel = (props) => {
     );
 }
 
-export default GridStackPanel;
+export default DashboardContainer;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import GridStackPanel from '../components/GridStackPanel/GridStackPanel.js';
+import DashboardContainer from '../components/DashboardContainer/DashboardContainer.js';
 
 const Dashboard = () => {
     return (
         <>
-            <GridStackPanel>
-            </GridStackPanel>
+            <DashboardContainer>
+            </DashboardContainer>
         </>
     );
 }

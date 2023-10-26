@@ -1,0 +1,136 @@
+@import "../../styles/common.scss";
+
+div.container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 100vh;
+
+    > div.menu {
+        width: 280px;
+        background-color: $grey-mid;
+        display: flex;
+        flex-direction: column;
+
+        div.header {
+            height: $header-height;
+        }
+
+        h2 {
+            font-size: $medium-font;
+            color: $grey-light;
+            font-weight: bold;
+            margin-block-start: $extra-large-padding;
+            margin-block-end: $large-padding;
+            margin-inline-start: $large-padding;
+            margin-inline-end: $large-padding;
+
+            &:first-of-type {
+                margin-block-start: 0;
+            }
+        }
+
+        button {
+            padding: $standard-padding $large-padding ;
+            background-color: transparent;
+            color: $white;
+            border: 0;
+            cursor: pointer;
+            text-align: left;
+            font-size: $medium-font;
+            font-family: inherit;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            &:hover {
+                background-color: $grey-dark;
+            }
+
+            &.noIcon {
+                padding-left: $large-padding-and-icon-shim;
+            }
+
+            div.icon {
+                border-radius: 50%;
+                margin-right: $standard-padding;
+                //width: $standard-icon-size;
+                //@extend: $standard-icon-size;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &.spinOnExpand {
+                    transition: transform 1s;
+                    &.expanded {
+                        transform: rotate(180deg);
+                    }
+                }
+                
+                svg {
+                    fill: $grey-light;
+                }
+            }
+
+            div.text {
+                margin-top: -3px;
+                flex-grow: 1;
+            }
+        }
+
+        div.dropDown {
+            height: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: height 1s;
+
+            &.expanded {
+                height: auto;
+            }
+        }
+    }
+
+    > div.main {
+        flex-grow: 1;
+        background-color: $grey-dark;
+
+        > div.header {
+            padding: 0 $large-padding 0 $large-padding; 
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: $header-height;
+
+
+            h1 {
+                padding-left: 3px; // Visual shim
+                font-size: $large-font;
+                margin-block-start: 0;
+                margin-block-end: 0;
+                margin-inline-start: 0;
+                margin-inline-end: 0;
+                font-weight: 500;
+                flex-grow: 1;
+            }
+        }
+
+        
+
+        > div.gridStackContainer {
+            padding: 0 $large-padding $large-padding $large-padding;
+            flex-grow: 1;
+
+            > div.gridStack {
+                margin: -12px;
+            }
+        }
+    }
+}
+
+
+
