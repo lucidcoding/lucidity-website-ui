@@ -3,60 +3,12 @@ import GridStackTile from '../GridStackTile/GridStackTile.js';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import styles from './GridStackPanel.module.scss';
-import CalendarIcon from '../../icons/calendar.js';
-import ChartLineIcon from '../../icons/chart-line.js';
-import ChartBarIcon from '../../icons/chart-bar.js';
-import ChartDonutIcon from '../../icons/chart-donut.js';
-import ChevronDownIcon from '../../icons/chevron-down.js';
-import GaugeIcon from '../../icons/gauge.js';
-import DashboardMenu from "../DashboardMenu/DashboardMenu.js";
 
 const GridStackPanel = (props) => {
-    const [periodExpanded, setPeriodExpanded] = useState(false);
-    const initialTileData = [
-        {
-            key: 0,
-            width: 4,
-            height: 3,
-            //x: 0,
-            //y: 0,
-            content: 'Some Data Metric'
-        },
-        {
-            key: 1,
-            width: 4,
-            height: 3,
-            content: 'Another Data Metric'
-        },
-        {
-            key: 2,
-            width: 4,
-            height: 3,
-            content: 'Third Data Metric'
-        },
-        {
-            key: 3,
-            width: 4,
-            height: 3,
-            content: 'Fourth Data Metric'
-        },
-        {
-            key: 4,
-            width: 4,
-            height: 3,
-            content: 'Fifth  Data Metric'
-        }
-    ];
 
-    const timePeriodOptions = [
-        { text: '2023' },
-        { text: '2022' },
-        { text: '2021' },
-        { text: '2020' },
-    ];
-
-    const [tileData, setTileData] = useState(initialTileData);
     let grid;
+    let oldKeys = useRef(props.tileData.map(tile => tile.key));
+
 
     useEffect(() => {
         grid = GridStack.init();
@@ -64,7 +16,7 @@ const GridStackPanel = (props) => {
     });
 
     const mounted = useRef();
-    const lastKeyAdded = useRef(null);
+    //const lastKeyAdded = useRef(null);
 
     useEffect(() => {
         if (!mounted.current) {
@@ -72,49 +24,37 @@ const GridStackPanel = (props) => {
             mounted.current = true;
         } else {
             // do componentDidUpdate logic
-            if (lastKeyAdded.current) {
+            /*if (lastKeyAdded.current) {
                 grid.makeWidget(`#${lastKeyAdded.current}`);
                 lastKeyAdded.current = null;
+            }*/
+            console.log('componentDidUpdate');
+
+            const newKeys = props.tileData.map(tile => tile.key);
+
+            if (newKeys.length > oldKeys.current.length) {
+                var newlyAddedKeys = newKeys.filter(key => !oldKeys.current.includes(key));
+                var newKey = newlyAddedKeys[0];
+                grid.makeWidget(`#${newKey}`);
+                oldKeys.current = newKeys;
             }
         }
     });
 
-    const handleAddTile = () => {
-        const newTileData = [...tileData];
-        var existingKeys = newTileData.map(element => element.key);
-        var nextKey = Math.max(...existingKeys) + 1;
-
-        newTileData.push({
-            key: nextKey,
-            width: 1,
-            height: 1,
-            content: `tile ${nextKey}`
-        });
-
-        setTileData(newTileData);
-        lastKeyAdded.current = nextKey;
-    }
-
     const handleTileClose = (ref, key) => {
         grid.removeWidget(ref.current, false);
-        const newTileData = [...tileData];
-        var currentTile = newTileData.find((element) => element.key == key);
-        var tileIndex = newTileData.indexOf(currentTile);
-        newTileData.splice(tileIndex, 1);
-        setTileData(newTileData);
+        props.handleTileClose(ref, key);
     };
 
     return (
         <div className={styles.container}>
-            <DashboardMenu handleAddTile={handleAddTile}>
-            </DashboardMenu>
             <div className={styles.main}>
                 <div className={styles.header}>
                     <h1>Analytics Dashboard</h1>
                 </div>
                 <div className={styles.gridStackContainer}>
                     <div className={`grid-stack ${styles.gridStack}`}>
-                        {tileData.map((tileDatum, index) =>
+                        {props.tileData.map((tileDatum, index) =>
                             <GridStackTile
                                 title={tileDatum.content}
                                 gsWidth={tileDatum.width}

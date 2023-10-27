@@ -4,6 +4,7 @@ import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import styles from './DashboardContainer.module.scss';
 import DashboardMenu from "../DashboardMenu/DashboardMenu.js";
+import GridStackPanel from "../GridstackPanel/GridstackPanel.js";
 
 const DashboardContainer = (props) => {
     const [periodExpanded, setPeriodExpanded] = useState(false);
@@ -50,28 +51,8 @@ const DashboardContainer = (props) => {
     ];
 
     const [tileData, setTileData] = useState(initialTileData);
-    let grid;
 
-    useEffect(() => {
-        grid = GridStack.init();
-        grid.margin('12px');
-    });
-
-    const mounted = useRef();
     const lastKeyAdded = useRef(null);
-
-    useEffect(() => {
-        if (!mounted.current) {
-            // do componentDidMount logic
-            mounted.current = true;
-        } else {
-            // do componentDidUpdate logic
-            if (lastKeyAdded.current) {
-                grid.makeWidget(`#${lastKeyAdded.current}`);
-                lastKeyAdded.current = null;
-            }
-        }
-    });
 
     const handleAddTile = () => {
         const newTileData = [...tileData];
@@ -90,13 +71,14 @@ const DashboardContainer = (props) => {
     }
 
     const handleTileClose = (ref, key) => {
-        grid.removeWidget(ref.current, false);
         const newTileData = [...tileData];
         var currentTile = newTileData.find((element) => element.key == key);
         var tileIndex = newTileData.indexOf(currentTile);
         newTileData.splice(tileIndex, 1);
         setTileData(newTileData);
     };
+
+    console.log(tileData);
 
     return (
         <div className={styles.container}>
@@ -106,23 +88,8 @@ const DashboardContainer = (props) => {
                 <div className={styles.header}>
                     <h1>Analytics Dashboard</h1>
                 </div>
-                <div className={styles.gridStackContainer}>
-                    <div className={`grid-stack ${styles.gridStack}`}>
-                        {tileData.map((tileDatum, index) =>
-                            <GridStackTile
-                                title={tileDatum.content}
-                                gsWidth={tileDatum.width}
-                                gsHeight={tileDatum.height}
-                                gsX={tileDatum.x}
-                                gsY={tileDatum.y}
-                                key={tileDatum.key}
-                                gsId={tileDatum.key}
-                                handleClose={(ref) => handleTileClose(ref, tileDatum.key)}>
-
-                            </GridStackTile>
-                        )}
-                    </div>
-                </div>
+                <GridStackPanel tileData={tileData} handleTileClose={handleTileClose}>
+                </GridStackPanel>
             </div>
         </div >
     );
