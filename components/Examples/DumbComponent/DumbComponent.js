@@ -1,6 +1,6 @@
 import styles from './DumbComponent.module.scss'
 
-const DumbComponent = (props) => {
+const DumbComponent = () => {
     const now = Date.now();
 
     return (

@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './RerenderPreventionComponent.module.scss'
+import styles from './MemoizedComponent.module.scss'
 
-const RerenderPreventionComponent = (props) => {
+const MemoizedComponent = () => {
     const now = Date.now();
 
     return (
         <div className={styles.container}>
-            <h1>RerenderPreventionComponent</h1>
+            <h1>MemoizedComponent</h1>
             This one uses React.memo to prevent re-rendering when the parent does.
             <div>
                 Time: {now}
@@ -15,4 +15,4 @@ const RerenderPreventionComponent = (props) => {
     )
 }
 
-export default React.memo(RerenderPreventionComponent);
+export default React.memo(MemoizedComponent);

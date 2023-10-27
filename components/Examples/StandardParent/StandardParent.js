@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from './StandardParent.module.scss'
 import DumbComponent from "../DumbComponent/DumbComponent";
-import RerenderPreventionComponent from "../RerenderPreventionComponent/RerenderPreventionComponent";
+import MemoizedComponent from "../MemoizedComponent/MemoizedComponent";
+import ComponentWithProps from "../ComponentWithProps/ComponentWithProps";
 
 const StandardParent = (props) => {
     const [exampleValue, setExampleValue] = useState(0)
@@ -23,7 +24,8 @@ const StandardParent = (props) => {
                 Time: {now}
             </div>
             <DumbComponent></DumbComponent>
-            <RerenderPreventionComponent></RerenderPreventionComponent>
+            <MemoizedComponent></MemoizedComponent>
+            <ComponentWithProps exampleValue={exampleValue}></ComponentWithProps>
         </div>
     )
 }
