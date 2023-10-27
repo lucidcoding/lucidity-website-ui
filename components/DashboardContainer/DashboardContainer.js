@@ -43,16 +43,9 @@ const DashboardContainer = (props) => {
         }
     ];
 
-    const timePeriodOptions = [
-        { text: '2023' },
-        { text: '2022' },
-        { text: '2021' },
-        { text: '2020' },
-    ];
-
     const [tileData, setTileData] = useState(initialTileData);
 
-    const lastKeyAdded = useRef(null);
+    //const lastKeyAdded = useRef(null);
 
     const handleAddTile = () => {
         const newTileData = [...tileData];
@@ -67,7 +60,7 @@ const DashboardContainer = (props) => {
         });
 
         setTileData(newTileData);
-        lastKeyAdded.current = nextKey;
+        //lastKeyAdded.current = nextKey;
     }
 
     const handleTileClose = (ref, key) => {
@@ -89,6 +82,18 @@ const DashboardContainer = (props) => {
                     <h1>Analytics Dashboard</h1>
                 </div>
                 <GridStackPanel tileData={tileData} handleTileClose={handleTileClose}>
+                    {tileData.map((tileDatum, index) =>
+                        <GridStackTile
+                            title={tileDatum.content}
+                            gsWidth={tileDatum.width}
+                            gsHeight={tileDatum.height}
+                            gsX={tileDatum.x}
+                            gsY={tileDatum.y}
+                            key={tileDatum.key}
+                            gsId={tileDatum.key}
+                            handleClose={(ref) => handleTileClose(ref, tileDatum.key)}>
+                        </GridStackTile>
+                    )}
                 </GridStackPanel>
             </div>
         </div >

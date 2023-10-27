@@ -7,7 +7,7 @@ import styles from './GridStackPanel.module.scss';
 const GridStackPanel = (props) => {
 
     let grid;
-    let oldKeys = useRef(props.tileData.map(tile => tile.key));
+    let oldKeys = useRef(props.tileData.map(tile => tile.key.toString()));
 
 
     useEffect(() => {
@@ -16,7 +16,6 @@ const GridStackPanel = (props) => {
     });
 
     const mounted = useRef();
-    //const lastKeyAdded = useRef(null);
 
     useEffect(() => {
         if (!mounted.current) {
@@ -24,13 +23,7 @@ const GridStackPanel = (props) => {
             mounted.current = true;
         } else {
             // do componentDidUpdate logic
-            /*if (lastKeyAdded.current) {
-                grid.makeWidget(`#${lastKeyAdded.current}`);
-                lastKeyAdded.current = null;
-            }*/
-            console.log('componentDidUpdate');
-
-            const newKeys = props.tileData.map(tile => tile.key);
+            const newKeys = props.tileData.map(tile => tile.key.toString());
 
             if (newKeys.length > oldKeys.current.length) {
                 var newlyAddedKeys = newKeys.filter(key => !oldKeys.current.includes(key));
@@ -42,31 +35,30 @@ const GridStackPanel = (props) => {
     });
 
     const handleTileClose = (ref, key) => {
+        // Remove the widget from Gridstack itself.
         grid.removeWidget(ref.current, false);
+
+        // Remove the key from the store of keys that is needed for detecting if a new one has been added.
+        const index = oldKeys.current.indexOf(key);
+
+        if (index > -1) { 
+            oldKeys.current.splice(index, 1); 
+        }
+
+        // Pass to parent to remove from tile data.
         props.handleTileClose(ref, key);
     };
+
+    var clonedChildren = props.children.map((element, index) => {
+        return React.cloneElement(element, { handleClose: (ref) => handleTileClose(ref, element.key) }, null)
+    });
 
     return (
         <div className={styles.container}>
             <div className={styles.main}>
-                <div className={styles.header}>
-                    <h1>Analytics Dashboard</h1>
-                </div>
                 <div className={styles.gridStackContainer}>
                     <div className={`grid-stack ${styles.gridStack}`}>
-                        {props.tileData.map((tileDatum, index) =>
-                            <GridStackTile
-                                title={tileDatum.content}
-                                gsWidth={tileDatum.width}
-                                gsHeight={tileDatum.height}
-                                gsX={tileDatum.x}
-                                gsY={tileDatum.y}
-                                key={tileDatum.key}
-                                gsId={tileDatum.key}
-                                handleClose={(ref) => handleTileClose(ref, tileDatum.key)}>
-
-                            </GridStackTile>
-                        )}
+                        {clonedChildren}
                     </div>
                 </div>
             </div>
