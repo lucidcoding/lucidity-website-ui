@@ -42,3 +42,7 @@ yarn-error.log*
 /devops/.terraform/
 /devops/terraform.tfstate.backup
 /devops/payload/
+
+# Optional REPL history
+.node_repl_history
+.next
