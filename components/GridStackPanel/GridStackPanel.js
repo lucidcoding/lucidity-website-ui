@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useRef, Component } from "react";
-import GridStackTile from '../GridStackTile/GridStackTile.js';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import styles from './GridStackPanel.module.scss';
 
 const GridStackPanel = (props) => {
-
     let grid;
-    let oldKeys = useRef(props.tileData.map(tile => tile.key.toString()));
 
+    // This is to keep track of what has been changed in the props.
+    let oldKeys = useRef(props.tileData.map(tile => tile.key.toString()));
 
     useEffect(() => {
         grid = GridStack.init();
