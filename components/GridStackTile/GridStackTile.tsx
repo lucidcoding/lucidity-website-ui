@@ -1,18 +1,9 @@
 import { useRef } from "react";
 import styles from './GridStackTile.module.scss';
 import CloseIcon from '../../icons/close.js';
+import GridStackTileProps from "./GridStackTileProps";
 
-const GridStackTile: any = (props: {
-    gsWidth: number;
-    gsHeight: number;
-    gsX: number;
-    gsY: number;
-    gsId: string;
-    ref: any;
-    title: string;
-    handleClose: Function;
-    children: Array<any>;
-}) => {
+const GridStackTile: React.FC<GridStackTileProps> = (props: GridStackTileProps) => {
     const tileRef = useRef(null);
 
     return (
