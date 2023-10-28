@@ -1,13 +1,12 @@
 import React from 'react';
-import DashboardContainer from '../components/DashboardContainer/DashboardContainer.js';
+import DashboardContainer from '../components/DashboardContainer/DashboardContainer';
 
 const Dashboard: React.FC = () => {
     return (
         <>
-            <DashboardContainer>
-            </DashboardContainer>
+            <DashboardContainer />
         </>
     );
-}
+};
 
 export default Dashboard;

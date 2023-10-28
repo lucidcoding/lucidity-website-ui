@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import styles from './GridStackTile.module.scss';
-import CloseIcon from '../../icons/close.js';
-import GridStackTileProps from "./GridStackTileProps";
+import CloseIcon from "../../icons/close.js";
+import styles from "./GridStackTile.module.scss";
+import IGridStackTileProps from "./IGridStackTileProps";
 
-const GridStackTile: React.FC<GridStackTileProps> = (props: GridStackTileProps) => {
+const GridStackTile: React.FC<IGridStackTileProps> = (props) => {
     const tileRef = useRef(null);
 
     return (
@@ -28,7 +28,7 @@ const GridStackTile: React.FC<GridStackTileProps> = (props: GridStackTileProps) 
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default GridStackTile;

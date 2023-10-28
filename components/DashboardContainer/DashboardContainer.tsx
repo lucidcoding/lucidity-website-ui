@@ -1,72 +1,68 @@
-import React, { useEffect, useState, useRef, Component } from "react";
-import GridStackTile from '../GridStackTile/GridStackTile.tsx';
-//import { GridStack } from 'gridstack';
-import 'gridstack/dist/gridstack.css';
-import styles from './DashboardContainer.module.scss';
+import React, { useState } from "react";
+import GridStackTile from "../GridStackTile/GridStackTile";
 import DashboardMenu from "../DashboardMenu/DashboardMenu.js";
-import GridStackPanel from "../GridstackPanel/GridstackPanel.js";
+import GridStackPanel from "../GridStackPanel/GridStackPanel";
+// import "gridstack/dist/gridstack.css";
+import styles from "./DashboardContainer.module.scss";
 
-const DashboardContainer = (props) => {
-    const [periodExpanded, setPeriodExpanded] = useState(false);
+const DashboardContainer = () => {
     const initialTileData = [
         {
+            content: "Some Data Metric",
+            height: 3,
             key: 0,
             width: 4,
-            height: 3,
-            //x: 0,
-            //y: 0,
-            content: 'Some Data Metric'
+            // x: 0,
+            // y: 0,
         },
         {
+            content: "Another Data Metric",
+            height: 3,
             key: 1,
             width: 4,
-            height: 3,
-            content: 'Another Data Metric'
         },
         {
+            content: "Third Data Metric",
+            height: 3,
             key: 2,
             width: 4,
-            height: 3,
-            content: 'Third Data Metric'
         },
         {
+            content: "Fourth Data Metric",
+            height: 3,
             key: 3,
             width: 4,
-            height: 3,
-            content: 'Fourth Data Metric'
         },
         {
+            content: "Fifth  Data Metric",
+            height: 3,
             key: 4,
             width: 4,
-            height: 3,
-            content: 'Fifth  Data Metric'
-        }
+        },
     ];
 
     const [tileData, setTileData] = useState(initialTileData);
 
-    //const lastKeyAdded = useRef(null);
-
     const handleAddTile = () => {
         const newTileData = [...tileData];
-        var existingKeys = newTileData.map(element => element.key);
-        var nextKey = Math.max(...existingKeys) + 1;
+        const existingKeys = newTileData.map((element) => element.key);
+        const nextKey = Math.max(...existingKeys) + 1;
 
         newTileData.push({
+            content: `tile ${nextKey}`,
+            height: 1,
             key: nextKey,
             width: 1,
-            height: 1,
-            content: `tile ${nextKey}`
         });
 
         setTileData(newTileData);
-        //lastKeyAdded.current = nextKey;
-    }
+        // lastKeyAdded.current = nextKey;
+    };
 
-    const handleTileClose = (ref, key) => {
+    const handleTileClose = (ref: any, key: any) => {
         const newTileData = [...tileData];
-        var currentTile = newTileData.find((element) => element.key == key);
-        var tileIndex = newTileData.indexOf(currentTile);
+        const currentTile: any = newTileData.find((element) => element.key === key);
+        const tileIndex = newTileData.indexOf(currentTile);
         newTileData.splice(tileIndex, 1);
         setTileData(newTileData);
     };
@@ -85,17 +81,17 @@ const DashboardContainer = (props) => {
                             title={tileDatum.content}
                             gsWidth={tileDatum.width}
                             gsHeight={tileDatum.height}
-                            gsX={tileDatum.x}
-                            gsY={tileDatum.y}
+                            /*gsX={tileDatum.x}
+                            gsY={tileDatum.y}*/
                             key={tileDatum.key}
-                            gsId={tileDatum.key}
-                            handleClose={(ref) => handleTileClose(ref, tileDatum.key)}>
-                        </GridStackTile>
+                            gsId={`${tileDatum.key}`}
+                            handleClose={(ref: any) => handleTileClose(ref, tileDatum.key)}>
+                        </GridStackTile>,
                     )}
                 </GridStackPanel>
             </div>
         </div >
     );
-}
+};
 
 export default DashboardContainer;

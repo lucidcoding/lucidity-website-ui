@@ -10,7 +10,10 @@
     "@types/next": "^9.0.0",
     "@types/node": "^20.8.9",
     "@types/react": "^18.2.33",
+    "prettier": "^3.0.3",
     "sass": "^1.69.4",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
     "typescript": "^5.2.2"
   },
   "name": "lucidity-d3js",
@@ -23,7 +26,13 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch"
+    "type-check:watch": "npm run type-check -- --watch",
+    "tslint": "tslint -p . -c tslint.json"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "printWidth": 120
   },
   "author": "",
   "license": "ISC",
