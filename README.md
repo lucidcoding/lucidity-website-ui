@@ -11,3 +11,4 @@
 - handle SVGs better
 - useMemo, useCallback, memoizing to prevent re-renders
 - study react tools
+- React developer tools

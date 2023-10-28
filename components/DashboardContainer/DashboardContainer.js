@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, Component } from "react";
-import GridStackTile from '../GridStackTile/GridStackTile.js';
-import { GridStack } from 'gridstack';
+import GridStackTile from '../GridStackTile/GridStackTile.tsx';
+//import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.css';
 import styles from './DashboardContainer.module.scss';
 import DashboardMenu from "../DashboardMenu/DashboardMenu.js";
@@ -70,8 +70,6 @@ const DashboardContainer = (props) => {
         newTileData.splice(tileIndex, 1);
         setTileData(newTileData);
     };
-
-    console.log(tileData);
 
     return (
         <div className={styles.container}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Index = () => {
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState<number>(1);
 
     const handleClick = () => {
         setValue(value + 1);

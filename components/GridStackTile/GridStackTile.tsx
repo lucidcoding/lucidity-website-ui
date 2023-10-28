@@ -1,13 +1,22 @@
-import React, { useRef } from "react";
-import CloseIcon from '../../icons/close.js';
+import { useRef } from "react";
 import styles from './GridStackTile.module.scss';
+import CloseIcon from '../../icons/close.js';
 
-const GridStackTile = (props) => {
+const GridStackTile: any = (props: {
+    gsWidth: number;
+    gsHeight: number;
+    gsX: number;
+    gsY: number;
+    gsId: string;
+    ref: any;
+    title: string;
+    handleClose: Function;
+    children: Array<any>;
+}) => {
     const tileRef = useRef(null);
 
     return (
-        <div
-            className={`grid-stack-item border-dark ${styles.container}`}
+        <div className={`grid-stack-item border-dark ${styles.container}`}
             gs-w={props.gsWidth}
             gs-h={props.gsHeight}
             gs-x={props.gsX}

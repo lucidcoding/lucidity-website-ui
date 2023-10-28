@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DashboardContainer from '../components/DashboardContainer/DashboardContainer.js';
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
     return (
         <>
             <DashboardContainer>
