@@ -4,38 +4,40 @@ import GridStackPanel from "../GridStackPanel/GridStackPanel";
 import GridStackTile from "../GridStackTile/GridStackTile";
 import styles from "./DashboardContainer.module.scss";
 
-const DashboardContainer = () => {
+const DashboardContainer: React.FC<{}> = () => {
     const initialTileData = [
         {
+            children: <div>Test Tile 0</div>,
             content: "Some Data Metric",
             height: 3,
-            key: 0,
+            key: "0",
             width: 4,
             // x: 0,
             // y: 0,
         },
         {
+            children: <div>Test Tile 1</div>,
             content: "Another Data Metric",
             height: 3,
-            key: 1,
+            key: "1",
             width: 4,
         },
         {
             content: "Third Data Metric",
             height: 3,
-            key: 2,
+            key: "2",
             width: 4,
         },
         {
             content: "Fourth Data Metric",
             height: 3,
-            key: 3,
+            key: "3",
             width: 4,
         },
         {
             content: "Fifth  Data Metric",
             height: 3,
-            key: 4,
+            key: "4",
             width: 4,
         },
     ];
@@ -44,21 +46,20 @@ const DashboardContainer = () => {
 
     const handleAddTile = () => {
         const newTileData = [...tileData];
-        const existingKeys = newTileData.map((element) => element.key);
+        const existingKeys = newTileData.map((element) => Number(element.key));
         const nextKey = Math.max(...existingKeys) + 1;
 
         newTileData.push({
             content: `tile ${nextKey}`,
             height: 1,
-            key: nextKey,
+            key: nextKey.toString(),
             width: 1,
         });
 
         setTileData(newTileData);
-        // lastKeyAdded.current = nextKey;
     };
 
-    const handleTileClose = (ref: any, key: any) => {
+    const handleTileClose = (ref: any, key: string) => {
         const newTileData = [...tileData];
         const currentTile: any = newTileData.find((element) => element.key === key);
         const tileIndex = newTileData.indexOf(currentTile);
@@ -76,7 +77,7 @@ const DashboardContainer = () => {
                 <div className={styles.header}>
                     <h1>Analytics Dashboard</h1>
                 </div>
-                <GridStackPanel tileData={tileData} handleTileClose={handleTileClose}>
+                <GridStackPanel handleTileClose={handleTileClose}>
                     {tileData.map((tileDatum, index) =>
                         <GridStackTile
                             title={tileDatum.content}
@@ -84,9 +85,10 @@ const DashboardContainer = () => {
                             gsHeight={tileDatum.height}
                             /*gsX={tileDatum.x}
                             gsY={tileDatum.y}*/
-                            key={tileDatum.key}
+                            key={tileDatum.key.toString()}
                             gsId={`${tileDatum.key}`}
                             handleClose={(ref: any) => handleTileClose(ref, tileDatum.key)}>
+                            {tileDatum.children}
                         </GridStackTile>,
                     )}
                 </GridStackPanel>

@@ -1,12 +1,13 @@
 import { GridStack } from "gridstack";
+// import GridStackPanelProps from "./IGridStackPanelProps";
 import React, { useEffect, useRef } from "react";
 import styles from "./GridStackPanel.module.scss";
 
-const GridStackPanel = (props: any) => {
+const GridStackPanel: React.FC<any> = (props) => {
     let grid: any;
 
     // This is to keep track of what has been changed in the props.
-    const oldKeys = useRef(props.tileData.map((tile: any) => tile.key.toString()));
+    const oldKeys = useRef(props.children.map((tile: any) => tile.key.toString()));
 
     useEffect(() => {
         grid = GridStack.init();
@@ -21,7 +22,7 @@ const GridStackPanel = (props: any) => {
             mounted.current = true;
         } else {
             // do componentDidUpdate logic
-            const newKeys = props.tileData.map((tile: any) => tile.key.toString());
+            const newKeys = props.children.map((tile: any) => tile.key.toString());
 
             if (newKeys.length > oldKeys.current.length) {
                 const newlyAddedKeys: number[] = newKeys.filter((key: number) => !oldKeys.current.includes(key));
@@ -32,7 +33,7 @@ const GridStackPanel = (props: any) => {
         }
     });
 
-    const handleTileClose = (ref: any, key: any) => {
+    const handleTileClose = (ref: any, key: string) => {
         // Remove the widget from Gridstack itself.
         grid.removeWidget(ref.current, false);
 
@@ -49,8 +50,10 @@ const GridStackPanel = (props: any) => {
     };
 
     const clonedChildren = props.children.map((element: any, index: any) => {
-        return React.cloneElement(
-            element, { handleClose: (ref: any) => handleTileClose(ref, element.key) }, null);
+        const clonedElement = React.cloneElement(
+            element, { handleClose: (ref: any) => handleTileClose(ref, element.key) });
+
+        return clonedElement;
     });
 
     return (
