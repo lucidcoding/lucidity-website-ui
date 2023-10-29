@@ -15,6 +15,9 @@
     ],
     "variable-name": {
       "options": ["ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
-    }
+    },
+    "no-console": false,
+    "no-shadowed-variable": false,
+    "unnecessary-bind": false
   }
 }

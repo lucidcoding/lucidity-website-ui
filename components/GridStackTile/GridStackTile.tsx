@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import CloseIcon from "../../icons/close.js";
+import CloseIcon from "../../icons/close";
 import styles from "./GridStackTile.module.scss";
 import IGridStackTileProps from "./IGridStackTileProps";
 

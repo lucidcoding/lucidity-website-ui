@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
 import { GridStack } from "gridstack";
-import "gridstack/dist/gridstack.css";
+import React, { useEffect, useRef } from "react";
 import styles from "./GridStackPanel.module.scss";
 
 const GridStackPanel = (props: any) => {

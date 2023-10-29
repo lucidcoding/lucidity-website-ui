@@ -1,10 +1,10 @@
-@import './common.scss';
+@import "./common.scss";
 
 body {
     margin: 0;
     background-color: $grey-light;
     color: $white;
-    font-family: system-ui, Rubik,Segoe UI Symbol,Noto Color Emoji;
+    font-family: system-ui, Rubik, Segoe UI Symbol, Noto Color Emoji;
     font-size: $medium-font;
     color: #f0f0f0;
 
@@ -16,7 +16,7 @@ body {
                 height: 20px;
                 transform: rotate(0);
                 border-radius: 0;
-                background-image: url('/resize-bottom-right.svg');
+                background-image: url("/resize-bottom-right.svg");
                 margin: 3px;
             }
         }

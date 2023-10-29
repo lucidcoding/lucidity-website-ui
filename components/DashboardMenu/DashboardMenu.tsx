@@ -1,26 +1,26 @@
-import React, { useEffect, useState, useRef, Component } from "react";
-import 'gridstack/dist/gridstack.css';
-import styles from './DashboardMenu.module.scss';
-import CalendarIcon from '../../icons/calendar.js';
-import ChartLineIcon from '../../icons/chart-line.js';
-import ChartBarIcon from '../../icons/chart-bar.js';
-import ChartDonutIcon from '../../icons/chart-donut.js';
-import ChevronDownIcon from '../../icons/chevron-down.js';
-import GaugeIcon from '../../icons/gauge.js';
+import React, { useState } from "react";
+// import "gridstack/dist/gridstack.css";
+import CalendarIcon from "../../icons/calendar";
+import ChartBarIcon from "../../icons/chart-bar";
+import ChartDonutIcon from "../../icons/chart-donut";
+import ChartLineIcon from "../../icons/chart-line";
+import ChevronDownIcon from "../../icons/chevron-down";
+import GaugeIcon from "../../icons/gauge";
+import styles from "./DashboardMenu.module.scss";
 
-const DashboardMenu = (props) => {
+const DashboardMenu = (props: any) => {
     const [periodExpanded, setPeriodExpanded] = useState(false);
 
     const timePeriodOptions = [
-        { text: '2023' },
-        { text: '2022' },
-        { text: '2021' },
-        { text: '2020' },
+        { text: "2023" },
+        { text: "2022" },
+        { text: "2021" },
+        { text: "2020" },
     ];
 
     const handlePeriodClick = () => {
         setPeriodExpanded(!periodExpanded);
-    }
+    };
 
     return (
         <div className={styles.container}>
@@ -33,16 +33,18 @@ const DashboardMenu = (props) => {
                 <div className={styles.text}>
                     All Time
                 </div>
-                <div className={`${styles.icon} ${styles.spinOnExpand} ${periodExpanded ? styles.expanded : ''}`}>
+                <div className={`${styles.icon} ${styles.spinOnExpand} ${periodExpanded ? styles.expanded : ""}`}>
                     <ChevronDownIcon></ChevronDownIcon>
                 </div>
             </button>
-            <div className={`${styles.dropDown} ${periodExpanded} ? 'styles.expanded' : ''}`} style={periodExpanded ? { height: (40 * timePeriodOptions.length) + 'px' } : {}}>
+            <div
+                className={`${styles.dropDown} ${periodExpanded} ? "styles.expanded" : ""}`}
+                style={periodExpanded ? { height: (40 * timePeriodOptions.length) + "px" } : {}}>
                 {timePeriodOptions.map((item, index) =>
                     <button type="button" className={styles.noIcon} onClick={props.handleAddTile} key={index}>
                         {item.text}
-                    </button>
-                )}
+                    </button>)
+                }
             </div>
             <h2>Add Widget</h2>
             <button type="button" onClick={props.handleAddTile}>
@@ -79,6 +81,6 @@ const DashboardMenu = (props) => {
             </button>
         </div>
     );
-}
+};
 
 export default DashboardMenu;

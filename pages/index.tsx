@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const Index = () => {
+const Index: React.FC = () => {
     const [value, setValue] = useState<number>(1);
 
     const handleClick = () => {
