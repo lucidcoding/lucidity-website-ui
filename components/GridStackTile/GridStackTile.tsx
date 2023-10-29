@@ -3,7 +3,7 @@ import CloseIcon from "../../icons/close";
 import styles from "./GridStackTile.module.scss";
 import IGridStackTileProps from "./IGridStackTileProps";
 
-const GridStackTile: React.FC<IGridStackTileProps> = (props) => {
+const GridStackTile = (props: IGridStackTileProps): JSX.Element => {
     const tileRef = useRef(null);
 
     return (

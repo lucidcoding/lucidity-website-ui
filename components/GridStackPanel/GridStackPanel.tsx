@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./GridStackPanel.module.scss";
 import IGridStackPanelProps from "./IGridStackPanelProps";
 
-const GridStackPanel: React.FC<IGridStackPanelProps> = (props) => {
+const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
     let grid: any;
 
     // This is to keep track of what has been changed in the props.
@@ -50,10 +50,8 @@ const GridStackPanel: React.FC<IGridStackPanelProps> = (props) => {
     };
 
     const clonedChildren = props.children.map((element: any, index: number) => {
-        const clonedElement = React.cloneElement(
+        return React.cloneElement(
             element, { handleClose: (ref: any) => handleTileClose(ref, element.key) });
-
-        return clonedElement;
     });
 
     return (

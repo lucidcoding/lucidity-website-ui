@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface IGridStackTileProps {
     gsWidth: number;
     gsHeight: number;

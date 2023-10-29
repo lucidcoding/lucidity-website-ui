@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-// import "gridstack/dist/gridstack.css";
+import { useState } from "react";
 import CalendarIcon from "../../icons/calendar";
 import ChartBarIcon from "../../icons/chart-bar";
 import ChartDonutIcon from "../../icons/chart-donut";
@@ -7,8 +6,9 @@ import ChartLineIcon from "../../icons/chart-line";
 import ChevronDownIcon from "../../icons/chevron-down";
 import GaugeIcon from "../../icons/gauge";
 import styles from "./DashboardMenu.module.scss";
+import IDashboardMenuProps from "./IDashboardMenuProps";
 
-const DashboardMenu = (props: any) => {
+const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
     const [periodExpanded, setPeriodExpanded] = useState(false);
 
     const timePeriodOptions = [

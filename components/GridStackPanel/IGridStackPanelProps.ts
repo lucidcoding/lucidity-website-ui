@@ -1,9 +1,7 @@
-import React from "react";
 import IGridStackTileProps from "../GridStackTile/IGridStackTileProps";
 
 export interface IGridStackPanelProps {
-    // children: IGridStackTileProps[];
-    children: React.JSX.Element[];
+    children: Array<React.ReactElement<IGridStackTileProps>>;
     handleTileClose: (tileRef: any, key: string) => void;
 }
 

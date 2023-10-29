@@ -4,5 +4,5 @@
 - bundling
 - useMemo, useCallback, memoizing to prevent re-renders
 - React developer tools
-- fix delete file again
-- remove any s
+- remove any anys
+- add guages etc

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DashboardMenu from "../DashboardMenu/DashboardMenu";
 import GridStackPanel from "../GridStackPanel/GridStackPanel";
 import GridStackTile from "../GridStackTile/GridStackTile";
 import styles from "./DashboardContainer.module.scss";
 
-const DashboardContainer: React.FC<{}> = () => {
+const DashboardContainer = (): JSX.Element => {
     const initialTileData = [
         {
             children: <div>Test Tile 0</div>,
@@ -71,8 +71,7 @@ const DashboardContainer: React.FC<{}> = () => {
 
     return (
         <div className={styles.container}>
-            <DashboardMenu handleAddTile={handleAddTile}>
-            </DashboardMenu>
+            <DashboardMenu handleAddTile={handleAddTile} />
             <div className={styles.main}>
                 <div className={styles.header}>
                     <h1>Analytics Dashboard</h1>
