@@ -89,8 +89,8 @@ const DashboardContainer: React.FC<{}> = () => {
                             gsId={`${tileDatum.key}`}
                             handleClose={(ref: any) => handleTileClose(ref, tileDatum.key)}>
                             {tileDatum.children}
-                        </GridStackTile>,
-                    )}
+                        </GridStackTile>)
+                    }
                 </GridStackPanel>
             </div>
         </div >
