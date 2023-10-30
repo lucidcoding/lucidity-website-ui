@@ -3,9 +3,10 @@ import DashboardMenu from "../DashboardMenu/DashboardMenu";
 import GridStackPanel from "../GridStackPanel/GridStackPanel";
 import GridStackTile from "../GridStackTile/GridStackTile";
 import styles from "./DashboardContainer.module.scss";
+import ITile from "./ITile";
 
 const DashboardContainer = (): JSX.Element => {
-    const initialTileData: any[] = [
+    const initialTileData: ITile[] = [
         {
             children: <div>Test Tile 0</div>,
             content: "Some Data Metric",
@@ -62,9 +63,12 @@ const DashboardContainer = (): JSX.Element => {
     const handleTileClose = (id: string) => {
         const newTileData = [...tileData];
         const currentTile = newTileData.find((element) => element.id === id);
-        const tileIndex = newTileData.indexOf(currentTile);
-        newTileData.splice(tileIndex, 1);
-        setTileData(newTileData);
+
+        if (currentTile) {
+            const tileIndex = newTileData.indexOf(currentTile);
+            newTileData.splice(tileIndex, 1);
+            setTileData(newTileData);
+        }
     };
 
     console.log(tileData);
