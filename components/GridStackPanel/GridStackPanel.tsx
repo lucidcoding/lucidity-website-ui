@@ -1,5 +1,5 @@
-import { GridStack } from "gridstack";
-import React, { useEffect, useRef } from "react";
+import { GridStack, GridStackElement } from "gridstack";
+import React, { RefObject, useEffect, useRef } from "react";
 import styles from "./GridStackPanel.module.scss";
 import IGridStackPanelProps from "./IGridStackPanelProps";
 
@@ -33,9 +33,10 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
         }
     });
 
-    const handleTileClose = (ref: any, key: string) => {
+    const handleTileClose = (ref: RefObject<HTMLDivElement>, key: string) => {
         // Remove the widget from Gridstack itself.
-        grid.removeWidget(ref.current, false);
+        let widget = ref.current as GridStackElement;
+        grid.removeWidget(widget, false);
 
         // Remove the key from the store of keys that is needed for detecting if
         // a new one has been added.
@@ -51,7 +52,7 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
 
     const clonedChildren = props.children.map((element, index: number) => {
         return React.cloneElement(
-            element, { handleClose: (ref: any) => handleTileClose(ref, element.props.gsId) });
+            element, { handleClose: (ref: RefObject<HTMLDivElement>) => handleTileClose(ref, element.props.gsId) });
     });
 
     return (

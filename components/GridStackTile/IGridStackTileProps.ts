@@ -7,7 +7,7 @@ export interface IGridStackTileProps {
     gsY?: number;
     gsId: string;
     key: string;
-    ref?: React.MutableRefObject<any>;
+    ref?: RefObject<HTMLDivElement>;
     title: string;
     handleClose: (tileRef: RefObject<HTMLDivElement>) => void;
     children?: React.ReactNode;
