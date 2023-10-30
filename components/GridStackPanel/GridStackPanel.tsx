@@ -4,17 +4,17 @@ import styles from "./GridStackPanel.module.scss";
 import IGridStackPanelProps from "./IGridStackPanelProps";
 
 const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
-    let grid: any;
+    let grid: GridStack;
 
     // This is to keep track of what has been changed in the props.
-    const oldKeys = useRef(props.children.map((tile) => tile.key));
+    const oldIds = useRef(props.children.map((tile) => tile.props.gsId));
 
     useEffect(() => {
         grid = GridStack.init();
         grid.margin("12px");
     });
 
-    const mounted = useRef(false);
+    const mounted = useRef<boolean>(false);
 
     useEffect(() => {
         if (!mounted.current) {
@@ -22,13 +22,13 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
             mounted.current = true;
         } else {
             // do componentDidUpdate logic
-            const newKeys = props.children.map((tile) => tile.key);
+            const newIds = props.children.map((tile) => tile.props.gsId);
 
-            if (newKeys.length > oldKeys.current.length) {
-                const newlyAddedKeys = newKeys.filter((key) => key !== null && !oldKeys.current.includes(key));
-                const newKey = newlyAddedKeys[0];
-                grid.makeWidget(`#${newKey}`);
-                oldKeys.current = newKeys;
+            if (newIds.length > oldIds.current.length) {
+                const newlyAddedIds = newIds.filter((id) => id !== null && !oldIds.current.includes(id));
+                const newId = newlyAddedIds[0];
+                grid.makeWidget(`#${newId}`);
+                oldIds.current = newIds;
             }
         }
     });
@@ -39,19 +39,19 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
 
         // Remove the key from the store of keys that is needed for detecting if
         // a new one has been added.
-        const index = oldKeys.current.indexOf(key);
+        const index = oldIds.current.indexOf(key);
 
         if (index > -1) {
-            oldKeys.current.splice(index, 1);
+            oldIds.current.splice(index, 1);
         }
 
         // Pass to parent to remove from tile data.
         props.handleTileClose(ref, key);
     };
 
-    const clonedChildren = props.children.map((element: any, index: number) => {
+    const clonedChildren = props.children.map((element, index: number) => {
         return React.cloneElement(
-            element, { handleClose: (ref: any) => handleTileClose(ref, element.key) });
+            element, { handleClose: (ref: any) => handleTileClose(ref, element.props.gsId) });
     });
 
     return (

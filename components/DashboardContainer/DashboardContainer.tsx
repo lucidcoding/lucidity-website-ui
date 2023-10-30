@@ -10,7 +10,7 @@ const DashboardContainer = (): JSX.Element => {
             children: <div>Test Tile 0</div>,
             content: "Some Data Metric",
             height: 3,
-            key: "0",
+            id: "0",
             width: 4,
             x: 0,
             y: 0,
@@ -19,25 +19,25 @@ const DashboardContainer = (): JSX.Element => {
             children: <div>Test Tile 1</div>,
             content: "Another Data Metric",
             height: 3,
-            key: "1",
+            id: "1",
             width: 4,
         },
         {
             content: "Third Data Metric",
             height: 3,
-            key: "2",
+            id: "2",
             width: 4,
         },
         {
             content: "Fourth Data Metric",
             height: 3,
-            key: "3",
+            id: "3",
             width: 4,
         },
         {
             content: "Fifth  Data Metric",
             height: 3,
-            key: "4",
+            id: "4",
             width: 4,
         },
     ];
@@ -46,22 +46,22 @@ const DashboardContainer = (): JSX.Element => {
 
     const handleAddTile = () => {
         const newTileData = [...tileData];
-        const existingKeys = newTileData.map((element) => Number(element.key));
-        const nextKey = Math.max(...existingKeys) + 1;
+        const nextIds = newTileData.map((element) => Number(element.id));
+        const nextId = Math.max(...nextIds) + 1;
 
         newTileData.push({
-            content: `tile ${nextKey}`,
+            content: `tile ${nextId}`,
             height: 1,
-            key: nextKey.toString(),
+            id: nextId.toString(),
             width: 1,
         });
 
         setTileData(newTileData);
     };
 
-    const handleTileClose = (ref: any, key: string) => {
+    const handleTileClose = (ref: any, id: string) => {
         const newTileData = [...tileData];
-        const currentTile: any = newTileData.find((element) => element.key === key);
+        const currentTile: any = newTileData.find((element) => element.id === id);
         const tileIndex = newTileData.indexOf(currentTile);
         newTileData.splice(tileIndex, 1);
         setTileData(newTileData);
@@ -84,8 +84,8 @@ const DashboardContainer = (): JSX.Element => {
                             gsHeight={tileDatum.height}
                             /*gsX={tileDatum.x}
                             gsY={tileDatum.y}*/
-                            key={tileDatum.key.toString()}
-                            gsId={`${tileDatum.key}`}
+                            key={tileDatum.id}
+                            gsId={tileDatum.id}
                             handleClose={(ref: any) => handleTileClose(ref, tileDatum.key)}>
                             {tileDatum.children}
                         </GridStackTile>)
