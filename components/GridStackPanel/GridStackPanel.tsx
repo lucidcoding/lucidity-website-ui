@@ -33,21 +33,21 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
         }
     });
 
-    const handleTileClose = (ref: RefObject<HTMLDivElement>, key: string) => {
+    const handleTileClose = (ref: RefObject<HTMLDivElement>, id: string) => {
         // Remove the widget from Gridstack itself.
-        let widget = ref.current as GridStackElement;
+        const widget = ref.current as GridStackElement;
         grid.removeWidget(widget, false);
 
         // Remove the key from the store of keys that is needed for detecting if
         // a new one has been added.
-        const index = oldIds.current.indexOf(key);
+        const index = oldIds.current.indexOf(id);
 
         if (index > -1) {
             oldIds.current.splice(index, 1);
         }
 
         // Pass to parent to remove from tile data.
-        props.handleTileClose(ref, key);
+        props.handleTileClose(id);
     };
 
     const clonedChildren = props.children.map((element, index: number) => {

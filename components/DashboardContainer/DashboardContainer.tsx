@@ -59,9 +59,9 @@ const DashboardContainer = (): JSX.Element => {
         setTileData(newTileData);
     };
 
-    const handleTileClose = (ref: any, id: string) => {
+    const handleTileClose = (id: string) => {
         const newTileData = [...tileData];
-        const currentTile: any = newTileData.find((element) => element.id === id);
+        const currentTile = newTileData.find((element) => element.id === id);
         const tileIndex = newTileData.indexOf(currentTile);
         newTileData.splice(tileIndex, 1);
         setTileData(newTileData);
@@ -86,7 +86,7 @@ const DashboardContainer = (): JSX.Element => {
                             gsY={tileDatum.y}*/
                             key={tileDatum.id}
                             gsId={tileDatum.id}
-                            handleClose={(ref: any) => handleTileClose(ref, tileDatum.key)}>
+                            handleClose={() => handleTileClose(tileDatum.id)}>
                             {tileDatum.children}
                         </GridStackTile>)
                     }
