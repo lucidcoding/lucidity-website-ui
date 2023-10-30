@@ -7,7 +7,7 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
     let grid: any;
 
     // This is to keep track of what has been changed in the props.
-    const oldKeys = useRef(props.children.map((tile: any) => tile.key.toString()));
+    const oldKeys = useRef(props.children.map((tile) => tile.key));
 
     useEffect(() => {
         grid = GridStack.init();
@@ -22,11 +22,11 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
             mounted.current = true;
         } else {
             // do componentDidUpdate logic
-            const newKeys = props.children.map((tile: any) => tile.key.toString());
+            const newKeys = props.children.map((tile) => tile.key);
 
             if (newKeys.length > oldKeys.current.length) {
-                const newlyAddedKeys: number[] = newKeys.filter((key: number) => !oldKeys.current.includes(key));
-                const newKey: number = newlyAddedKeys[0];
+                const newlyAddedKeys = newKeys.filter((key) => key !== null && !oldKeys.current.includes(key));
+                const newKey = newlyAddedKeys[0];
                 grid.makeWidget(`#${newKey}`);
                 oldKeys.current = newKeys;
             }
