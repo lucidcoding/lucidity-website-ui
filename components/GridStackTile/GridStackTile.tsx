@@ -4,7 +4,7 @@ import styles from "./GridStackTile.module.scss";
 import IGridStackTileProps from "./IGridStackTileProps";
 
 const GridStackTile = (props: IGridStackTileProps): JSX.Element => {
-    const tileRef = useRef(null);
+    const tileRef = useRef<HTMLDivElement>(null);
 
     return (
         <div className={`grid-stack-item border-dark ${styles.container}`}

@@ -5,15 +5,15 @@ import GridStackTile from "../GridStackTile/GridStackTile";
 import styles from "./DashboardContainer.module.scss";
 
 const DashboardContainer = (): JSX.Element => {
-    const initialTileData = [
+    const initialTileData: any[] = [
         {
             children: <div>Test Tile 0</div>,
             content: "Some Data Metric",
             height: 3,
             key: "0",
             width: 4,
-            // x: 0,
-            // y: 0,
+            x: 0,
+            y: 0,
         },
         {
             children: <div>Test Tile 1</div>,

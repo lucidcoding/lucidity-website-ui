@@ -1,3 +1,5 @@
+import React, { RefObject } from "react";
+
 export interface IGridStackTileProps {
     gsWidth: number;
     gsHeight: number;
@@ -7,8 +9,8 @@ export interface IGridStackTileProps {
     key: string;
     ref?: React.MutableRefObject<any>;
     title: string;
-    handleClose: (tileRef: any) => void;
-    children: any;
+    handleClose: (tileRef: RefObject<HTMLDivElement>) => void;
+    children?: React.ReactNode;
 }
 
 export default IGridStackTileProps;
