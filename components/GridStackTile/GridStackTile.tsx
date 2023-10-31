@@ -1,10 +1,16 @@
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import CloseIcon from "../../icons/close";
 import styles from "./GridStackTile.module.scss";
 import IGridStackTileProps from "./IGridStackTileProps";
 
 const GridStackTile = (props: IGridStackTileProps): JSX.Element => {
     const tileRef = useRef<HTMLDivElement>(null);
+
+    const handleClose = (tileRef: RefObject<HTMLDivElement>) => {
+        if (props.handleClose) {
+            props.handleClose(tileRef);
+        }
+    };
 
     return (
         <div className={`grid-stack-item border-dark ${styles.container}`}
@@ -16,10 +22,10 @@ const GridStackTile = (props: IGridStackTileProps): JSX.Element => {
             ref={tileRef}>
             <div className={`grid-stack-item-content ${styles.content}`}>
                 <div className={styles.header}>
-                    <div className={styles.title}>
+                    <div className={styles.title} data-testid="grid-stack-tile-title">
                         {props.title}
                     </div>
-                    <button type="button" onClick={() => props.handleClose(tileRef)} >
+                    <button type="button" onClick={() => handleClose(tileRef)} data-testid="grid-stack-tile-close-button">
                         <CloseIcon></CloseIcon>
                     </button>
                 </div>

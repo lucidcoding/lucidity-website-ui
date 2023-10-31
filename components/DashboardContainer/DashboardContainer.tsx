@@ -89,8 +89,7 @@ const DashboardContainer = (): JSX.Element => {
                             /*gsX={tileDatum.x}
                             gsY={tileDatum.y}*/
                             key={tileDatum.id}
-                            gsId={tileDatum.id}
-                            handleClose={() => handleTileClose(tileDatum.id)}>
+                            gsId={tileDatum.id}>
                             {tileDatum.children}
                         </GridStackTile>)
                     }

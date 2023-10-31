@@ -7,6 +7,7 @@
     },
     "no-console": false,
     "no-shadowed-variable": false,
-    "unnecessary-bind": false
+    "unnecessary-bind": false,
+    "no-implicit-dependencies": [true, "dev"]
   }
 }
