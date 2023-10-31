@@ -12,7 +12,7 @@ describe("GridStackPanel", () => {
     const mockedGridStack = jest.mocked(GridStack);
     const grid = jest.mocked(GridStack);
 
-    const renderElement = () => render(<GridStackPanel handleTileClose={mockHandleTileClose}>
+    const renderElement = () => render(<GridStackPanel handleTileClose={mockHandleTileClose} data-testid="grid-stack-panel">
         <GridStackTile
             gsHeight={10}
             gsWidth={20}
@@ -46,6 +46,7 @@ describe("GridStackPanel", () => {
         mockHandleTileClose = jest.fn();
         mockedGridStack.init.mockImplementation((() => grid.prototype));
         grid.prototype.margin = jest.fn();
+        grid.prototype.removeWidget = jest.fn();
     });
 
     afterEach(() => {
@@ -64,5 +65,25 @@ describe("GridStackPanel", () => {
         expect(grid.prototype.margin).toHaveBeenCalledTimes(1);
         expect(grid.prototype.makeWidget).not.toHaveBeenCalled();
         expect(grid.prototype.removeWidget).not.toHaveBeenCalled();
+    });
+
+    /*it("should remove tile when close clicked", () => {
+        const rendered = renderElement();
+        const closeButton = screen.getByTestId("grid-stack-panel-tile-98-close-button");
+        closeButton.click();
+        expect(screen.getByTestId("grid-stack-panel-tile-96")).toBeInTheDocument();
+        expect(screen.getByTestId("grid-stack-panel-tile-97")).toBeInTheDocument();
+        expect(screen.getByTestId("grid-stack-panel-tile-98")).not.toBeInTheDocument();
+    });*/
+
+    it("should call removeWidger when close clicked", () => {
+        const rendered = renderElement();
+        const closeButton = screen.getByTestId("grid-stack-panel-tile-98-close-button");
+        closeButton.click();
+        expect(grid.prototype.removeWidget).toHaveBeenCalledTimes(1);
+        const gridStackElement = grid.prototype.removeWidget.mock.calls[0][0];
+        const htmlDivElement = gridStackElement as HTMLDivElement;
+        expect(htmlDivElement.id).toEqual("98");
+        expect(grid.prototype.removeWidget.mock.calls[0][1]).toBe(false);
     });
 });

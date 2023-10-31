@@ -19,13 +19,14 @@ const GridStackTile = (props: IGridStackTileProps): JSX.Element => {
             gs-x={props.gsX}
             gs-y={props.gsY}
             id={props.gsId}
-            ref={tileRef}>
+            ref={tileRef}
+            data-testid={props["data-testid"]}>
             <div className={`grid-stack-item-content ${styles.content}`}>
                 <div className={styles.header}>
-                    <div className={styles.title} data-testid="grid-stack-tile-title">
+                    <div className={styles.title} data-testid={`${props["data-testid"]}-title`}>
                         {props.title}
                     </div>
-                    <button type="button" onClick={() => handleClose(tileRef)} data-testid="grid-stack-tile-close-button">
+                    <button type="button" onClick={() => handleClose(tileRef)} data-testid={`${props["data-testid"]}-close-button`}>
                         <CloseIcon></CloseIcon>
                     </button>
                 </div>

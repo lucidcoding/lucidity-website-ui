@@ -80,7 +80,7 @@ const DashboardContainer = (): JSX.Element => {
                 <div className={styles.header}>
                     <h1>Analytics Dashboard</h1>
                 </div>
-                <GridStackPanel handleTileClose={handleTileClose}>
+                <GridStackPanel handleTileClose={handleTileClose} data-testid="grid-stack-panel">
                     {tileData.map((tileDatum, index) =>
                         <GridStackTile
                             title={tileDatum.content}

@@ -8,6 +8,7 @@
     "no-console": false,
     "no-shadowed-variable": false,
     "unnecessary-bind": false,
-    "no-implicit-dependencies": [true, "dev"]
+    "no-implicit-dependencies": [true, "dev"],
+    "object-literal-key-quotes": [true, "as-needed"]
   }
 }

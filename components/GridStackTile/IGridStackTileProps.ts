@@ -11,6 +11,7 @@ export interface IGridStackTileProps {
     title: string;
     handleClose?: (tileRef: RefObject<HTMLDivElement>) => void;
     children?: React.ReactNode;
+    "data-testid"?: string;
 }
 
 export default IGridStackTileProps;

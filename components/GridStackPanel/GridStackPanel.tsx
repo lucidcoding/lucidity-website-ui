@@ -57,13 +57,17 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
         }
     };
 
+    const dataTestId = props["data-testid"] ?? "grid-stack-panel";
+
     const clonedChildren = childrenArray.map((element, index: number) => {
-        return React.cloneElement(
-            element, { handleClose: (ref: RefObject<HTMLDivElement>) => handleTileClose(ref, element.props.gsId) });
+        return React.cloneElement(element, {
+            "data-testid": `${dataTestId}-tile-${element.props.gsId}`,
+            handleClose: (ref: RefObject<HTMLDivElement>) => handleTileClose(ref, element.props.gsId),
+        });
     });
 
     return (
-        <div className={styles.container} data-testid="grid-stack-panel">
+        <div className={styles.container} data-testid={dataTestId}>
             <div className={styles.main}>
                 <div className={styles.gridStackContainer}>
                     <div className={`grid-stack ${styles.gridStack}`}>

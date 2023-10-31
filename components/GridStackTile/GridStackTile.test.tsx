@@ -15,6 +15,7 @@ describe("GridStackTile", () => {
         handleClose={mockHandleClose}
         key="99"
         title="Test Title 99"
+        data-testid="grid-stack-tile"
     />);
 
     beforeEach(() => {
