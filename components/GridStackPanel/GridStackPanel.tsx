@@ -31,9 +31,12 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
 
             if (newIds.length > oldIds.current.length) {
                 const newlyAddedIds = newIds.filter((id) => id !== null && !oldIds.current.includes(id));
-                const newId = newlyAddedIds[0];
-                grid.makeWidget(`#${newId}`);
-                oldIds.current = newIds;
+
+                if (newlyAddedIds.length === 1) {
+                    const newId = newlyAddedIds[0];
+                    grid.makeWidget(`#${newId}`);
+                    oldIds.current = newIds;
+                }
             }
         }
     });

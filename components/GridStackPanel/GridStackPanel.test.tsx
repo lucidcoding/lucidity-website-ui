@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import { cleanup, render, screen } from "@testing-library/react";
-import { GridStack, GridStackElement } from "gridstack";
-import React, { RefObject } from "react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { GridStack } from "gridstack";
+import React from "react";
 import GridStackTile from "../GridStackTile/GridStackTile";
 import GridStackPanel from "./GridStackPanel";
 
@@ -47,6 +47,7 @@ describe("GridStackPanel", () => {
         mockedGridStack.init.mockImplementation((() => grid.prototype));
         grid.prototype.margin = jest.fn();
         grid.prototype.removeWidget = jest.fn();
+        grid.prototype.makeWidget = jest.fn();
     });
 
     afterEach(() => {
@@ -67,23 +68,60 @@ describe("GridStackPanel", () => {
         expect(grid.prototype.removeWidget).not.toHaveBeenCalled();
     });
 
-    /*it("should remove tile when close clicked", () => {
-        const rendered = renderElement();
+    it("calls removeWidget when close clicked", () => {
+        renderElement();
         const closeButton = screen.getByTestId("grid-stack-panel-tile-98-close-button");
-        closeButton.click();
-        expect(screen.getByTestId("grid-stack-panel-tile-96")).toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-97")).toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-98")).not.toBeInTheDocument();
-    });*/
-
-    it("should call removeWidger when close clicked", () => {
-        const rendered = renderElement();
-        const closeButton = screen.getByTestId("grid-stack-panel-tile-98-close-button");
-        closeButton.click();
+        fireEvent.click(closeButton);
         expect(grid.prototype.removeWidget).toHaveBeenCalledTimes(1);
         const gridStackElement = grid.prototype.removeWidget.mock.calls[0][0];
         const htmlDivElement = gridStackElement as HTMLDivElement;
         expect(htmlDivElement.id).toEqual("98");
         expect(grid.prototype.removeWidget.mock.calls[0][1]).toBe(false);
+    });
+
+    it("calls makeWidget when tile added", () => {
+        const { rerender } = renderElement();
+
+        rerender(<GridStackPanel handleTileClose={mockHandleTileClose} data-testid="grid-stack-panel">
+            <GridStackTile
+                gsHeight={10}
+                gsWidth={20}
+                gsId="96"
+                gsX={15}
+                gsY={25}
+                key="96"
+                title="Test Title 96"
+            />
+            <GridStackTile
+                gsHeight={10}
+                gsWidth={20}
+                gsId="97"
+                gsX={15}
+                gsY={25}
+                key="97"
+                title="Test Title 97"
+            />
+            <GridStackTile
+                gsHeight={10}
+                gsWidth={20}
+                gsId="98"
+                gsX={15}
+                gsY={25}
+                key="98"
+                title="Test Title 98"
+            />
+            <GridStackTile
+                gsHeight={10}
+                gsWidth={20}
+                gsId="99"
+                gsX={15}
+                gsY={25}
+                key="99"
+                title="Test Title 99"
+            />
+        </GridStackPanel>);
+
+        expect(grid.prototype.makeWidget).toHaveBeenCalledTimes(1);
+        expect(grid.prototype.makeWidget.mock.calls[0][0]).toEqual("#99");
     });
 });

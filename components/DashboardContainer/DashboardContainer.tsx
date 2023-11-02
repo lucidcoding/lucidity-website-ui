@@ -71,8 +71,6 @@ const DashboardContainer = (): JSX.Element => {
         }
     };
 
-    console.log(tileData);
-
     return (
         <div className={styles.container}>
             <DashboardMenu handleAddTile={handleAddTile} />
@@ -86,8 +84,8 @@ const DashboardContainer = (): JSX.Element => {
                             title={tileDatum.content}
                             gsWidth={tileDatum.width}
                             gsHeight={tileDatum.height}
-                            /*gsX={tileDatum.x}
-                            gsY={tileDatum.y}*/
+                            gsX={tileDatum.x}
+                            gsY={tileDatum.y}
                             key={tileDatum.id}
                             gsId={tileDatum.id}>
                             {tileDatum.children}

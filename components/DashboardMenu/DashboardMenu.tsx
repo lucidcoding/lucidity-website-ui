@@ -23,10 +23,10 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="dashboard-menu">
             <div className={styles.header}></div>
             <h2>Time Period</h2>
-            <button type="button" onClick={handlePeriodClick}>
+            <button type="button" onClick={handlePeriodClick} data-testid="dashboard-menu-period-drop-down-button">
                 <div className={styles.icon}>
                     <CalendarIcon></CalendarIcon>
                 </div>
@@ -38,8 +38,9 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                 </div>
             </button>
             <div
-                className={`${styles.dropDown} ${periodExpanded} ? "styles.expanded" : ""}`}
-                style={periodExpanded ? { height: (40 * timePeriodOptions.length) + "px" } : {}}>
+                className={`${styles.dropDown} ${periodExpanded ? styles.expanded : ""}`}
+                style={periodExpanded ? { height: (40 * timePeriodOptions.length) + "px" } : { height: "0px" }}
+                data-testid="dashboard-menu-period-drop-down-list">
                 {timePeriodOptions.map((item, index) =>
                     <button type="button" className={styles.noIcon} onClick={props.handleAddTile} key={index}>
                         {item.text}
@@ -47,7 +48,7 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                 }
             </div>
             <h2>Add Widget</h2>
-            <button type="button" onClick={props.handleAddTile}>
+            <button type="button" onClick={props.handleAddTile} data-testid="dashboard-menu-add-gauge">
                 <div className={styles.icon}>
                     <GaugeIcon></GaugeIcon>
                 </div>
@@ -55,7 +56,7 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                     Gauge
                 </div>
             </button>
-            <button type="button" onClick={props.handleAddTile}>
+            <button type="button" onClick={props.handleAddTile} data-testid="dashboard-menu-add-bar-chart">
                 <div className={styles.icon}>
                     <ChartBarIcon></ChartBarIcon>
                 </div>
@@ -63,7 +64,7 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                     Bar Chart
                 </div>
             </button>
-            <button type="button" onClick={props.handleAddTile}>
+            <button type="button" onClick={props.handleAddTile} data-testid="dashboard-menu-add-graph">
                 <div className={styles.icon}>
                     <ChartLineIcon></ChartLineIcon>
                 </div>
@@ -71,7 +72,7 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                     Graph
                 </div>
             </button>
-            <button type="button" onClick={props.handleAddTile}>
+            <button type="button" onClick={props.handleAddTile} data-testid="dashboard-menu-add-donut-chart">
                 <div className={styles.icon}>
                     <ChartDonutIcon></ChartDonutIcon>
                 </div>
