@@ -1,18 +1,11 @@
 import React, { useState } from "react";
+import NavigationBar from "../components/NavigationBar/NavigationBar";
 
 const Index: React.FC = () => {
-    const [value, setValue] = useState<number>(1);
-
-    const handleClick = () => {
-        setValue(value + 1);
-    };
-
     return (
         <>
-            <h1>First Post</h1>
-            <p>Value: {value}</p>
+            <NavigationBar />
             <div>
-                <button type="button" onClick={handleClick}>Increment!</button>
             </div>
         </>
     );

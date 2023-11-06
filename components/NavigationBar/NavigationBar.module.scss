@@ -9,7 +9,7 @@ nav.container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: $standard-padding;
+    padding: $standard-padding $large-padding;
 
     > div.logo {
         flex-grow: 1;
@@ -21,5 +21,7 @@ nav.container {
     > a.item {
         color: $grey-dark;
         font-weight: bold;
+        padding-right: $large-padding;
+        text-decoration: none;
     }
 }

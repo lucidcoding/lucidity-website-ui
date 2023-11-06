@@ -1,4 +1,4 @@
-import { RefObject, useRef } from "react";
+import Link from 'next/link'
 import styles from "./NavigationBar.module.scss";
 
 const NavigationBar = (): JSX.Element => {
@@ -7,15 +7,18 @@ const NavigationBar = (): JSX.Element => {
             <div className={styles.logo}>
                 LUCIDITY SOFTWARE
             </div>
-            <a className={styles.item}>
-                DATA VISUALISATION
-            </a>
-            <a className={styles.item}>
-                CUSTOMISABLE DASHBOARD
-            </a>
-            <a className={styles.item}>
+            <Link className={styles.item} href="/">
+                HOME
+            </Link>
+            <Link className={styles.item} href="/infographics">
+                INFOGRAPHICS
+            </Link>
+            <Link className={styles.item} href="/dashboard">
+                DASHBOARDS
+            </Link>
+            <Link className={styles.item} href="/about">
                 ABOUT
-            </a>
+            </Link>
         </nav>
     );
 }
