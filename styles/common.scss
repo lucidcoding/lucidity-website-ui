@@ -2,11 +2,15 @@ $black: #000;
 $white: #fff;
 $transparent: rgba(255, 255, 255, 0);
 
-$primary: #582c83;
-
 $grey-light: rgb(108, 114, 147);
 $grey-mid: rgb(25, 28, 36);
 $grey-dark: rgb(0, 0, 0);
+
+$highlight-red: rgb(255, 66, 74);
+$highlight-orange: rgb(255, 171, 0);
+$highlight-green: rgb(0, 210, 91);
+$highlight-blue: rgb(0, 144, 231);
+$highlight-violet: rgb(143, 95, 232);
 
 $extra-large-padding: 38px;
 $large-padding: 24px;
@@ -15,6 +19,7 @@ $small-padding: 3px;
 
 $header-height: 82px;
 
+$title-font: 36px;
 $large-font: 20px;
 $medium-font: 15px;
 
