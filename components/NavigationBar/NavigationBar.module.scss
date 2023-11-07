@@ -1,0 +1,27 @@
+@import "../../styles/common.scss";
+
+nav.container {
+    background-color: $white;
+    position: sticky;
+    top: 0;
+    z-index: 15000;
+    border-bottom: 1px solid $grey-mid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: $standard-padding $large-padding;
+
+    > div.logo {
+        flex-grow: 1;
+        color: $highlight-orange;
+        font-size: $large-font;
+        font-weight: bold;
+    }
+
+    > a.item {
+        color: $grey-dark;
+        font-weight: bold;
+        padding-right: $large-padding;
+        text-decoration: none;
+    }
+}
