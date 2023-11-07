@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DashboardMenu from "../DashboardMenu/DashboardMenu";
+import Gauge from "../Gauge/Gauge";
 import GridStackPanel from "../GridStackPanel/GridStackPanel";
 import GridStackTile from "../GridStackTile/GridStackTile";
 import styles from "./DashboardContainer.module.scss";
@@ -88,7 +89,7 @@ const DashboardContainer = (): JSX.Element => {
                             gsY={tileDatum.y}
                             key={tileDatum.id}
                             gsId={tileDatum.id}>
-                            {tileDatum.children}
+                            <Gauge value={75} maxValue={100}></Gauge>
                         </GridStackTile>)
                     }
                 </GridStackPanel>
