@@ -9,6 +9,7 @@
     "no-shadowed-variable": false,
     "unnecessary-bind": false,
     "no-implicit-dependencies": [true, "dev"],
-    "object-literal-key-quotes": [true, "as-needed"]
+    "object-literal-key-quotes": [true, "as-needed"],
+    "no-submodule-imports": false
   }
 }
