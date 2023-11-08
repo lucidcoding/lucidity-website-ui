@@ -1,4 +1,15 @@
 div.container {
     border: 1px solid black;
     padding: 10px;
+    transition: background-color 100ms linear;
+    animation: flash 0.5s;
+}
+
+@keyframes flash {
+    0% {
+        background-color: pink;
+    }
+    100% {
+        background-color: transparent;
+    }
 }
