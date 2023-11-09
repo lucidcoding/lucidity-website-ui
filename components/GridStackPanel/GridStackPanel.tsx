@@ -1,4 +1,4 @@
-import { GridStack, GridStackElement } from "gridstack";
+import { GridItemHTMLElement, GridStack, GridStackElement, GridStackNode } from "gridstack";
 import React, { RefObject, useEffect, useRef } from "react";
 import IGridStackTileProps from "../GridStackTile/IGridStackTileProps";
 import styles from "./GridStackPanel.module.scss";
@@ -17,6 +17,15 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
     useEffect(() => {
         grid = GridStack.init();
         grid.margin("12px");
+
+        grid.on("resizestop", (event: Event, el: GridItemHTMLElement) => {
+            const id = el.getAttribute("id");
+
+            if (el.gridstackNode) {
+                const node: GridStackNode = el.gridstackNode;
+                props.handleTileResize(id ?? "", node.x ?? 0, node.y ?? 0, node.w ?? 0, node.h ?? 0);
+            }
+        });
     });
 
     const mounted = useRef<boolean>(false);

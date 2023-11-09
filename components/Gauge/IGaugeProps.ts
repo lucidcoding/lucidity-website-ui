@@ -1,6 +1,7 @@
 export interface IGaugeProps {
-    value: number;
     maxValue: number;
+    value: number;
+    width: number;
 }
 
 export default IGaugeProps;

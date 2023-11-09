@@ -4,7 +4,7 @@ import IGaugeProps from "./IGaugeProps";
 
 const Gauge = (props: IGaugeProps): JSX.Element => {
     const radianToDegreeFactor = 180 / Math.PI;
-    const width = 200;
+    const width = props.width;
     const outerRadius = width / 2;
     const innerRadius = outerRadius / 1.3;
     const centerX = width / 2;
@@ -80,8 +80,8 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
         .endAngle(valueAngleRadians);
 
     const needleRadius = 3;
-    const textY = 10; //this.props.textOffset;
-    const textMinX = 10; //0 - (this.innerRadius + ((this.outerRadius - this.innerRadius) / 2));
+    const textY = 10; // this.props.textOffset;
+    const textMinX = 10; // 0 - (this.innerRadius + ((this.outerRadius - this.innerRadius) / 2));
     const textMaxX = 10; // (this.innerRadius + ((this.outerRadius - this.innerRadius) / 2));
 
     /*const backgroundArcPath = backgroundArc({
@@ -98,7 +98,7 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
         endAngle: valueAngleRadians
     });*/
 
-    //https://stackblitz.com/edit/react-d3-arc?file=index.js
+    // https://stackblitz.com/edit/react-d3-arc?file=index.js
     const backgroundArcPath = backgroundArc();
 
     const valueArcPath = valueArc();
