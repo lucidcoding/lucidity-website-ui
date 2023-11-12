@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 import IGridStackTileProps from "../GridStackTile/IGridStackTileProps";
 
 export interface IGridStackPanelProps {

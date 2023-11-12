@@ -17,7 +17,6 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
     useEffect(() => {
         grid = GridStack.init();
         grid.margin("12px");
-
         grid.on("resizestop", handleResizeStop);
     });
 
