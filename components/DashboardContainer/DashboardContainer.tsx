@@ -12,36 +12,43 @@ const DashboardContainer = (): JSX.Element => {
     const initialTileData: ITile[] = [
         {
             children: <div>Test Tile 0</div>,
-            content: "Some Data Metric",
-            height: 3,
+            content: "Gauge Metric",
+            height: 2,
             id: `${tileIdPrefix}0`,
-            width: 4,
+            type: "gauge",
+            width: 3,
             x: 0,
             y: 0,
         },
         {
             children: <div>Test Tile 1</div>,
             content: "Another Data Metric",
-            height: 3,
+            height: 2,
             id: `${tileIdPrefix}1`,
-            width: 4,
+            type: "gauge",
+            width: 3,
+            x: 0,
+            y: 2,
         },
         {
             content: "Third Data Metric",
             height: 3,
             id: `${tileIdPrefix}2`,
+            type: "gauge",
             width: 4,
         },
         {
             content: "Fourth Data Metric",
             height: 3,
             id: `${tileIdPrefix}3`,
+            type: "gauge",
             width: 4,
         },
         {
             content: "Fifth  Data Metric",
             height: 3,
             id: `${tileIdPrefix}4`,
+            type: "gauge",
             width: 4,
         },
     ];
@@ -58,6 +65,7 @@ const DashboardContainer = (): JSX.Element => {
             content: `tile ${nextId}`,
             height: 1,
             id: `${tileIdPrefix}${nextId.toString()}`,
+            type: "gauge",
             width: 1,
         });
 
@@ -91,6 +99,35 @@ const DashboardContainer = (): JSX.Element => {
         setCellWidth(width);
     };
 
+    const tiles = tileData.map((tile, index) => {
+        let widget: JSX.Element;
+
+        switch (tile.type) {
+            case "gauge":
+                widget = <Gauge
+                    minValue={0}
+                    maxValue={100}
+                    value={75}
+                    width={cellWidth * tile.width}
+                    height={cellWidth * tile.height}
+                    units="£" />;
+                break;
+            default:
+                widget = <></>;
+        }
+
+        return (<GridStackTile
+            title={tile.content}
+            gsWidth={tile.width}
+            gsHeight={tile.height}
+            gsX={tile.x}
+            gsY={tile.y}
+            key={tile.id}
+            gsId={tile.id}>
+            {widget}
+        </GridStackTile>);
+    });
+
     return (
         <div className={styles.container}>
             <DashboardMenu handleAddTile={handleAddTile} />
@@ -103,24 +140,7 @@ const DashboardContainer = (): JSX.Element => {
                     data-testid="grid-stack-panel"
                     handleTileResize={handleTileResize}
                     handleCellWidthUpdate={cellWidthUpdated}>
-                    {tileData.map((tile, index) =>
-                        <GridStackTile
-                            title={tile.content}
-                            gsWidth={tile.width}
-                            gsHeight={tile.height}
-                            gsX={tile.x}
-                            gsY={tile.y}
-                            key={tile.id}
-                            gsId={tile.id}>
-                            <Gauge
-                                minValue={0}
-                                maxValue={100}
-                                value={75}
-                                width={cellWidth * tile.width}
-                                height={cellWidth * tile.height}
-                                units="£" />
-                        </GridStackTile>)
-                    }
+                    {tiles}
                 </GridStackPanel>
             </div>
         </div >
