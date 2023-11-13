@@ -1,9 +1,10 @@
-import { element } from "prop-types";
 import { useState } from "react";
+import BarChart from "../BarChart/BarChart";
 import DashboardMenu from "../DashboardMenu/DashboardMenu";
 import Gauge from "../Gauge/Gauge";
 import GridStackPanel from "../GridStackPanel/GridStackPanel";
 import GridStackTile from "../GridStackTile/GridStackTile";
+import LineChart from "../LineChart/LineChart";
 import styles from "./DashboardContainer.module.scss";
 import ITile from "./ITile";
 
@@ -11,8 +12,7 @@ const DashboardContainer = (): JSX.Element => {
     const tileIdPrefix = "tl";
     const initialTileData: ITile[] = [
         {
-            children: <div>Test Tile 0</div>,
-            content: "Gauge Metric",
+            content: "Gauge Metric 1",
             height: 2,
             id: `${tileIdPrefix}0`,
             type: "gauge",
@@ -21,8 +21,7 @@ const DashboardContainer = (): JSX.Element => {
             y: 0,
         },
         {
-            children: <div>Test Tile 1</div>,
-            content: "Another Data Metric",
+            content: "Gauge Metric 2",
             height: 2,
             id: `${tileIdPrefix}1`,
             type: "gauge",
@@ -31,24 +30,26 @@ const DashboardContainer = (): JSX.Element => {
             y: 2,
         },
         {
-            content: "Third Data Metric",
-            height: 3,
+            content: "Bar Chart Meteric 1",
+            height: 4,
             id: `${tileIdPrefix}2`,
-            type: "gauge",
+            type: "bar",
             width: 4,
+            x: 3,
+            y: 0,
         },
         {
             content: "Fourth Data Metric",
             height: 3,
             id: `${tileIdPrefix}3`,
-            type: "gauge",
+            type: "line",
             width: 4,
         },
         {
             content: "Fifth  Data Metric",
             height: 3,
             id: `${tileIdPrefix}4`,
-            type: "gauge",
+            type: "donut",
             width: 4,
         },
     ];
@@ -105,12 +106,101 @@ const DashboardContainer = (): JSX.Element => {
         switch (tile.type) {
             case "gauge":
                 widget = <Gauge
+                    key={tile.id}
                     minValue={0}
                     maxValue={100}
                     value={75}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
                     units="£" />;
+                break;
+            case "bar":
+                widget = <BarChart
+                    key={tile.id}
+                    margin={{
+                        top: 2,
+                        right: 50,
+                        bottom: 50,
+                        left: 50,
+                    }}
+                    data={[
+                        {
+                            id: "1001",
+                            name: "Queue 1",
+                            value: 100
+                        },
+                        {
+                            id: "1002",
+                            name: "Queue 2",
+                            value: 200,
+                        }, {
+                            id: "1003",
+                            name: "Queue 3",
+                            value: 400,
+                        }
+                    ]}
+                    loaded={true}
+                    width={cellWidth * tile.width}
+                    height={cellWidth * tile.height}
+                    xAxisTitle="X Axis"
+                    xAxisOrientation="diagonal"
+                    xAxisTickFormat={() => { }}
+                    yAxisTitle="Y Axis"
+                    onBarClick={() => { }}
+                />;
+                break;
+            case "line":
+                widget = <LineChart
+                    dateRange={{
+                        chartStartDate: new Date(2020, 1, 1, 9, 0, 0),
+                        chartEndDate: new Date(2020, 1, 1, 9, 4, 0),
+                        numberOfXTicks: 5,
+                        xTicksFormat: () => { }
+                    }}
+                    onPointClick={() => { }}
+                    width={cellWidth * tile.width}
+                    height={cellWidth * tile.height}
+                    margin={{
+                        top: 2,
+                        right: 50,
+                        bottom: 50,
+                        left: 50,
+                    }}
+                    xAxisTitle="x-axis"
+                    yAxisTitle="y-axis"
+                    xAxisOrientation="diaganol"
+                    legendWidth={100}
+                    legendLineHeight={20}
+                    data={[
+                        {
+                            dateRanges: [{
+                                startDate: new Date(2020, 1, 1, 9, 0, 0),
+                                endDate: new Date(2020, 1, 1, 9, 0, 59),
+                                value: 10
+                            }, {
+                                startDate: new Date(2020, 1, 1, 9, 1, 0),
+                                endDate: new Date(2020, 1, 1, 9, 1, 59),
+                                value: 5
+                            }, {
+                                startDate: new Date(2020, 1, 1, 9, 2, 0),
+                                endDate: new Date(2020, 1, 1, 9, 2, 59),
+                                value: 15
+                            }, {
+                                startDate: new Date(2020, 1, 1, 9, 3, 0),
+                                endDate: new Date(2020, 1, 1, 9, 3, 59),
+                                value: 13
+                            }, {
+                                startDate: new Date(2020, 1, 1, 9, 4, 0),
+                                endDate: new Date(2020, 1, 1, 9, 4, 59),
+                                value: 10
+                            }],
+                            id: "series 1",
+                            name: "series 1n"
+                        }
+                    ]}
+                    loaded={true}
+
+                />
                 break;
             default:
                 widget = <></>;

@@ -1,0 +1,27 @@
+@import "../../styles/common.scss";
+
+$font-size-small: 10px;
+$font-size-base: 12px;
+
+.container {
+    line,
+    path {
+        stroke: $grey-mid;
+    }
+
+    .title {
+        font-size: $font-size-base;
+        font-weight: bold;
+        fill: $white;
+    }
+
+    .tick {
+        fill: $grey-dark;
+    }
+
+    .label {
+        fill: $white;
+        font-size: $font-size-small;
+        font-weight: normal;
+    }
+}

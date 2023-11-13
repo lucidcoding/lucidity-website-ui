@@ -1,0 +1,30 @@
+@import "../../styles/common.scss";
+
+$font-size-small: 10px;
+$font-size-base: 12px;
+
+.container {
+    line,
+    path {
+        stroke: $highlight-green;
+    }
+
+    .title {
+        font-size: $font-size-base;
+        font-weight: bold;
+    }
+
+    .tick {
+        opacity: 0.3;
+    }
+
+    .label {
+        fill: $grey-dark;
+        font-size: $font-size-small;
+        font-weight: normal;
+
+        &:hover {
+            cursor: default;
+        }
+    }
+}

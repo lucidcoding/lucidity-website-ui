@@ -1,0 +1,12 @@
+@import "../../styles/common.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .insideScrollbars {
+        overflow-y: hidden;
+        margin-right: 10px;
+    }
+}

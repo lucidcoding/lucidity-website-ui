@@ -1,0 +1,18 @@
+@import "../../styles/common.scss";
+
+.container {
+    .line {
+        stroke-width: 1px;
+        stroke: $highlight-orange;
+    }
+
+    &.highlighted {
+        .line {
+            stroke-width: 2px;
+        }
+    }
+
+    .line:hover {
+        cursor: default;
+    }
+}

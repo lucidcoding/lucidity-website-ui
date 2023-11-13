@@ -8,7 +8,7 @@ export interface ITile {
     width: number;
     x?: number;
     y?: number;
-    type: "gauge" | "bar" | "graph" | "donut";
+    type: "gauge" | "bar" | "line" | "donut";
 }
 
 export default ITile;
