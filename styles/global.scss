@@ -19,6 +19,10 @@ body {
                 background-image: url("/resize-bottom-right.svg");
                 margin: 3px;
             }
+
+            div.grid-stack-item-content {
+                overflow: hidden;
+            }
         }
     }
 }

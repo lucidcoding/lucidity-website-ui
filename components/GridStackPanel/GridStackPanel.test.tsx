@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { JwkKeyExportOptions } from "crypto";
 import { GridStack } from "gridstack";
 import React from "react";
 import GridStackTile from "../GridStackTile/GridStackTile";
@@ -10,42 +11,49 @@ jest.mock("gridstack");
 describe("GridStackPanel", () => {
     let mockHandleTileClose: jest.Mock;
     let mockHandleTileResize: jest.Mock;
+    let mockHandleCellWidthUpdate: jest.Mock;
     const mockedGridStack = jest.mocked(GridStack);
     const grid = jest.mocked(GridStack);
 
-    const renderElement = () => render(<GridStackPanel handleTileClose={mockHandleTileClose} data-testid="grid-stack-panel" handleTileResize={mockHandleTileResize}>
-        <GridStackTile
-            gsHeight={10}
-            gsWidth={20}
-            gsId="96"
-            gsX={15}
-            gsY={25}
-            key="96"
-            title="Test Title 96"
-        />
-        <GridStackTile
-            gsHeight={10}
-            gsWidth={20}
-            gsId="97"
-            gsX={15}
-            gsY={25}
-            key="97"
-            title="Test Title 97"
-        />
-        <GridStackTile
-            gsHeight={10}
-            gsWidth={20}
-            gsId="98"
-            gsX={15}
-            gsY={25}
-            key="98"
-            title="Test Title 98"
-        />
-    </GridStackPanel>);
+    const renderElement = () => render(
+        <GridStackPanel
+            handleTileClose={mockHandleTileClose}
+            data-testid="grid-stack-panel"
+            handleTileResize={mockHandleTileResize}
+            handleCellWidthUpdate={mockHandleCellWidthUpdate}>
+            <GridStackTile
+                gsHeight={10}
+                gsWidth={20}
+                gsId="96"
+                gsX={15}
+                gsY={25}
+                key="96"
+                title="Test Title 96"
+            />
+            <GridStackTile
+                gsHeight={10}
+                gsWidth={20}
+                gsId="97"
+                gsX={15}
+                gsY={25}
+                key="97"
+                title="Test Title 97"
+            />
+            <GridStackTile
+                gsHeight={10}
+                gsWidth={20}
+                gsId="98"
+                gsX={15}
+                gsY={25}
+                key="98"
+                title="Test Title 98"
+            />
+        </GridStackPanel>);
 
     beforeEach(() => {
         mockHandleTileClose = jest.fn();
         mockHandleTileResize = jest.fn();
+        mockHandleCellWidthUpdate = jest.fn();
         mockedGridStack.init.mockImplementation((() => grid.prototype));
         grid.prototype.margin = jest.fn();
         grid.prototype.removeWidget = jest.fn();
@@ -96,6 +104,7 @@ describe("GridStackPanel", () => {
         rerender(<GridStackPanel
             handleTileClose={mockHandleTileClose}
             handleTileResize={mockHandleTileResize}
+            handleCellWidthUpdate={mockHandleCellWidthUpdate}
             data-testid="grid-stack-panel">
             <GridStackTile
                 gsHeight={10}

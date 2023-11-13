@@ -30,7 +30,7 @@ const GridStackTile = (props: IGridStackTileProps): JSX.Element => {
                         <CloseIcon></CloseIcon>
                     </button>
                 </div>
-                <div>
+                <div className={styles.body}>
                     {props.children}
                 </div>
             </div>

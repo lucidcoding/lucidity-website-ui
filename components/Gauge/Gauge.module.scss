@@ -4,8 +4,11 @@ $used-fill: $highlight-red;
 $font-size-base: 12px;
 
 .container {
+    display: block;
+    margin: auto;
+
     .unused {
-        fill: color(brand, light-grey);
+        fill: $grey-dark;
     }
 
     .used {
@@ -20,11 +23,16 @@ $font-size-base: 12px;
         font-size: $font-size-base;
         font-weight: bold;
 
-        &.min {
-            fill: $white;
+        &.limits {
+            fill: $grey-light;
         }
 
         &.max {
+            fill: $grey-light;
+        }
+
+        &.value {
+            font-size: $title-font;
             fill: $white;
         }
     }

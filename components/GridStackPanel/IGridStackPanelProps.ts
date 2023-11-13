@@ -6,6 +6,7 @@ export interface IGridStackPanelProps {
     handleTileClose: (id: string) => void;
     handleTileResize: (id: string, x: number, y: number, width: number, height: number) => void;
     "data-testid"?: string;
+    handleCellWidthUpdate: (cellWidth: number) => void;
 }
 
 export default IGridStackPanelProps;

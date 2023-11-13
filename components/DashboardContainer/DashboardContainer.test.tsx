@@ -16,6 +16,7 @@ describe("DashboardContainer", () => {
         grid.prototype.margin = jest.fn();
         grid.prototype.removeWidget = jest.fn();
         grid.prototype.makeWidget = jest.fn();
+        grid.prototype.cellWidth.mockReturnValue(100);
     });
 
     afterEach(() => {

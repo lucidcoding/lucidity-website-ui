@@ -47,6 +47,7 @@ const DashboardContainer = (): JSX.Element => {
     ];
 
     const [tileData, setTileData] = useState(initialTileData);
+    const [cellWidth, setCellWidth] = useState(0);
 
     const handleAddTile = () => {
         const newTileData = [...tileData];
@@ -81,8 +82,13 @@ const DashboardContainer = (): JSX.Element => {
 
         if (currentTile) {
             currentTile.width = width;
+            currentTile.height = height;
             setTileData(newTileData);
         }
+    };
+
+    const cellWidthUpdated = (width: number) => {
+        setCellWidth(width);
     };
 
     return (
@@ -95,7 +101,8 @@ const DashboardContainer = (): JSX.Element => {
                 <GridStackPanel
                     handleTileClose={handleTileClose}
                     data-testid="grid-stack-panel"
-                    handleTileResize={handleTileResize}>
+                    handleTileResize={handleTileResize}
+                    handleCellWidthUpdate={cellWidthUpdated}>
                     {tileData.map((tile, index) =>
                         <GridStackTile
                             title={tile.content}
@@ -106,9 +113,12 @@ const DashboardContainer = (): JSX.Element => {
                             key={tile.id}
                             gsId={tile.id}>
                             <Gauge
+                                minValue={0}
                                 maxValue={100}
                                 value={75}
-                                width={100 * tile.width} />
+                                width={cellWidth * tile.width}
+                                height={cellWidth * tile.height}
+                                units="£" />
                         </GridStackTile>)
                     }
                 </GridStackPanel>
