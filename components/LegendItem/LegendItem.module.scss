@@ -6,18 +6,22 @@ $font-size-base: 12px;
 .container {
     display: flex;
     align-items: flex-end;
+    flex-direction: row;
+
+    &:not(:first-of-type) {
+        margin-left: $standard-padding;
+    }
 
     .label {
         display: inline-block;
         color: $grey-light;
-        font-size: $font-size-small;
+        font-size: $font-size-base;
         font-weight: normal;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         padding-left: 30px;
-        padding-top: 5px;
-        line-height: 10px;
+        line-height: 12px;
     }
 
     .block {

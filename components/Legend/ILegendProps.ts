@@ -8,7 +8,6 @@ export interface ILegendItemProps {
     height: number,
     lineHeight: number,
     maxChars: number,
-    // colors: any,
     highlightedId: string | null,
     onMouseOver: (id: string) => void,
     onMouseOut: () => void,
