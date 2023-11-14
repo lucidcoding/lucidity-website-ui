@@ -8,7 +8,6 @@ import ITile from "./ITile";
 const DashboardContainer = (): JSX.Element => {
     const initialTileData: ITile[] = [
         {
-            children: <div>Test Tile 0</div>,
             content: "Some Data Metric",
             height: 3,
             id: "0",
@@ -17,7 +16,6 @@ const DashboardContainer = (): JSX.Element => {
             y: 0,
         },
         {
-            children: <div>Test Tile 1</div>,
             content: "Another Data Metric",
             height: 3,
             id: "1",
