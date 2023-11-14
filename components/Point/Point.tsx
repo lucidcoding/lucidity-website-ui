@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Point.module.scss";
 import IPointProps from "./IPointProps";
+import styles from "./Point.module.scss";
 
 const Point = (props: IPointProps): JSX.Element => (
     <g className={`${styles.container} ${props.highlighted ? styles.highlighted : ""}`}>

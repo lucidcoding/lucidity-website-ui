@@ -1,9 +1,9 @@
 import * as d3 from "d3";
 import React from "react";
 import Bar from "../Bar/Bar";
-import IBarChartProps from "./IBarChartProps";
 import XAxis from "../XAxis/XAxis";
 import YAxis from "../YAxis/YAxis";
+import IBarChartProps from "./IBarChartProps";
 
 const BarChart = (props: IBarChartProps): JSX.Element => {
     const headerSize = 98;
@@ -32,13 +32,19 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
     const xScale = d3.scaleBand()
         .range([0, chartWidth - yAxisWidth - rightPadding])
         .padding(0.7)
-        .domain(props.data.map(item => item.name));
+        .domain(props.data.map((item) => item.name));
 
-    const max = d3.max(props.data, item => item.value) ?? 0;
+    const max = d3.max(props.data, (item) => item.value) ?? 0;
 
     const yScale = d3.scaleLinear()
         .range([chartHeight, 0])
         .domain([0, max]);
+
+    const onBarClick = (barId: string, barName: string) => {
+        if (props.onBarClick) {
+            props.onBarClick(barId, barName);
+        }
+    };
 
     const bars = props.data.map((item) => {
         const barId = item.id ? item.id : item.name;
@@ -52,7 +58,7 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
                 height={chartHeight - yScale(item.value)}
                 width={xScale.bandwidth()}
                 key={`Bar_${barId}`}
-                onClick={props.onBarClick}
+                onClick={() => onBarClick(barId, item.name)}
                 value={item.value}
             />
         );

@@ -1,11 +1,11 @@
 import * as d3 from "d3";
 import React, { useState } from "react";
-import styles from "./LineChart.module.scss";
 import Legend from "../Legend/Legend";
-import ILineChartProps from "./ILineChartProps";
 import Series from "../Series/Series";
 import XAxis from "../XAxis/XAxis";
 import YAxis from "../YAxis/YAxis";
+import ILineChartProps from "./ILineChartProps";
+import styles from "./LineChart.module.scss";
 
 const LineChart = (props: ILineChartProps): JSX.Element => {
     const headerSize = 98;
@@ -37,18 +37,18 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
         setHighlightedId(null);
     };
 
-    let data = props.data
-        .map(currentSeries => ({
-            id: currentSeries.id,
-            name: currentSeries.name,
+    const data = props.data
+        .map((currentSeries) => ({
             color: currentSeries.color,
-            dateRanges: currentSeries.dateRanges.map(dateRange => ({
+            dateRanges: currentSeries.dateRanges.map((dateRange) => ({
                 startDate: new Date(dateRange.startDate),
                 value: dateRange.value,
             })),
+            id: currentSeries.id,
+            name: currentSeries.name,
         }));
 
-    if (data.every(currentSeries => currentSeries.dateRanges.length === 0)) {
+    if (data.every((currentSeries) => currentSeries.dateRanges.length === 0)) {
         return <>No Data</>;
     }
 
@@ -56,25 +56,25 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
     const chartHeight = (props.height - headerSize) * chartProportionOfWindowHeight;
 
     const minDate = props.dateRange.chartStartDate ||
-        d3.min(data, currentSeries =>
-            d3.min(currentSeries.dateRanges, dateRange => dateRange.startDate));
+        d3.min(data, (currentSeries) =>
+            d3.min(currentSeries.dateRanges, (dateRange) => dateRange.startDate));
 
     const maxDate = props.dateRange.chartEndDate ||
-        d3.max(data, currentSeries =>
-            d3.max(currentSeries.dateRanges, dateRange => dateRange.startDate));
+        d3.max(data, (currentSeries) =>
+            d3.max(currentSeries.dateRanges, (dateRange) => dateRange.startDate));
 
     const xScale = d3.scaleTime()
         .range([0, chartWidth - yAxisWidth - rightPadding])
         .domain([minDate, maxDate]);
 
     const maxY = d3.max(data,
-        currentSeries => d3.max(currentSeries.dateRanges, dateRange => dateRange.value)) || 0;
+        (currentSeries) => d3.max(currentSeries.dateRanges, (dateRange) => dateRange.value)) || 0;
 
     const yScale = d3.scaleLinear()
         .range([chartHeight, 0])
         .domain([0, maxY]);
 
-    const ids = data.map(item => item.id);
+    const ids = data.map((item) => item.id);
 
     const yTickFormat = (value: number) => {
         if (value % 1 !== 0) {
@@ -110,7 +110,7 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
                         ticks={0}
                     />
                     {
-                        data.map(currentSeries => (
+                        data.map((currentSeries) => (
                             <Series
                                 id={currentSeries.id}
                                 data={currentSeries.dateRanges}

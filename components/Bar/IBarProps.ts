@@ -2,7 +2,7 @@ export interface IBarProps {
     id: string;
     name: string;
     value: number;
-    x: number,
+    x: number;
     y: number;
     width: number;
     height: number;

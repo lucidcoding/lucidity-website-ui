@@ -17,7 +17,7 @@ const Bar = (props: IBarProps): JSX.Element => {
                 <title>{`${props.name}: ${props.value}`}</title>
             </rect>
         </g>
-    </svg>
+    </svg>;
 };
 
 export default Bar;

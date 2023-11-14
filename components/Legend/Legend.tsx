@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Legend.module.scss";
 import LegendItem from "../LegendItem/LegendItem";
 import ILegendProps from "./ILegendProps";
+import styles from "./Legend.module.scss";
 
 const Legend = (props: ILegendProps): JSX.Element => {
     const legendItems = props.data.map((item) => {

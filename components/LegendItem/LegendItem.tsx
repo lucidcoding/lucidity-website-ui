@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./LegendItem.module.scss";
 import ILegendItemProps from "./ILegendItemProps";
+import styles from "./LegendItem.module.scss";
 
 const LegendItem = (props: ILegendItemProps): JSX.Element => {
     const pointerPath = `M0,

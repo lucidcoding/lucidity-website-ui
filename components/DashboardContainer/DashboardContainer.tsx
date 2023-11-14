@@ -12,7 +12,7 @@ const DashboardContainer = (): JSX.Element => {
     const tileIdPrefix = "tl";
 
     const initialTileData: ITile[] = [
-        /*{
+        {
             content: "Gauge Metric 1",
             height: 2,
             id: `${tileIdPrefix}0`,
@@ -29,7 +29,7 @@ const DashboardContainer = (): JSX.Element => {
             width: 3,
             x: 0,
             y: 2,
-        },*/
+        },
         {
             content: "Bar Chart Meteric 1",
             height: 4,
@@ -39,7 +39,7 @@ const DashboardContainer = (): JSX.Element => {
             x: 3,
             y: 0,
         },
-        /*{
+        {
             content: "Fourth Data Metric",
             height: 4,
             id: `${tileIdPrefix}3`,
@@ -52,7 +52,7 @@ const DashboardContainer = (): JSX.Element => {
             id: `${tileIdPrefix}4`,
             type: "donut",
             width: 4,
-        },*/
+        },
     ];
 
     const [tileData, setTileData] = useState(initialTileData);
@@ -122,7 +122,7 @@ const DashboardContainer = (): JSX.Element => {
                         {
                             id: "1001",
                             name: "Queue 1",
-                            value: 100
+                            value: 100,
                         },
                         {
                             id: "1002",
@@ -132,7 +132,7 @@ const DashboardContainer = (): JSX.Element => {
                             id: "1003",
                             name: "Queue 3",
                             value: 400,
-                        }
+                        },
                     ]}
                     loaded={true}
                     width={cellWidth * tile.width}
@@ -141,22 +141,20 @@ const DashboardContainer = (): JSX.Element => {
                     xAxisOrientation="horizontal"
                     xAxisTickFormat={(value: any) => value}
                     yAxisTitle=""
-                    onBarClick={() => { }}
                 />;
                 break;
             case "line":
                 widget = <LineChart
                     dateRange={{
-                        chartStartDate: new Date(2020, 1, 1, 9, 0, 0),
                         chartEndDate: new Date(2020, 1, 1, 9, 4, 0),
+                        chartStartDate: new Date(2020, 1, 1, 9, 0, 0),
                         numberOfXTicks: 5,
                         xTicksFormat: (value: any) => {
                             const date = value as Date;
                             const time = ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
                             return time;
-                        }
+                        },
                     }}
-                    onPointClick={() => { }}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
                     xAxisTitle=""
@@ -167,87 +165,87 @@ const DashboardContainer = (): JSX.Element => {
                     data={
                         [
                             {
+                                color: "rgb(0, 210, 91)",
                                 dateRanges: [{
-                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
                                     endDate: new Date(2020, 1, 1, 9, 0, 59),
-                                    value: 10
+                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
+                                    value: 10,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
                                     endDate: new Date(2020, 1, 1, 9, 1, 59),
-                                    value: 5
+                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
+                                    value: 5,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
                                     endDate: new Date(2020, 1, 1, 9, 2, 59),
-                                    value: 15
+                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
+                                    value: 15,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
                                     endDate: new Date(2020, 1, 1, 9, 3, 59),
-                                    value: 13
+                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
+                                    value: 13,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
                                     endDate: new Date(2020, 1, 1, 9, 4, 59),
-                                    value: 10
+                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
+                                    value: 10,
                                 }],
                                 id: "series 1",
                                 name: "series 1n",
-                                color: "rgb(0, 210, 91)",
                             },
                             {
+                                color: "rgb(255, 171, 0)",
                                 dateRanges: [{
-                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
                                     endDate: new Date(2020, 1, 1, 9, 0, 59),
-                                    value: 3
+                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
+                                    value: 3,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
                                     endDate: new Date(2020, 1, 1, 9, 1, 59),
-                                    value: 7
+                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
+                                    value: 7,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
                                     endDate: new Date(2020, 1, 1, 9, 2, 59),
-                                    value: 2
+                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
+                                    value: 2,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
                                     endDate: new Date(2020, 1, 1, 9, 3, 59),
-                                    value: 2
+                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
+                                    value: 2,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
                                     endDate: new Date(2020, 1, 1, 9, 4, 59),
-                                    value: 5
+                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
+                                    value: 5,
                                 }],
                                 id: "series 2",
                                 name: "series 2n",
-                                color: "rgb(255, 171, 0)",
                             },
                             {
+                                color: "rgb(143, 95, 232)",
                                 dateRanges: [{
-                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
                                     endDate: new Date(2020, 1, 1, 9, 0, 59),
-                                    value: 1
+                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
+                                    value: 1,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
                                     endDate: new Date(2020, 1, 1, 9, 1, 59),
-                                    value: 1
+                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
+                                    value: 1,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
                                     endDate: new Date(2020, 1, 1, 9, 2, 59),
-                                    value: 2
+                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
+                                    value: 2,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
                                     endDate: new Date(2020, 1, 1, 9, 3, 59),
-                                    value: 9
+                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
+                                    value: 9,
                                 }, {
-                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
                                     endDate: new Date(2020, 1, 1, 9, 4, 59),
-                                    value: 17
+                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
+                                    value: 17,
                                 }],
                                 id: "series 3",
                                 name: "series 3n",
-                                color: "rgb(143, 95, 232)",
-                            }
+                            },
                         ]}
                     loaded={true}
 
-                />
+                />;
                 break;
             default:
                 widget = <></>;

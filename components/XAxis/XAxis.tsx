@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import React, { useEffect, useRef } from "react";
-import styles from "./XAxis.module.scss";
 import IXAxisProps from "./IXAxisProps";
+import styles from "./XAxis.module.scss";
 
 const XAxis = (props: IXAxisProps): JSX.Element => {
     const node = useRef<SVGGElement>(null);
@@ -11,7 +11,7 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
     });
 
     const shortenText = (textSelection: any, labelLength: number) => {
-        for (let i = 0; i < textSelection._groups[0].length; i += 1) {
+        /*for (let i = 0; i < textSelection._groups[0].length; i += 1) {
             const textNode = textSelection._groups[0][i];
             let textLength = textNode.getComputedTextLength();
             let text = textNode.textContent;
@@ -21,8 +21,19 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
                 textNode.textContent = `${text}...`;
                 textLength = textNode.getComputedTextLength();
             }
+        }*/
+
+        for (const textNode of textSelection._groups) {
+            let textLength = textNode.getComputedTextLength();
+            let text = textNode.textContent;
+
+            while (textLength > labelLength && text.length > 0) {
+                text = text.slice(0, -1);
+                textNode.textContent = `${text}...`;
+                textLength = textNode.getComputedTextLength();
+            }
         }
-    }
+    };
 
     const renderAxis = () => {
         const axis = d3.axisBottom(props.scale)
@@ -78,7 +89,7 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
                 .style("text-anchor", "start");
             shortenText(textSelection, Math.sqrt(Math.pow(bottomMarginSpace, 2) * 2) - 5);
         }
-    }
+    };
 
     const y = props.chartHeight;
 

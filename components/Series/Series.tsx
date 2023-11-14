@@ -1,8 +1,8 @@
 import * as d3 from "d3";
 import React from "react";
 import Point from "../Point/Point";
-import styles from "./Series.module.scss";
 import ISeriesProps from "./ISeriesProps";
+import styles from "./Series.module.scss";
 
 const Series = (props: ISeriesProps): JSX.Element => {
     const paths: string[] = [];

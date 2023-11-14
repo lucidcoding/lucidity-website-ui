@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import React, { useEffect, useRef } from "react";
-import styles from "./YAxis.module.scss";
 import IYAxisProps from "./IYAxisProps";
+import styles from "./YAxis.module.scss";
 
 const YAxis = (props: IYAxisProps): JSX.Element => {
     const node = useRef<SVGGElement>(null);
@@ -34,7 +34,7 @@ const YAxis = (props: IYAxisProps): JSX.Element => {
         d3.select(node.current)
             .selectAll("text")
             .attr("class", `${styles.label}`);
-    }
+    };
 
     return <g className={styles.container}>
         <g ref={node} />
