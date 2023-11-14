@@ -27,7 +27,7 @@ const LegendItem = (props: ILegendItemProps): JSX.Element => {
                             height={props.boxHeight}
                             x={props.boxHeight}
                             y={0}
-                        // fill={props.fill}
+                            fill={props.color}
                         />
                     </g>
                 </svg>

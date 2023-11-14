@@ -14,7 +14,7 @@ const Bar = (props: IBarProps): JSX.Element => {
                 onClick={() => props.onClick(props.id, props.name)}
                 data-testid={props["data-testid"]}
             >
-                <title>{props.name}: {props.value}</title>
+                <title>{`${props.name}: ${props.value}`}</title>
             </rect>
         </g>
     </svg>

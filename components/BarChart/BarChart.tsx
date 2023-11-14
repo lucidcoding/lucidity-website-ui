@@ -6,6 +6,14 @@ import XAxis from "../XAxis/XAxis";
 import YAxis from "../YAxis/YAxis";
 
 const BarChart = (props: IBarChartProps): JSX.Element => {
+    const headerSize = 98;
+    const chartProportionOfWindowWidth = 0.8;
+    const chartProportionOfWindowHeight = 0.8;
+    const yAxisWidth = 35;
+    const rightPadding = 20;
+    const xAxisHeight = 30;
+    const topPadding = 10;
+
     if (!props.loaded) {
         return <>Not Loaded</>;
     }
@@ -18,12 +26,12 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
         return <>No Data</>;
     }
 
-    const chartWidth = props.width - props.margin.left - props.margin.right;
-    const chartHeight = props.height - props.margin.top - props.margin.bottom;
+    const chartWidth = props.width * chartProportionOfWindowWidth;
+    const chartHeight = (props.height - headerSize) * chartProportionOfWindowHeight;
 
     const xScale = d3.scaleBand()
-        .range([0, chartWidth])
-        .padding(0.6)
+        .range([0, chartWidth - yAxisWidth - rightPadding])
+        .padding(0.7)
         .domain(props.data.map(item => item.name));
 
     const max = d3.max(props.data, item => item.value) ?? 150; // TODO: fix
@@ -63,8 +71,8 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
     };
 
     return (
-        <svg width={props.width} height={props.height}>
-            <g transform={`translate(${props.margin.left}, ${props.margin.top})`}>
+        <svg width={chartWidth} height={chartHeight + xAxisHeight + topPadding}>
+            <g transform={`translate(${yAxisWidth}, ${topPadding})`}>
                 <XAxis
                     scale={xScale}
                     chartHeight={chartHeight}
@@ -72,7 +80,6 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
                     title={props.xAxisTitle}
                     orientation={props.xAxisOrientation}
                     tickFormat={props.xAxisTickFormat}
-                    chartMargin={props.margin}
                     ticks={5}
                 />
                 <YAxis

@@ -9,7 +9,7 @@ $font-size-base: 12px;
 
     .label {
         display: inline-block;
-        color: $white;
+        color: $grey-light;
         font-size: $font-size-small;
         font-weight: normal;
         overflow: hidden;
@@ -40,7 +40,7 @@ $font-size-base: 12px;
 
     &.highlighted {
         .label {
-            font-weight: bold;
+            color: $white;
         }
 
         .pointer {

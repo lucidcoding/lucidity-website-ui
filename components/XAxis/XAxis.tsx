@@ -38,8 +38,7 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
         }
 
         if (node.current) {
-            d3.select(node.current)
-                .call(axis);
+            d3.select(node.current).call(axis);
         }
 
         d3.select(node.current)
@@ -47,10 +46,10 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
             .select("line")
             .attr("class", `${styles.tick}`);
 
-        d3.select(node.current)
+        /*d3.select(node.current)
             .selectAll("g.tick")
-            .append("title")
-            .text("abc");
+            .select("text")
+            .text((d: any) => d);*/
 
         d3.select(node.current)
             .selectAll("text")
@@ -60,7 +59,7 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
             .selectAll("text");
 
         const textOffset = 5;
-        const bottomMarginSpace = props.chartMargin.bottom - textOffset;
+        const bottomMarginSpace = 1000;//props.chartMargin.bottom - textOffset;
 
         if (props.orientation === "vertical") {
             textSelection
@@ -71,6 +70,12 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
                 .style("text-anchor", "start");
 
             shortenText(textSelection, bottomMarginSpace);
+        } else if (props.orientation === "horizontal") {
+            textSelection
+                .attr("x", 0)
+                .attr("y", 20)
+                .attr("dy", ".35em")
+                .style("text-anchor", "middle");
         } else if (props.orientation === "diagonal") {
             textSelection
                 .attr("x", textOffset)
@@ -82,9 +87,10 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
         }
     }
 
-    const y = (props.chartHeight +
+    const y = props.chartHeight;
+    /*const y = (props.chartHeight +
         props.chartMargin.top +
-        props.chartMargin.bottom) - 20;
+        props.chartMargin.bottom) - 20;*/
 
     return <g className={styles.container}>
         <g

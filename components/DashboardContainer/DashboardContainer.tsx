@@ -40,10 +40,10 @@ const DashboardContainer = (): JSX.Element => {
         },
         {
             content: "Fourth Data Metric",
-            height: 3,
+            height: 4,
             id: `${tileIdPrefix}3`,
             type: "line",
-            width: 4,
+            width: 5,
         },
         {
             content: "Fifth  Data Metric",
@@ -117,12 +117,6 @@ const DashboardContainer = (): JSX.Element => {
             case "bar":
                 widget = <BarChart
                     key={tile.id}
-                    margin={{
-                        top: 2,
-                        right: 50,
-                        bottom: 50,
-                        left: 50,
-                    }}
                     data={[
                         {
                             id: "1001",
@@ -142,10 +136,10 @@ const DashboardContainer = (): JSX.Element => {
                     loaded={true}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
-                    xAxisTitle="X Axis"
-                    xAxisOrientation="diagonal"
-                    xAxisTickFormat={() => { }}
-                    yAxisTitle="Y Axis"
+                    xAxisTitle=""
+                    xAxisOrientation="horizontal"
+                    xAxisTickFormat={(value: any) => value}
+                    yAxisTitle=""
                     onBarClick={() => { }}
                 />;
                 break;
@@ -155,49 +149,101 @@ const DashboardContainer = (): JSX.Element => {
                         chartStartDate: new Date(2020, 1, 1, 9, 0, 0),
                         chartEndDate: new Date(2020, 1, 1, 9, 4, 0),
                         numberOfXTicks: 5,
-                        xTicksFormat: () => { }
+                        xTicksFormat: (value: any) => {
+                            const date = value as Date;
+                            const time = ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
+                            return time;
+                        }
                     }}
                     onPointClick={() => { }}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
-                    margin={{
-                        top: 2,
-                        right: 50,
-                        bottom: 50,
-                        left: 50,
-                    }}
-                    xAxisTitle="x-axis"
-                    yAxisTitle="y-axis"
-                    xAxisOrientation="diaganol"
+                    xAxisTitle=""
+                    yAxisTitle=""
+                    xAxisOrientation="horizontal"
                     legendWidth={100}
                     legendLineHeight={20}
-                    data={[
-                        {
-                            dateRanges: [{
-                                startDate: new Date(2020, 1, 1, 9, 0, 0),
-                                endDate: new Date(2020, 1, 1, 9, 0, 59),
-                                value: 10
-                            }, {
-                                startDate: new Date(2020, 1, 1, 9, 1, 0),
-                                endDate: new Date(2020, 1, 1, 9, 1, 59),
-                                value: 5
-                            }, {
-                                startDate: new Date(2020, 1, 1, 9, 2, 0),
-                                endDate: new Date(2020, 1, 1, 9, 2, 59),
-                                value: 15
-                            }, {
-                                startDate: new Date(2020, 1, 1, 9, 3, 0),
-                                endDate: new Date(2020, 1, 1, 9, 3, 59),
-                                value: 13
-                            }, {
-                                startDate: new Date(2020, 1, 1, 9, 4, 0),
-                                endDate: new Date(2020, 1, 1, 9, 4, 59),
-                                value: 10
-                            }],
-                            id: "series 1",
-                            name: "series 1n"
-                        }
-                    ]}
+                    data={
+                        [
+                            {
+                                dateRanges: [{
+                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 0, 59),
+                                    value: 10
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 1, 59),
+                                    value: 5
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 2, 59),
+                                    value: 15
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 3, 59),
+                                    value: 13
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 4, 59),
+                                    value: 10
+                                }],
+                                id: "series 1",
+                                name: "series 1n",
+                                color: "rgb(0, 210, 91)",
+                            },
+                            {
+                                dateRanges: [{
+                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 0, 59),
+                                    value: 3
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 1, 59),
+                                    value: 7
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 2, 59),
+                                    value: 2
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 3, 59),
+                                    value: 2
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 4, 59),
+                                    value: 5
+                                }],
+                                id: "series 2",
+                                name: "series 2n",
+                                color: "rgb(255, 171, 0)",
+                            },
+                            {
+                                dateRanges: [{
+                                    startDate: new Date(2020, 1, 1, 9, 0, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 0, 59),
+                                    value: 1
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 1, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 1, 59),
+                                    value: 1
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 2, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 2, 59),
+                                    value: 2
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 3, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 3, 59),
+                                    value: 9
+                                }, {
+                                    startDate: new Date(2020, 1, 1, 9, 4, 0),
+                                    endDate: new Date(2020, 1, 1, 9, 4, 59),
+                                    value: 17
+                                }],
+                                id: "series 3",
+                                name: "series 3n",
+                                color: "rgb(143, 95, 232)",
+                            }
+                        ]}
                     loaded={true}
 
                 />

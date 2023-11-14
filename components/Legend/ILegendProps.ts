@@ -2,6 +2,7 @@ export interface ILegendItemProps {
     data: {
         id: string,
         name: string,
+        color: string,
     }[],
     width: number,
     height: number,

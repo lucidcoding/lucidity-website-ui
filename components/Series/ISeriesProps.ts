@@ -10,7 +10,7 @@ export interface ISeriesProps {
         value: number,
     }[],
     // pointDateFormat: () => void,
-    // color: any,
+    color: string,
     highlighted: boolean,
     // activeTrends: string[]
     "data-testid"?: string;

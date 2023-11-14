@@ -9,6 +9,13 @@ import YAxis from "../YAxis/YAxis";
 
 
 const BarChart = (props: ILineChartProps): JSX.Element => {
+    const headerSize = 98;
+    const chartProportionOfWindowWidth = 0.8;
+    const chartProportionOfWindowHeight = 0.8;
+    const yAxisWidth = 35;
+    const rightPadding = 20;
+    const xAxisHeight = 30;
+    const topPadding = 10;
     const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
     if (!props.loaded) {
@@ -37,13 +44,12 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
         // setState({ highlightedId: null }, this.props.onPointClick(startDate));
     };
 
-    let data;
-
     // Handle data for single series and multiple series differently.
-    data = props.data
+    let data = props.data
         .map(currentSeries => ({
             id: currentSeries.id,
             name: currentSeries.name,
+            color: currentSeries.color,
             dateRanges: currentSeries.dateRanges.map(dateRange => ({
                 startDate: new Date(dateRange.startDate),
                 value: dateRange.value,
@@ -54,13 +60,8 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
         return <>No Data</>;
     }
 
-    const chartWidth =
-        props.width -
-        props.margin.left -
-        props.margin.right -
-        props.legendWidth;
-
-    const chartHeight = props.height - props.margin.top - props.margin.bottom;
+    const chartWidth = props.width * chartProportionOfWindowWidth;
+    const chartHeight = (props.height - headerSize) * chartProportionOfWindowHeight;
 
     const minDate = props.dateRange.chartStartDate ||
         d3.min(data, currentSeries =>
@@ -71,7 +72,7 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
             d3.max(currentSeries.dateRanges, dateRange => dateRange.startDate));
 
     const xScale = d3.scaleTime()
-        .range([0, chartWidth])
+        .range([0, chartWidth - yAxisWidth - rightPadding])
         .domain([minDate, maxDate]);
 
     const maxY = d3.max(data,
@@ -109,8 +110,8 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
 
     return (
         <div className={styles.container}>
-            <svg width={props.width - props.legendWidth} height={props.height}>
-                <g transform={`translate(${props.margin.left}, ${props.margin.top})`}>
+            <svg width={chartWidth} height={chartHeight + xAxisHeight + topPadding}>
+                <g transform={`translate(${yAxisWidth}, ${topPadding})`}>
                     <XAxis
                         scale={xScale}
                         chartHeight={chartHeight}
@@ -118,9 +119,9 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
                         title={props.xAxisTitle}
                         orientation={props.xAxisOrientation}
                         tickFormat={props.dateRange.xTicksFormat}
-                        chartMargin={props.margin}
-                        ticks={props.dateRange.numberOfXTicks
-                            || d3.max(data, currentSeries => currentSeries.dateRanges.length) || 0}
+                        ticks={5}
+                    // ticks={props.dateRange.numberOfXTicks
+                    //     || d3.max(data, currentSeries => currentSeries.dateRanges.length) || 0}
                     />
                     <YAxis
                         scale={yScale}
@@ -138,10 +139,10 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
                                 xScale={xScale}
                                 yScale={yScale}
                                 key={`series_${currentSeries.id}`}
-                                // color={colors(currentSeries.id)}
+                                color={currentSeries.color}
                                 // pointDateFormat={props.dateRange.pointDateFormat}
-                                onMouseOver={(id: string) => onMouseOver(id)}
-                                onMouseOut={() => onMouseOut()}
+                                onMouseOver={onMouseOver}
+                                onMouseOut={onMouseOut}
                                 // onPointClick={(startDate: Date) => onPointClick(startDate)}
                                 highlighted={currentSeries.id === highlightedId}
                             // activeTrends={props.activeTrends}
@@ -155,7 +156,6 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
                 width={props.legendWidth}
                 height={props.height}
                 lineHeight={props.legendLineHeight}
-                // colors={colors}
                 highlightedId={highlightedId}
                 onMouseOver={(id: string) => onMouseOver(id)}
                 onMouseOut={() => onMouseOut()}

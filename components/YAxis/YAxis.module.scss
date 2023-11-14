@@ -6,22 +6,18 @@ $font-size-base: 12px;
 .container {
     line,
     path {
-        stroke: $grey-mid;
+        stroke: $grey-dark;
     }
 
     .title {
         font-size: $font-size-base;
-        font-weight: bold;
-        fill: $white;
-    }
-
-    .tick {
-        fill: $grey-dark;
+        font-weight: normal;
+        fill: $grey-light;
     }
 
     .label {
-        fill: $white;
-        font-size: $font-size-small;
+        font-size: $font-size-base;
         font-weight: normal;
+        fill: $grey-light;
     }
 }

@@ -1,17 +1,19 @@
 @import "../../styles/common.scss";
 
 .container {
-    .line {
+    .point {
+        fill: $grey-mid;
         stroke-width: 1px;
+        stop-color: $white;
     }
 
     &.highlighted {
-        .line {
+        .point {
             stroke-width: 2px;
         }
     }
 
-    .line:hover {
-        cursor: default;
+    .point:hover {
+        cursor: pointer;
     }
 }

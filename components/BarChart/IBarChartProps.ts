@@ -1,15 +1,9 @@
 export interface IBarChartProps {
     width: number,
     height: number,
-    margin: {
-        top: number,
-        right: number,
-        bottom: number,
-        left: number,
-    },
     xAxisTitle: string,
     yAxisTitle: string,
-    xAxisOrientation: string,
+    xAxisOrientation: "vertical" | "horizontal" | "diagonal",
     xAxisTickFormat: any,
     data: {
         id: string,

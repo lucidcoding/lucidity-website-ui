@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import React from "react";
+import Point from "../Point/Point";
 import styles from "./Series.module.scss";
 import ISeriesProps from "./ISeriesProps";
 
@@ -26,43 +27,45 @@ const Series = (props: ISeriesProps): JSX.Element => {
         paths.push(line(props.data));
     }*/
 
-    /* const points = props.data.map((point) => {
-         const x = props.xScale(point.startDate);
-         const y = props.yScale(point.value);
- 
-         return (
-             <Point
-                 id={props.id}
-                 x={x}
-                 y={y}
-                 key={`point_${props.id}_${point.startDate.toString()}`}
-                 startDate={point.startDate}
-                 dateFormat={props.pointDateFormat}
-                 value={point.value}
-                 color={props.color}
-                 highlighted={props.highlighted}
-                 onMouseOver={() => props.onMouseOver(props.id)}
-                 onMouseOut={props.onMouseOut}
-                 onClick={startDate => props.onPointClick(startDate)}
-             />
-         );
-     });*/
+    const points = props.data.map((point) => {
+        const x = props.xScale(point.startDate);
+        const y = props.yScale(point.value);
+
+        return (
+            <Point
+                id={props.id}
+                x={x}
+                y={y}
+                key={`point_${props.id}_${point.startDate.toString()}`}
+                startDate={point.startDate}
+                //dateFormat={props.pointDateFormat}
+                value={point.value}
+                color={props.color}
+                highlighted={props.highlighted}
+                onMouseOver={() => props.onMouseOver(props.id)}
+                onMouseOut={props.onMouseOut}
+                //  onClick={(startDate: Date) => props.onPointClick(startDate)}
+                onClick={(startDate: Date) => { }}
+            />
+        );
+    });
 
     const svgPaths = paths.map(path => (
         <path
             d={path}
-            // stroke={props.color}
+            stroke={`${props.color}`}
+            //style={{ stroke: props.color }}
             fill="none"
             className={styles.line}
-        /*           onMouseOver={(id: string) => props.onMouseOver(props.id)}
-                  onMouseOut={props.onMouseOut} */
+            onMouseOver={() => props.onMouseOver(props.id)}
+            onMouseOut={props.onMouseOut}
         />
     ));
 
     return (
         <g className={`${styles.container} ${props.highlighted ? styles.highlighted : ""}`}>
             {svgPaths}
-            {/* {points} */}
+            {points}
         </g>
     );
 };

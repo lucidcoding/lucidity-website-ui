@@ -6,22 +6,19 @@ $font-size-base: 12px;
 .container {
     line,
     path {
-        stroke: $highlight-green;
+        stroke: $grey-dark;
     }
 
     .title {
         font-size: $font-size-base;
-        font-weight: bold;
-    }
-
-    .tick {
-        opacity: 0.3;
+        font-weight: normal;
+        fill: $grey-light;
     }
 
     .label {
-        fill: $grey-dark;
-        font-size: $font-size-small;
+        font-size: $font-size-base;
         font-weight: normal;
+        fill: $grey-light;
 
         &:hover {
             cursor: default;

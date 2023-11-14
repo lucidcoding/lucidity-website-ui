@@ -42,7 +42,7 @@ const Legend = (props: ILegendProps): JSX.Element => {
                 id={id}
                 name={item.name}
                 lineHeight={props.lineHeight}
-                // fill={props.colors(id)}
+                color={item.color}
                 highlighted={id === props.highlightedId}
                 onMouseOver={(id: string) => props.onMouseOver(id)}
                 onMouseOut={() => props.onMouseOut()}
@@ -52,10 +52,7 @@ const Legend = (props: ILegendProps): JSX.Element => {
 
     return (
         <div className={styles.container}>
-
-            <div className={styles.insideScrollbars}>
-                {legendItems}
-            </div>
+            {legendItems}
         </div>
     );
 };

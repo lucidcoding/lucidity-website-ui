@@ -2,14 +2,8 @@ export interface IXAxisProps {
     scale: any;
     chartHeight: number,
     chartWidth: number,
-    chartMargin: {
-        top: number,
-        right: number,
-        bottom: number,
-        left: number,
-    },
     tickFormat: any,
-    orientation: string,
+    orientation: "vertical" | "horizontal" | "diagonal",
     ticks: number,
     title: string,
     "data-testid"?: string;

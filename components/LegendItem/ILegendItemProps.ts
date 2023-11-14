@@ -1,7 +1,7 @@
 export interface ILegendItemProps {
     id: string,
     name: string,
-    // fill: string,
+    color: string,
     onMouseOver: (id: string) => void,
     onMouseOut: () => void,
     lineHeight: number,

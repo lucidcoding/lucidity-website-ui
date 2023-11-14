@@ -9,7 +9,7 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
         return <></>;
     }
 
-    const headerSize = 48;
+    const headerSize = 98;
     const textY = 26;
     const radianToDegreeFactor = 180 / Math.PI;
     let width = props.width * 0.75;
