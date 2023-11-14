@@ -34,7 +34,7 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
         .padding(0.7)
         .domain(props.data.map(item => item.name));
 
-    const max = d3.max(props.data, item => item.value) ?? 150; // TODO: fix
+    const max = d3.max(props.data, item => item.value) ?? 0;
 
     const yScale = d3.scaleLinear()
         .range([chartHeight, 0])
@@ -47,7 +47,7 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
             <Bar
                 id={barId}
                 name={item.name}
-                x={xScale(item.name) ?? 100}  // TODO: fix
+                x={xScale(item.name) ?? 0}
                 y={yScale(item.value)}
                 height={chartHeight - yScale(item.value)}
                 width={xScale.bandwidth()}

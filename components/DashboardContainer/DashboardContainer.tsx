@@ -10,8 +10,9 @@ import ITile from "./ITile";
 
 const DashboardContainer = (): JSX.Element => {
     const tileIdPrefix = "tl";
+
     const initialTileData: ITile[] = [
-        {
+        /*{
             content: "Gauge Metric 1",
             height: 2,
             id: `${tileIdPrefix}0`,
@@ -28,7 +29,7 @@ const DashboardContainer = (): JSX.Element => {
             width: 3,
             x: 0,
             y: 2,
-        },
+        },*/
         {
             content: "Bar Chart Meteric 1",
             height: 4,
@@ -38,7 +39,7 @@ const DashboardContainer = (): JSX.Element => {
             x: 3,
             y: 0,
         },
-        {
+        /*{
             content: "Fourth Data Metric",
             height: 4,
             id: `${tileIdPrefix}3`,
@@ -51,7 +52,7 @@ const DashboardContainer = (): JSX.Element => {
             id: `${tileIdPrefix}4`,
             type: "donut",
             width: 4,
-        },
+        },*/
     ];
 
     const [tileData, setTileData] = useState(initialTileData);

@@ -4,8 +4,8 @@ import ILegendItemProps from "./ILegendItemProps";
 
 const LegendItem = (props: ILegendItemProps): JSX.Element => {
     const pointerPath = `M0,
-    ${props.boxHeight} L${props.boxHeight / 2},
-    ${(props.boxHeight / 2)} L0,0 Z`;
+        ${props.boxHeight} L${props.boxHeight / 2},
+        ${(props.boxHeight / 2)} L0,0 Z`;
 
     return (
         <div

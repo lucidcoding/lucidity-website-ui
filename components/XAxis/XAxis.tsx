@@ -11,9 +11,7 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
     });
 
     const shortenText = (textSelection: any, labelLength: number) => {
-        // eslint-disable-next-line no-underscore-dangle
         for (let i = 0; i < textSelection._groups[0].length; i += 1) {
-            // eslint-disable-next-line no-underscore-dangle
             const textNode = textSelection._groups[0][i];
             let textLength = textNode.getComputedTextLength();
             let text = textNode.textContent;
@@ -46,11 +44,6 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
             .select("line")
             .attr("class", `${styles.tick}`);
 
-        /*d3.select(node.current)
-            .selectAll("g.tick")
-            .select("text")
-            .text((d: any) => d);*/
-
         d3.select(node.current)
             .selectAll("text")
             .attr("class", `${styles.label}`);
@@ -59,7 +52,7 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
             .selectAll("text");
 
         const textOffset = 5;
-        const bottomMarginSpace = 1000;//props.chartMargin.bottom - textOffset;
+        const bottomMarginSpace = 300;
 
         if (props.orientation === "vertical") {
             textSelection
@@ -88,9 +81,6 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
     }
 
     const y = props.chartHeight;
-    /*const y = (props.chartHeight +
-        props.chartMargin.top +
-        props.chartMargin.bottom) - 20;*/
 
     return <g className={styles.container}>
         <g

@@ -25,12 +25,6 @@ export interface ILineChartProps {
     }[],
     loaded: boolean,
     error?: string,
-    /*colorSettings: {
-        id: string,
-        color: string,
-    }[],
-    activeTrends: string[],
-    animate: boolean,*/
 }
 
 export default ILineChartProps;

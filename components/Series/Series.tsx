@@ -13,20 +13,6 @@ const Series = (props: ISeriesProps): JSX.Element => {
 
     paths.push(line(props.data));
 
-    /*if (props.activeTrends.length > 0) {
-
-        const xSeries = d3.range(1, props.data.length + 1);
-        const ySeries = props.data.map((d: any) => parseFloat(d.value));
-
-        props.activeTrends.map((trend) => {
-            const plottedTrend = PlotTrend.plot(trend, xSeries, ySeries, props.data, props.xScale, props.yScale);
-            paths.push(line(plottedTrend));
-            return null;
-        });
-    } else {
-        paths.push(line(props.data));
-    }*/
-
     const points = props.data.map((point) => {
         const x = props.xScale(point.startDate);
         const y = props.yScale(point.value);
@@ -38,23 +24,20 @@ const Series = (props: ISeriesProps): JSX.Element => {
                 y={y}
                 key={`point_${props.id}_${point.startDate.toString()}`}
                 startDate={point.startDate}
-                //dateFormat={props.pointDateFormat}
                 value={point.value}
                 color={props.color}
                 highlighted={props.highlighted}
                 onMouseOver={() => props.onMouseOver(props.id)}
                 onMouseOut={props.onMouseOut}
-                //  onClick={(startDate: Date) => props.onPointClick(startDate)}
-                onClick={(startDate: Date) => { }}
             />
         );
     });
 
-    const svgPaths = paths.map(path => (
+    const svgPaths = paths.map((path, index) => (
         <path
+            key={`path-${index}`}
             d={path}
             stroke={`${props.color}`}
-            //style={{ stroke: props.color }}
             fill="none"
             className={styles.line}
             onMouseOver={() => props.onMouseOver(props.id)}

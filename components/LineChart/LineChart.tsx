@@ -7,8 +7,7 @@ import Series from "../Series/Series";
 import XAxis from "../XAxis/XAxis";
 import YAxis from "../YAxis/YAxis";
 
-
-const BarChart = (props: ILineChartProps): JSX.Element => {
+const LineChart = (props: ILineChartProps): JSX.Element => {
     const headerSize = 98;
     const chartProportionOfWindowWidth = 0.8;
     const chartProportionOfWindowHeight = 0.8;
@@ -31,20 +30,13 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
     }
 
     const onMouseOver = (id: string) => {
-        // if (props.animate) {
         setHighlightedId(id);
-        // }
     };
 
     const onMouseOut = () => {
         setHighlightedId(null);
     };
 
-    const onPointClick = (startDate: Date) => {
-        // setState({ highlightedId: null }, this.props.onPointClick(startDate));
-    };
-
-    // Handle data for single series and multiple series differently.
     let data = props.data
         .map(currentSeries => ({
             id: currentSeries.id,
@@ -83,11 +75,6 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
         .domain([0, maxY]);
 
     const ids = data.map(item => item.id);
-    //const colorRange = applyColorSettings(ids, props.colorSettings);
-
-    /*const colors = d3.scaleOrdinal()
-        .domain(ids)
-        .range(colorRange);*/
 
     const yTickFormat = (value: number) => {
         if (value % 1 !== 0) {
@@ -101,13 +88,6 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
         return value;
     };
 
-    // const hasActiveTrends = props.activeTrends.length > 0;
-    let legendData = data;
-
-    /*if (props.activeTrends.length > 0) {
-        legendData = props.activeTrends.map(trend => ({ id: null, name: trend }));
-    }*/
-
     return (
         <div className={styles.container}>
             <svg width={chartWidth} height={chartHeight + xAxisHeight + topPadding}>
@@ -119,9 +99,7 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
                         title={props.xAxisTitle}
                         orientation={props.xAxisOrientation}
                         tickFormat={props.dateRange.xTicksFormat}
-                        ticks={5}
-                    // ticks={props.dateRange.numberOfXTicks
-                    //     || d3.max(data, currentSeries => currentSeries.dateRanges.length) || 0}
+                        ticks={0}
                     />
                     <YAxis
                         scale={yScale}
@@ -140,19 +118,16 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
                                 yScale={yScale}
                                 key={`series_${currentSeries.id}`}
                                 color={currentSeries.color}
-                                // pointDateFormat={props.dateRange.pointDateFormat}
                                 onMouseOver={onMouseOver}
                                 onMouseOut={onMouseOut}
-                                // onPointClick={(startDate: Date) => onPointClick(startDate)}
                                 highlighted={currentSeries.id === highlightedId}
-                            // activeTrends={props.activeTrends}
                             />
                         ))
                     }
                 </g>
             </svg>
             <Legend
-                data={legendData}
+                data={data}
                 width={props.legendWidth}
                 height={props.height}
                 lineHeight={props.legendLineHeight}
@@ -166,4 +141,4 @@ const BarChart = (props: ILineChartProps): JSX.Element => {
 
 };
 
-export default BarChart;
+export default LineChart;
