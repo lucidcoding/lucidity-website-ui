@@ -13,7 +13,7 @@ const Series = (props: ISeriesProps): JSX.Element => {
 
     paths.push(line(props.data));
 
-    const points = props.data.map((point) => {
+    const points = props.data.map((point, index) => {
         const x = props.xScale(point.startDate);
         const y = props.yScale(point.value);
 
@@ -29,7 +29,7 @@ const Series = (props: ISeriesProps): JSX.Element => {
                 highlighted={props.highlighted}
                 onMouseOver={() => props.onMouseOver(props.id)}
                 onMouseOut={props.onMouseOut}
-                data-testid={`${props["data-testid"]}-point-${props.id}`}
+                data-testid={`${props["data-testid"]}-point-${index}`}
             />
         );
     });
@@ -43,11 +43,12 @@ const Series = (props: ISeriesProps): JSX.Element => {
             className={styles.line}
             onMouseOver={() => props.onMouseOver(props.id)}
             onMouseOut={props.onMouseOut}
+            data-testid={`${props["data-testid"]}-path-${index}`}
         />
     ));
 
     return (
-        <g className={`${styles.container} ${props.highlighted ? styles.highlighted : ""}`}>
+        <g className={`${styles.container} ${props.highlighted ? styles.highlighted : ""}`} data-testid={props["data-testid"]}>
             {svgPaths}
             {points}
         </g>

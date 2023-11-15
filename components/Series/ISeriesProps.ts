@@ -10,7 +10,7 @@ export interface ISeriesProps {
     }>;
     color: string;
     highlighted: boolean;
-    "data-testid"?: string;
+    "data-testid": string;
 }
 
 export default ISeriesProps;

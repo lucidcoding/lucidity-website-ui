@@ -38,12 +38,12 @@ describe("LegendItem", () => {
 
     it("does not have highlighted class when not highlighted", () => {
         render(<LegendItem {...props} data-testid={props["data-testid"]} />);
-        expect(screen.getByTestId("legend-item")).not.toHaveClass("highlighted")
+        expect(screen.getByTestId("legend-item")).not.toHaveClass("highlighted");
     });
 
-    it("has highlighted when not highlighted", () => {
+    it("has highlighted class when highlighted", () => {
         props.highlighted = true;
         render(<LegendItem {...props} data-testid={props["data-testid"]} />);
-        expect(screen.getByTestId("legend-item")).toHaveClass("highlighted")
+        expect(screen.getByTestId("legend-item")).toHaveClass("highlighted");
     });
 });

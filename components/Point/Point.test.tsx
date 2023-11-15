@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Point from "./Point";
 import IPointProps from "./IPointProps";
 
-describe("Bar", () => {
+describe("Point", () => {
     let props: IPointProps;
     const mockOnMouseOver = jest.fn();
     const mockOnMouseOut = jest.fn();
@@ -23,28 +23,28 @@ describe("Bar", () => {
         };
     });
 
-    it.only("calls onMouseOver with correct parameters when mouse is rolled over", () => {
-        render(<Point {...props} data-testid={props["data-testid"]} />);
+    it("calls onMouseOver with correct parameters when mouse is rolled over", () => {
+        render(<svg><Point {...props} data-testid={props["data-testid"]} /></svg>);
         fireEvent.mouseOver(screen.getByTestId("point-circle"));
         expect(mockOnMouseOver).toHaveBeenCalledTimes(1);
         expect(mockOnMouseOver.mock.calls[0][0]).toEqual(new Date(2020, 1, 1, 9, 0, 0));
     });
 
     it("calls onMouseOut when mouse is rolled out", () => {
-        render(<Point {...props} data-testid={props["data-testid"]} />);
+        render(<svg><Point {...props} data-testid={props["data-testid"]} /></svg>);
         fireEvent.mouseOver(screen.getByTestId("point-circle"));
         fireEvent.mouseLeave(screen.getByTestId("point-circle"));
         expect(mockOnMouseOut).toHaveBeenCalledTimes(1);
     });
 
     it("does not have highlighted class when not highlighted", () => {
-        render(<Point {...props} data-testid={props["data-testid"]} />);
+        render(<svg><Point {...props} data-testid={props["data-testid"]} /></svg>);
         expect(screen.getByTestId("point")).not.toHaveClass("highlighted")
     });
 
-    it("has highlighted when not highlighted", () => {
+    it("has highlighted class when highlighted", () => {
         props.highlighted = true;
-        render(<Point {...props} data-testid={props["data-testid"]} />);
+        render(<svg><Point {...props} data-testid={props["data-testid"]} /></svg>);
         expect(screen.getByTestId("point")).toHaveClass("highlighted")
     });
 });

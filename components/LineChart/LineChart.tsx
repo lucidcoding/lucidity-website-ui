@@ -125,6 +125,7 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
                                 onMouseOver={onMouseOver}
                                 onMouseOut={onMouseOut}
                                 highlighted={currentSeries.id === highlightedId}
+                                data-testid={`${props["data-testid"]}-series-${currentSeries.id}`}
                             />
                         ))
                     }

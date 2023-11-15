@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { headerSize } from "../../library/constants";
+import { fireEvent, render, screen } from "@testing-library/react";
 import BarChart from "./BarChart";
 import IBarChartProps from "./IBarChartProps";
 

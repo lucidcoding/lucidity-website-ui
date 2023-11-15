@@ -53,7 +53,7 @@ describe("Legend", () => {
         expect(screen.getByTestId("legend-item-3002")).not.toHaveClass("highlighted")
     });
 
-    it("has highlighted when not highlighted", () => {
+    it("has highlighted class when highlighted", () => {
         props.highlightedId = "3002";
         render(<Legend {...props} data-testid={props["data-testid"]} />);
         expect(screen.getByTestId("legend-item-3002")).toHaveClass("highlighted")
