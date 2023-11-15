@@ -58,7 +58,7 @@ const DashboardContainer = (): JSX.Element => {
     const [tileData, setTileData] = useState(initialTileData);
     const [cellWidth, setCellWidth] = useState(0);
 
-    const handleAddTile = () => {
+    const onAddTile = () => {
         const newTileData = [...tileData];
         const nextIds = newTileData.map((element) => Number(element.id.replace(tileIdPrefix, "")));
         const nextId = Math.max(...nextIds) + 1;
@@ -74,7 +74,7 @@ const DashboardContainer = (): JSX.Element => {
         setTileData(newTileData);
     };
 
-    const handleTileClose = (id: string) => {
+    const onTileClose = (id: string) => {
         const newTileData = [...tileData];
         const currentTile = newTileData.find((element) => element.id === id);
 
@@ -85,7 +85,7 @@ const DashboardContainer = (): JSX.Element => {
         }
     };
 
-    const handleTileResize = (id: string, x: number, y: number, width: number, height: number) => {
+    const onTileResize = (id: string, x: number, y: number, width: number, height: number) => {
         console.log(`Resizing ${id}: ${width}`);
         const newTileData = [...tileData];
         const currentTile = newTileData.find((element) => element.id === id);
@@ -97,7 +97,7 @@ const DashboardContainer = (): JSX.Element => {
         }
     };
 
-    const onWidthUpdated = (width: number) => {
+    const onCellWidthUpdated = (width: number) => {
         setCellWidth(width);
     };
 
@@ -250,7 +250,7 @@ const DashboardContainer = (): JSX.Element => {
                             },
                         ]}
                     loaded={true}
-
+                    data-testid="line-chart"
                 />;
                 break;
             default:
@@ -271,16 +271,16 @@ const DashboardContainer = (): JSX.Element => {
 
     return (
         <div className={styles.container}>
-            <DashboardMenu handleAddTile={handleAddTile} />
+            <DashboardMenu handleAddTile={onAddTile} />
             <div className={styles.main}>
                 <div className={styles.header}>
                     <h1>Analytics Dashboard</h1>
                 </div>
                 <GridStackPanel
-                    handleTileClose={handleTileClose}
+                    onTileClose={onTileClose}
                     data-testid="grid-stack-panel"
-                    handleTileResize={handleTileResize}
-                    handleCellWidthUpdate={onWidthUpdated}>
+                    onTileResize={onTileResize}
+                    onCellWidthUpdate={onCellWidthUpdated}>
                     {tiles}
                 </GridStackPanel>
             </div>

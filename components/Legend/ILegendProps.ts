@@ -11,7 +11,7 @@ export interface ILegendItemProps {
     highlightedId: string | null;
     onMouseOver: (id: string) => void;
     onMouseOut: () => void;
-    "data-testid"?: string;
+    "data-testid": string;
 }
 
 export default ILegendItemProps;

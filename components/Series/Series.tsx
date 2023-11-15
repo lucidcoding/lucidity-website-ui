@@ -29,6 +29,7 @@ const Series = (props: ISeriesProps): JSX.Element => {
                 highlighted={props.highlighted}
                 onMouseOver={() => props.onMouseOver(props.id)}
                 onMouseOut={props.onMouseOut}
+                data-testid={`${props["data-testid"]}-point-${props.id}`}
             />
         );
     });

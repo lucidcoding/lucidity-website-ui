@@ -16,10 +16,10 @@ describe("GridStackPanel", () => {
 
     const renderElement = () => render(
         <GridStackPanel
-            handleTileClose={mockHandleTileClose}
+            onTileClose={mockHandleTileClose}
             data-testid="grid-stack-panel"
-            handleTileResize={mockHandleTileResize}
-            handleCellWidthUpdate={mockHandleCellWidthUpdate}>
+            onTileResize={mockHandleTileResize}
+            onCellWidthUpdate={mockHandleCellWidthUpdate}>
             <GridStackTile
                 gsHeight={10}
                 gsWidth={20}
@@ -101,9 +101,9 @@ describe("GridStackPanel", () => {
         const { rerender } = renderElement();
 
         rerender(<GridStackPanel
-            handleTileClose={mockHandleTileClose}
-            handleTileResize={mockHandleTileResize}
-            handleCellWidthUpdate={mockHandleCellWidthUpdate}
+            onTileClose={mockHandleTileClose}
+            onTileResize={mockHandleTileResize}
+            onCellWidthUpdate={mockHandleCellWidthUpdate}
             data-testid="grid-stack-panel">
             <GridStackTile
                 gsHeight={10}

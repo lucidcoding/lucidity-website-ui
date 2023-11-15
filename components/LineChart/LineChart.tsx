@@ -93,7 +93,7 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid={props["data-testid"]}>
             <svg width={chartWidth} height={chartHeight + xAxisHeight + topPadding}>
                 <g transform={`translate(${yAxisWidth}, ${topPadding})`}>
                     <XAxis
@@ -139,6 +139,7 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
                 onMouseOver={(id: string) => onMouseOver(id)}
                 onMouseOut={() => onMouseOut()}
                 maxChars={25}
+                data-testid={`${props["data-testid"]}-legend`}
             />
         </div>
     );

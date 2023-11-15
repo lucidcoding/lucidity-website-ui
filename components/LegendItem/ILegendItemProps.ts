@@ -7,7 +7,7 @@ export interface ILegendItemProps {
     lineHeight: number;
     boxHeight: number;
     highlighted: boolean;
-    "data-testid"?: string;
+    "data-testid": string;
 }
 
 export default ILegendItemProps;

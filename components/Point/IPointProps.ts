@@ -8,7 +8,7 @@ export interface IPointProps {
     startDate: Date;
     color: string;
     highlighted: boolean;
-    "data-testid"?: string;
+    "data-testid": string;
 }
 
 export default IPointProps;

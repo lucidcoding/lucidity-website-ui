@@ -3,7 +3,7 @@ import IPointProps from "./IPointProps";
 import styles from "./Point.module.scss";
 
 const Point = (props: IPointProps): JSX.Element => (
-    <g className={`${styles.container} ${props.highlighted ? styles.highlighted : ""}`}>
+    <g className={`${styles.container} ${props.highlighted ? styles.highlighted : ""}`} data-testid={props["data-testid"]}>
         <circle
             cx={props.x}
             cy={props.y}
@@ -12,6 +12,7 @@ const Point = (props: IPointProps): JSX.Element => (
             stroke={props.color}
             onMouseOver={() => props.onMouseOver(props.startDate)}
             onMouseOut={props.onMouseOut}
+            data-testid={`${props["data-testid"]}-circle`}
         >
         </circle>
     </g>

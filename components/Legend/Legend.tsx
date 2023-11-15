@@ -18,12 +18,13 @@ const Legend = (props: ILegendProps): JSX.Element => {
                 highlighted={id === props.highlightedId}
                 onMouseOver={(id: string) => props.onMouseOver(id)}
                 onMouseOut={() => props.onMouseOut()}
+                data-testid={`${props["data-testid"]}-item-${id}`}
             />
         );
     });
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid={props["data-testid"]}>
             {legendItems}
         </div>
     );

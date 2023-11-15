@@ -25,6 +25,7 @@ export interface ILineChartProps {
     }>;
     loaded: boolean;
     error?: string;
+    "data-testid": string;
 }
 
 export default ILineChartProps;

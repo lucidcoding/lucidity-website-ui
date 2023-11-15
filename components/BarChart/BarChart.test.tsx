@@ -40,12 +40,12 @@ describe("BarChart", () => {
 
     it("renders nothing if size props are below headerSize", () => {
         props.height = 40;
-        render(<BarChart {...props} data-testid="bar-chart" />);
+        render(<BarChart {...props} data-testid={props["data-testid"]} />);
         expect(screen.queryByTestId("bar-chart")).not.toBeInTheDocument();
     });
 
     it("calls onBarClick when bar is clicked", () => {
-        render(<BarChart {...props} data-testid="bar-chart" />);
+        render(<BarChart {...props} data-testid={props["data-testid"]} />);
         fireEvent.click(screen.getByTestId("bar-chart-bar-1001"));
         expect(mockOnBarClick).toHaveBeenCalledTimes(1);
         expect(mockOnBarClick.mock.calls[0][0]).toEqual("1001");

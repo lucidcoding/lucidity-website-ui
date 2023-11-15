@@ -14,6 +14,7 @@ const LegendItem = (props: ILegendItemProps): JSX.Element => {
             onMouseOver={() => props.onMouseOver(props.id)}
             onMouseOut={() => props.onMouseOut()}
             style={{ height: props.lineHeight }}
+            data-testid={props["data-testid"]}
         >
             <div className={styles.block}>
                 <svg width={props.boxHeight * 2} height={props.boxHeight}>
@@ -21,6 +22,7 @@ const LegendItem = (props: ILegendItemProps): JSX.Element => {
                         <path
                             d={pointerPath}
                             className={styles.pointer}
+                            data-testid={`${props["data-testid"]}-pointer`}
                         />
                         <rect
                             width={props.boxHeight}
@@ -28,6 +30,7 @@ const LegendItem = (props: ILegendItemProps): JSX.Element => {
                             x={props.boxHeight}
                             y={0}
                             fill={props.color}
+                            data-testid={`${props["data-testid"]}-label`}
                         />
                     </g>
                 </svg>
