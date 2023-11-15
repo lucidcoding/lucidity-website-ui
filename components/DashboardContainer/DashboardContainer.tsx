@@ -97,8 +97,12 @@ const DashboardContainer = (): JSX.Element => {
         }
     };
 
-    const cellWidthUpdated = (width: number) => {
+    const onWidthUpdated = (width: number) => {
         setCellWidth(width);
+    };
+
+    const onBarClick = (id: string, name: string) => {
+        console.log("Bar clicked...")
     };
 
     const tiles = tileData.map((tile, index) => {
@@ -141,6 +145,8 @@ const DashboardContainer = (): JSX.Element => {
                     xAxisOrientation="horizontal"
                     xAxisTickFormat={(value: any) => value}
                     yAxisTitle=""
+                    onBarClick={onBarClick}
+                    data-testid="bar-chart"
                 />;
                 break;
             case "line":
@@ -274,7 +280,7 @@ const DashboardContainer = (): JSX.Element => {
                     handleTileClose={handleTileClose}
                     data-testid="grid-stack-panel"
                     handleTileResize={handleTileResize}
-                    handleCellWidthUpdate={cellWidthUpdated}>
+                    handleCellWidthUpdate={onWidthUpdated}>
                     {tiles}
                 </GridStackPanel>
             </div>

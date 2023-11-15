@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import React, { useState } from "react";
+import { headerSize } from "../../library/constants";
 import Legend from "../Legend/Legend";
 import Series from "../Series/Series";
 import XAxis from "../XAxis/XAxis";
@@ -8,7 +9,6 @@ import ILineChartProps from "./ILineChartProps";
 import styles from "./LineChart.module.scss";
 
 const LineChart = (props: ILineChartProps): JSX.Element => {
-    const headerSize = 98;
     const chartProportionOfWindowWidth = 0.8;
     const chartProportionOfWindowHeight = 0.8;
     const yAxisWidth = 35;

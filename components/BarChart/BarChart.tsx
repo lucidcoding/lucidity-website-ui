@@ -1,12 +1,12 @@
 import * as d3 from "d3";
 import React from "react";
+import { headerSize } from "../../library/constants";
 import Bar from "../Bar/Bar";
 import XAxis from "../XAxis/XAxis";
 import YAxis from "../YAxis/YAxis";
 import IBarChartProps from "./IBarChartProps";
 
 const BarChart = (props: IBarChartProps): JSX.Element => {
-    const headerSize = 98;
     const chartProportionOfWindowWidth = 0.8;
     const chartProportionOfWindowHeight = 0.8;
     const yAxisWidth = 35;
@@ -64,6 +64,7 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
                 key={`Bar_${barId}`}
                 onClick={() => onBarClick(barId, item.name)}
                 value={item.value}
+                data-testid={`${props["data-testid"]}-bar-${barId}`}
             />
         );
     });
@@ -81,7 +82,7 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
     };
 
     return (
-        <svg width={chartWidth} height={chartHeight + xAxisHeight + topPadding}>
+        <svg width={chartWidth} height={chartHeight + xAxisHeight + topPadding} data-testid={props["data-testid"]}>
             <g transform={`translate(${yAxisWidth}, ${topPadding})`}>
                 <XAxis
                     scale={xScale}

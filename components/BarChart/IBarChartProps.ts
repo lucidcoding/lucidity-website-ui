@@ -12,8 +12,8 @@ export interface IBarChartProps {
     }>;
     loaded: boolean;
     error?: string;
-    onBarClick?: (id: string, name: string) => void;
-    "data-testid"?: string;
+    onBarClick: (id: string, name: string) => void;
+    "data-testid": string;
 }
 
 export default IBarChartProps;
