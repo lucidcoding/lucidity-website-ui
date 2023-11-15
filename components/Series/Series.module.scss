@@ -2,12 +2,12 @@
 
 .container {
     .line {
-        stroke-width: 1px;
+        stroke-width: 2px;
     }
 
     &.highlighted {
         .line {
-            stroke-width: 2px;
+            stroke-width: 4px;
         }
     }
 

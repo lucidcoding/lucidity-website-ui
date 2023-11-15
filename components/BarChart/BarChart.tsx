@@ -26,6 +26,10 @@ const BarChart = (props: IBarChartProps): JSX.Element => {
         return <>No Data</>;
     }
 
+    if (props.height < headerSize) {
+        return <></>;
+    }
+
     const chartWidth = props.width * chartProportionOfWindowWidth;
     const chartHeight = (props.height - headerSize) * chartProportionOfWindowHeight;
 

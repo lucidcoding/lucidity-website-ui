@@ -3,13 +3,13 @@
 .container {
     .point {
         fill: $grey-mid;
-        stroke-width: 1px;
+        stroke-width: 2px;
         stop-color: $white;
     }
 
     &.highlighted {
         .point {
-            stroke-width: 2px;
+            stroke-width: 4px;
         }
     }
 

@@ -29,6 +29,10 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
         return <>No Data</>;
     }
 
+    if (props.height < headerSize) {
+        return <></>;
+    }
+
     const onMouseOver = (id: string) => {
         setHighlightedId(id);
     };

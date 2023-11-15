@@ -1,8 +1,5 @@
-import React from "react";
-
 export interface ITile {
-    children?: React.ReactElement;
-    content: string;
+    title: string;
     height: number;
     id: string;
     width: number;

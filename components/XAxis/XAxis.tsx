@@ -11,18 +11,6 @@ const XAxis = (props: IXAxisProps): JSX.Element => {
     });
 
     const shortenText = (textSelection: any, labelLength: number) => {
-        /*for (let i = 0; i < textSelection._groups[0].length; i += 1) {
-            const textNode = textSelection._groups[0][i];
-            let textLength = textNode.getComputedTextLength();
-            let text = textNode.textContent;
-
-            while (textLength > labelLength && text.length > 0) {
-                text = text.slice(0, -1);
-                textNode.textContent = `${text}...`;
-                textLength = textNode.getComputedTextLength();
-            }
-        }*/
-
         for (const textNode of textSelection._groups) {
             let textLength = textNode.getComputedTextLength();
             let text = textNode.textContent;

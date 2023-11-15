@@ -13,7 +13,7 @@ const DashboardContainer = (): JSX.Element => {
 
     const initialTileData: ITile[] = [
         {
-            content: "Gauge Metric 1",
+            title: "Gauge 1",
             height: 2,
             id: `${tileIdPrefix}0`,
             type: "gauge",
@@ -22,7 +22,7 @@ const DashboardContainer = (): JSX.Element => {
             y: 0,
         },
         {
-            content: "Gauge Metric 2",
+            title: "Gauge 2",
             height: 2,
             id: `${tileIdPrefix}1`,
             type: "gauge",
@@ -31,7 +31,7 @@ const DashboardContainer = (): JSX.Element => {
             y: 2,
         },
         {
-            content: "Bar Chart Meteric 1",
+            title: "Bar Chart",
             height: 4,
             id: `${tileIdPrefix}2`,
             type: "bar",
@@ -40,14 +40,14 @@ const DashboardContainer = (): JSX.Element => {
             y: 0,
         },
         {
-            content: "Fourth Data Metric",
+            title: "Line Chart",
             height: 4,
             id: `${tileIdPrefix}3`,
             type: "line",
             width: 5,
         },
         {
-            content: "Fifth  Data Metric",
+            title: "Donut Chart",
             height: 3,
             id: `${tileIdPrefix}4`,
             type: "donut",
@@ -64,11 +64,11 @@ const DashboardContainer = (): JSX.Element => {
         const nextId = Math.max(...nextIds) + 1;
 
         newTileData.push({
-            content: `tile ${nextId}`,
-            height: 1,
+            title: "Donut Chart",
+            height: 2,
             id: `${tileIdPrefix}${nextId.toString()}`,
-            type: "gauge",
-            width: 1,
+            type: "donut",
+            width: 3,
         });
 
         setTileData(newTileData);
@@ -121,16 +121,16 @@ const DashboardContainer = (): JSX.Element => {
                     data={[
                         {
                             id: "1001",
-                            name: "Queue 1",
+                            name: "Band 1",
                             value: 100,
                         },
                         {
                             id: "1002",
-                            name: "Queue 2",
+                            name: "Band 2",
                             value: 200,
                         }, {
                             id: "1003",
-                            name: "Queue 3",
+                            name: "Band 3",
                             value: 400,
                         },
                     ]}
@@ -187,8 +187,8 @@ const DashboardContainer = (): JSX.Element => {
                                     startDate: new Date(2020, 1, 1, 9, 4, 0),
                                     value: 10,
                                 }],
-                                id: "series 1",
-                                name: "series 1n",
+                                id: "2001",
+                                name: "Series 1",
                             },
                             {
                                 color: "rgb(255, 171, 0)",
@@ -213,8 +213,8 @@ const DashboardContainer = (): JSX.Element => {
                                     startDate: new Date(2020, 1, 1, 9, 4, 0),
                                     value: 5,
                                 }],
-                                id: "series 2",
-                                name: "series 2n",
+                                id: "2002",
+                                name: "Series 2",
                             },
                             {
                                 color: "rgb(143, 95, 232)",
@@ -239,8 +239,8 @@ const DashboardContainer = (): JSX.Element => {
                                     startDate: new Date(2020, 1, 1, 9, 4, 0),
                                     value: 17,
                                 }],
-                                id: "series 3",
-                                name: "series 3n",
+                                id: "2003",
+                                name: "Series 3",
                             },
                         ]}
                     loaded={true}
@@ -252,7 +252,7 @@ const DashboardContainer = (): JSX.Element => {
         }
 
         return (<GridStackTile
-            title={tile.content}
+            title={tile.title}
             gsWidth={tile.width}
             gsHeight={tile.height}
             gsX={tile.x}
