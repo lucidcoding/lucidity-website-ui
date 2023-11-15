@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Series from "./Series";
 import ISeriesProps from "./ISeriesProps";
+import Series from "./Series";
 
 describe("Series", () => {
     let props: ISeriesProps;
@@ -12,11 +12,7 @@ describe("Series", () => {
 
     beforeEach(() => {
         props = {
-            id: "1001",
-            xScale: mockXScale,
-            yScale: mockYScale,
-            onMouseOver: mockOnMouseOver,
-            onMouseOut: mockOnMouseOut,
+            color: "#FF000",
             data: [{
                 startDate: new Date(2020, 1, 1, 9, 0, 0),
                 value: 100,
@@ -27,9 +23,13 @@ describe("Series", () => {
                 startDate: new Date(2020, 1, 1, 9, 2, 0),
                 value: 300,
             }],
-            color: "#FF000",
+            "data-testid": "series",
             highlighted: false,
-            "data-testid": "series"
+            id: "1001",
+            onMouseOut: mockOnMouseOut,
+            onMouseOver: mockOnMouseOver,
+            xScale: mockXScale,
+            yScale: mockYScale,
         };
     });
 

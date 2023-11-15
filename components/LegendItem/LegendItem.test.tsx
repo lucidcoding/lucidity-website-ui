@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import LegendItem from "./LegendItem";
 import ILegendItemProps from "./ILegendItemProps";
+import LegendItem from "./LegendItem";
 
 describe("LegendItem", () => {
     let props: ILegendItemProps;
@@ -11,14 +11,14 @@ describe("LegendItem", () => {
     beforeEach(() => {
         props = {
             boxHeight: 10,
-            id: "3001",
-            name: "Series 1",
-            lineHeight: 20,
             color: "#FF0000",
+            "data-testid": "legend-item",
             highlighted: false,
-            onMouseOver: mockOnMouseOver,
+            id: "3001",
+            lineHeight: 20,
+            name: "Series 1",
             onMouseOut: mockOnMouseOut,
-            "data-testid": "legend-item"
+            onMouseOver: mockOnMouseOver,
         };
     });
 

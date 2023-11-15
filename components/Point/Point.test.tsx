@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Point from "./Point";
 import IPointProps from "./IPointProps";
+import Point from "./Point";
 
 describe("Point", () => {
     let props: IPointProps;
@@ -10,16 +10,16 @@ describe("Point", () => {
 
     beforeEach(() => {
         props = {
+            color: "#FF0000",
+            "data-testid": "point",
+            highlighted: false,
             id: "4001",
+            onMouseOut: mockOnMouseOut,
+            onMouseOver: mockOnMouseOver,
+            startDate: new Date(2020, 1, 1, 9, 0, 0),
+            value: 250,
             x: 100,
             y: 200,
-            value: 250,
-            onMouseOver: mockOnMouseOver,
-            onMouseOut: mockOnMouseOut,
-            startDate: new Date(2020, 1, 1, 9, 0, 0),
-            color: "#FF0000",
-            highlighted: false,
-            "data-testid": "point",
         };
     });
 
@@ -39,12 +39,12 @@ describe("Point", () => {
 
     it("does not have highlighted class when not highlighted", () => {
         render(<svg><Point {...props} data-testid={props["data-testid"]} /></svg>);
-        expect(screen.getByTestId("point")).not.toHaveClass("highlighted")
+        expect(screen.getByTestId("point")).not.toHaveClass("highlighted");
     });
 
     it("has highlighted class when highlighted", () => {
         props.highlighted = true;
         render(<svg><Point {...props} data-testid={props["data-testid"]} /></svg>);
-        expect(screen.getByTestId("point")).toHaveClass("highlighted")
+        expect(screen.getByTestId("point")).toHaveClass("highlighted");
     });
 });

@@ -13,43 +13,43 @@ const DashboardContainer = (): JSX.Element => {
 
     const initialTileData: ITile[] = [
         {
-            title: "Gauge 1",
             height: 2,
             id: `${tileIdPrefix}0`,
+            title: "Gauge 1",
             type: "gauge",
             width: 3,
             x: 0,
             y: 0,
         },
         {
-            title: "Gauge 2",
             height: 2,
             id: `${tileIdPrefix}1`,
+            title: "Gauge 2",
             type: "gauge",
             width: 3,
             x: 0,
             y: 2,
         },
         {
-            title: "Bar Chart",
             height: 4,
             id: `${tileIdPrefix}2`,
+            title: "Bar Chart",
             type: "bar",
             width: 4,
             x: 3,
             y: 0,
         },
         {
-            title: "Line Chart",
             height: 4,
             id: `${tileIdPrefix}3`,
+            title: "Line Chart",
             type: "line",
             width: 5,
         },
         {
-            title: "Donut Chart",
             height: 3,
             id: `${tileIdPrefix}4`,
+            title: "Donut Chart",
             type: "donut",
             width: 4,
         },
@@ -64,9 +64,9 @@ const DashboardContainer = (): JSX.Element => {
         const nextId = Math.max(...nextIds) + 1;
 
         newTileData.push({
-            title: "Donut Chart",
             height: 2,
             id: `${tileIdPrefix}${nextId.toString()}`,
+            title: "Donut Chart",
             type: "donut",
             width: 3,
         });
@@ -102,7 +102,7 @@ const DashboardContainer = (): JSX.Element => {
     };
 
     const onBarClick = (id: string, name: string) => {
-        console.log("Bar clicked...")
+        console.log("Bar clicked...");
     };
 
     const tiles = tileData.map((tile, index) => {

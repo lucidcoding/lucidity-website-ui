@@ -25,15 +25,15 @@ describe("BarChart", () => {
                     value: 400,
                 },
             ],
-            loaded: true,
-            width: 500,
+            "data-testid": "bar-chart",
             height: 400,
-            xAxisTitle: "",
+            loaded: true,
+            onBarClick: mockOnBarClick,
+            width: 500,
             xAxisOrientation: "horizontal" as ("vertical" | "horizontal" | "diagonal"),
             xAxisTickFormat: (value: any) => value,
+            xAxisTitle: "",
             yAxisTitle: "",
-            onBarClick: mockOnBarClick,
-            "data-testid": "bar-chart"
         };
     });
 

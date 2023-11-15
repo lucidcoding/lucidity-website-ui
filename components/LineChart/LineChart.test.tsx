@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import LineChart from "./LineChart";
 import ILineChartProps from "./ILineChartProps";
+import LineChart from "./LineChart";
 
 describe("LineChart", () => {
     let props: ILineChartProps;
@@ -9,20 +9,6 @@ describe("LineChart", () => {
 
     beforeEach(() => {
         props = {
-            dateRange: {
-                chartEndDate: new Date(2020, 1, 1, 9, 4, 0),
-                chartStartDate: new Date(2020, 1, 1, 9, 0, 0),
-                numberOfXTicks: 5,
-                xTicksFormat: (x: any) => x,
-            },
-            onPointClick: mockOnPointClick,
-            width: 600,
-            height: 400,
-            xAxisTitle: "",
-            yAxisTitle: "",
-            xAxisOrientation: "horizontal",
-            legendWidth: 100,
-            legendLineHeight: 20,
             data: [{
                 color: "rgb(0, 210, 91)",
                 dateRanges: [{
@@ -101,8 +87,22 @@ describe("LineChart", () => {
                 id: "2003",
                 name: "Series 3",
             }],
-            loaded: true,
             "data-testid": "line-chart",
+            dateRange: {
+                chartEndDate: new Date(2020, 1, 1, 9, 4, 0),
+                chartStartDate: new Date(2020, 1, 1, 9, 0, 0),
+                numberOfXTicks: 5,
+                xTicksFormat: (x: any) => x,
+            },
+            height: 400,
+            legendLineHeight: 20,
+            legendWidth: 100,
+            loaded: true,
+            onPointClick: mockOnPointClick,
+            width: 600,
+            xAxisOrientation: "horizontal",
+            xAxisTitle: "",
+            yAxisTitle: "",
         };
     });
 
