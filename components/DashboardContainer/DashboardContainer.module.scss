@@ -31,7 +31,7 @@ div.container {
         }
 
         button {
-            padding: $standard-padding $large-padding ;
+            padding: $standard-padding $large-padding;
             background-color: transparent;
             color: $white;
             border: 0;
@@ -54,12 +54,10 @@ div.container {
             div.icon {
                 border-radius: 50%;
                 margin-right: $standard-padding;
-                //width: $standard-icon-size;
-                //@extend: $standard-icon-size;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
+
                 &:last-child {
                     margin-right: 0;
                 }
@@ -70,7 +68,7 @@ div.container {
                         transform: rotate(180deg);
                     }
                 }
-                
+
                 svg {
                     fill: $grey-light;
                 }
@@ -100,12 +98,11 @@ div.container {
         background-color: $grey-dark;
 
         > div.header {
-            padding: 0 $large-padding 0 $large-padding; 
+            padding: 0 $large-padding 0 $large-padding;
             display: flex;
             flex-direction: row;
             align-items: center;
             height: $header-height;
-
 
             h1 {
                 padding-left: 3px; // Visual shim
@@ -119,8 +116,6 @@ div.container {
             }
         }
 
-        
-
         > div.gridStackContainer {
             padding: 0 $large-padding $large-padding $large-padding;
             flex-grow: 1;
@@ -131,6 +126,3 @@ div.container {
         }
     }
 }
-
-
-

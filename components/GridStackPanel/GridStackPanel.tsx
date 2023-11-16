@@ -1,4 +1,4 @@
-import { GridStack, GridStackElement } from "gridstack";
+import { GridItemHTMLElement, GridStack, GridStackElement, GridStackNode } from "gridstack";
 import React, { RefObject, useEffect, useRef } from "react";
 import IGridStackTileProps from "../GridStackTile/IGridStackTileProps";
 import styles from "./GridStackPanel.module.scss";
@@ -17,6 +17,8 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
     useEffect(() => {
         grid = GridStack.init();
         grid.margin("12px");
+        grid.on("resizestop", handleResizeStop);
+        props.onCellWidthUpdate(grid.cellWidth());
     });
 
     const mounted = useRef<boolean>(false);
@@ -55,8 +57,18 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
         }
 
         // Pass to parent to remove from tile data.
-        if (props.handleTileClose) {
-            props.handleTileClose(id);
+        if (props.onTileClose) {
+            props.onTileClose(id);
+        }
+    };
+
+    const handleResizeStop = (event: Event, el: GridItemHTMLElement) => {
+        const id = el.getAttribute("id");
+
+        if (el.gridstackNode) {
+            const node: any = el.gridstackNode; // GridStackNode doesn't contain _rect.
+            // node._rect.w or node._rect.h is pixel height;
+            props.onTileResize(id ?? "", node.x ?? 0, node.y ?? 0, node.w ?? 0, node.h ?? 0);
         }
     };
 

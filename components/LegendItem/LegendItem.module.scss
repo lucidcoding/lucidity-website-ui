@@ -1,0 +1,54 @@
+@import "../../styles/common.scss";
+
+$font-size-small: 10px;
+$font-size-base: 12px;
+
+.container {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+
+    &:not(:first-of-type) {
+        margin-left: $standard-padding;
+    }
+
+    .label {
+        display: inline-block;
+        color: $grey-light;
+        font-size: $font-size-base;
+        font-weight: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-left: 30px;
+        line-height: 12px;
+    }
+
+    .block {
+        height: 10px;
+        margin-bottom: 1px;
+
+        > svg {
+            position: absolute;
+        }
+
+        .pointer {
+            stroke: none;
+            fill: none;
+        }
+
+        &:hover {
+            cursor: default;
+        }
+    }
+
+    &.highlighted {
+        .label {
+            color: $white;
+        }
+
+        .pointer {
+            fill: $white;
+        }
+    }
+}

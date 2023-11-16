@@ -1,0 +1,9 @@
+@import "../../styles/common.scss";
+
+$used-fill: $highlight-red;
+$font-size-base: 12px;
+
+.container {
+    cursor: pointer;
+    fill: $highlight-blue;
+}
