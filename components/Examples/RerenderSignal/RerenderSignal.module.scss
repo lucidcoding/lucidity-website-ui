@@ -1,9 +1,24 @@
 div.container {
-    background-color: rgba(255, 0, 0, 1);
-    transition: transform 1s;
+    position: relative;
+    overflow: visible;
 
-    &.fade {
-        background-color: rgba(255, 0, 0, 0);
-        //transition: background-color 100ms linear;
+    > div.inner {
+        transition: background-color 100ms linear;
+        animation: flash 0.5s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        min-height: 100px;
+        height: 100px;
+    }
+}
+
+@keyframes flash {
+    0% {
+        background-color: pink;
+    }
+    100% {
+        background-color: transparent;
     }
 }

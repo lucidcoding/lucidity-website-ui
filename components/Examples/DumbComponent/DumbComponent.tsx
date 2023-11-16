@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import styles from './DumbComponent.module.scss';
+import RerenderSignal from "../RerenderSignal/RerenderSignal";
 
 const DumbComponent = (): JSX.Element => {
     const now = Date.now();
@@ -9,7 +10,8 @@ const DumbComponent = (): JSX.Element => {
     });
 
     return (
-        <div className={styles.container} key={`${now}-key1`} >
+        <div className={styles.container} >
+            <RerenderSignal />
             <h1>DumbComponent</h1>
             <div suppressHydrationWarning>
                 Time: {now}

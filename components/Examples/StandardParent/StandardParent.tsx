@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styles from './StandardParent.module.scss'
 import DumbComponent from "../DumbComponent/DumbComponent";
 import MemoizedComponent from "../MemoizedComponent/MemoizedComponent";
@@ -46,7 +46,8 @@ const StandardParent = (): JSX.Element => {
     };
 
     return (
-        <div className={styles.container} key={`${now}-key1`} >
+        <div className={styles.container}>
+            <RerenderSignal />
             <h1>StandardParent</h1>
             <div>exampleValue1: {exampleValue1}
                 &nbsp;
@@ -61,7 +62,7 @@ const StandardParent = (): JSX.Element => {
             </div>
             <div className={styles.elements}>
                 <DumbComponent></DumbComponent>
-                <MemoizedComponent></MemoizedComponent>
+                <MemoizedComponent />
                 <ComponentWithProps exampleValue={exampleValue1}></ComponentWithProps>
                 <MemoisedComponentWithProps exampleValue={exampleValue1}></MemoisedComponentWithProps>
             </div>
