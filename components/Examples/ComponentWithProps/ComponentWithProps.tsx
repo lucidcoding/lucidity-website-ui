@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styles from './ComponentWithProps.module.scss'
+import styles from "./ComponentWithProps.module.scss";
 import IComponentWithPropsProps from "./IComponentWithPropsProps";
 
 const ComponentWithProps = (props: IComponentWithPropsProps): JSX.Element => {
     const now = Date.now();
 
     useEffect(() => {
-        console.log("ComponentWithProps.useEffect - every time")
+        console.log("ComponentWithProps.useEffect - every time");
     });
 
     return (

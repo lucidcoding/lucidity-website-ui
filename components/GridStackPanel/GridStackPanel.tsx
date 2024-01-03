@@ -8,7 +8,7 @@ const GridStackPanel = (props: IGridStackPanelProps): JSX.Element => {
     let grid: GridStack;
 
     const childrenArray: Array<React.ReactElement<IGridStackTileProps>>
-        = (props.children instanceof Array<React.ReactElement<IGridStackTileProps>>)
+        = (Array.isArray(props.children))
             ? props.children : [props.children];
 
     // This is to keep track of what has been changed in the props.
