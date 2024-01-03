@@ -29,6 +29,7 @@
   "scripts": {
     "dev": "=next",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
