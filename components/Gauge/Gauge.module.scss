@@ -21,7 +21,7 @@ $font-size-base: 12px;
 
     .label {
         font-size: $font-size-base;
-        font-weight: normal;
+        font-weight: $font-weight-regular;
 
         &.limits {
             fill: $grey-light;
@@ -32,7 +32,8 @@ $font-size-base: 12px;
         }
 
         &.value {
-            font-size: $title-font;
+            font-size: $font-size-gauge-value;
+            font-weight: $font-weight-bold;
             fill: $white;
         }
     }

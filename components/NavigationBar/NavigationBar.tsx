@@ -5,7 +5,7 @@ const NavigationBar = (): JSX.Element => {
     return (
         <nav className={styles.container}>
             <div className={styles.logo}>
-                LUCIDITY SOFTWARE
+                LUCIDITY
             </div>
             <Link className={styles.item} href="/" data-testid="navigation-bar-home-link">
                 HOME

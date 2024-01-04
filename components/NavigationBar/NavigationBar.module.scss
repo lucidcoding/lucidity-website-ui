@@ -1,11 +1,11 @@
 @import "../../styles/common.scss";
 
 nav.container {
-    background-color: $white;
+    background-color: $grey-dark;
     position: sticky;
     top: 0;
     z-index: 15000;
-    border-bottom: 1px solid $grey-mid;
+    border-bottom: 1px solid $grey-light;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -14,13 +14,14 @@ nav.container {
     > div.logo {
         flex-grow: 1;
         color: $highlight-orange;
-        font-size: $large-font;
-        font-weight: bold;
+        font-size: $font-size-logo;
+        font-weight: $font-weight-light;
+        text-transform: lowercase;
     }
 
     > a.item {
-        color: $grey-dark;
-        font-weight: bold;
+        color: $white;
+        font-weight: $font-weight-bold;
         padding-right: $large-padding;
         text-decoration: none;
     }

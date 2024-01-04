@@ -2,10 +2,11 @@
 
 body {
     margin: 0;
-    background-color: $grey-light;
+    background-color: $grey-dark;
     color: $white;
-    font-family: system-ui, Rubik, Segoe UI Symbol, Noto Color Emoji;
-    font-size: $medium-font;
+    font-family: var(--open-sans-font), system-ui, Rubik, Segoe UI Symbol, Noto Color Emoji;
+    font-size: $font-size-regular;
+    font-weight: $font-weight-regular;
     color: #f0f0f0;
 
     div.grid-stack {

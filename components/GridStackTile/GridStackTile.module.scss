@@ -17,6 +17,8 @@ div.container {
 
             div.title {
                 flex-grow: 1;
+                font-size: $font-size-regular;
+                font-weight: $font-weight-semi-bold;
             }
 
             button {

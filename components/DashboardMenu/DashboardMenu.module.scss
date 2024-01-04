@@ -16,9 +16,9 @@ div.container {
     }
 
     h2 {
-        font-size: $medium-font;
+        font-size: $font-size-regular;
         color: $grey-light;
-        font-weight: bold;
+        font-weight: $font-weight-semi-bold;
         margin-block-start: $extra-large-padding;
         margin-block-end: $large-padding;
         margin-inline-start: $large-padding;
@@ -36,7 +36,7 @@ div.container {
         border: 0;
         cursor: pointer;
         text-align: left;
-        font-size: $medium-font;
+        font-size: $font-size-regular;
         font-family: inherit;
         display: flex;
         flex-direction: row;

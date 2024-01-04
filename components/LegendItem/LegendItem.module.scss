@@ -16,7 +16,7 @@ $font-size-base: 12px;
         display: inline-block;
         color: $grey-light;
         font-size: $font-size-base;
-        font-weight: normal;
+        font-weight: $font-weight-regular;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
