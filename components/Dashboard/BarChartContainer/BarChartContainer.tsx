@@ -1,26 +1,23 @@
+import { useEffect, useState } from "react";
 import BarChart from "../BarChart/BarChart";
 import IBarChartContainerProps from "./IBarChartContainerProps";
+import fetch, { Response } from "../../../library/fake-fetch";
 
 const BarChartContainer = (props: IBarChartContainerProps): JSX.Element => {
+    const [data, setDate] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/stuff")
+            .then((result: Response) => result.json())
+            .then((json) => {
+                setDate(json);
+            })
+    }, []);
+
     return (
         <BarChart
             key={props.tileId}
-            data={[
-                {
-                    id: "1001",
-                    name: "Band 1",
-                    value: 100,
-                },
-                {
-                    id: "1002",
-                    name: "Band 2",
-                    value: 200,
-                }, {
-                    id: "1003",
-                    name: "Band 3",
-                    value: 400,
-                },
-            ]}
+            data={data}
             loaded={true}
             width={props.width}
             height={props.height}
