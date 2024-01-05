@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import DashboardContainer from "../components/DashboardContainer/DashboardContainer";
+import DashboardRoot from "../components/DashboardRoot/DashboardRoot";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
 
 const Dashboard: React.FC = () => {
@@ -10,7 +10,7 @@ const Dashboard: React.FC = () => {
                 <title>Lucidity | Dashboard</title>
             </Head>
             <NavigationBar />
-            <DashboardContainer />
+            <DashboardRoot />
         </>
     );
 };

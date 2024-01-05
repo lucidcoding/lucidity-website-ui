@@ -5,10 +5,10 @@ import Gauge from "../Gauge/Gauge";
 import GridStackPanel from "../GridStackPanel/GridStackPanel";
 import GridStackTile from "../GridStackTile/GridStackTile";
 import LineChart from "../LineChart/LineChart";
-import styles from "./DashboardContainer.module.scss";
+import styles from "./DashboardRoot.module.scss";
 import ITile from "./ITile";
 
-const DashboardContainer = (): JSX.Element => {
+const DashboardRoot = (): JSX.Element => {
     const tileIdPrefix = "tl";
 
     const initialTileData: ITile[] = [
@@ -288,4 +288,4 @@ const DashboardContainer = (): JSX.Element => {
     );
 };
 
-export default DashboardContainer;
+export default DashboardRoot;

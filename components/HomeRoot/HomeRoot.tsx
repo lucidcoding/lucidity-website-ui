@@ -1,6 +1,6 @@
-import styles from "./HomeContainer.module.scss";
+import styles from "./HomeRoot.module.scss";
 
-const HomeContainer = (): JSX.Element => {
+const HomeRoot = (): JSX.Element => {
     return (
         <div className={styles.container}>
             <div className={styles.overlay}>
@@ -20,4 +20,4 @@ const HomeContainer = (): JSX.Element => {
     );
 };
 
-export default HomeContainer;
+export default HomeRoot;

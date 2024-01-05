@@ -2,14 +2,14 @@ import "@testing-library/jest-dom";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { GridStack } from "gridstack";
 import React from "react";
-import DashboardContainer from "./DashboardContainer";
+import DashboardRoot from "./DashboardRoot";
 
 jest.mock("gridstack");
 
-describe("DashboardContainer", () => {
+describe("DashboardRoot", () => {
     const mockedGridStack = jest.mocked(GridStack);
     const grid = jest.mocked(GridStack);
-    const renderElement = () => render(<DashboardContainer></DashboardContainer>);
+    const renderElement = () => render(<DashboardRoot></DashboardRoot>);
 
     beforeEach(() => {
         mockedGridStack.init.mockImplementation((() => grid.prototype));
