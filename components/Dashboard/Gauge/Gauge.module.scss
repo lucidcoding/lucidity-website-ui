@@ -1,0 +1,40 @@
+@import "../../../styles/common.scss";
+
+$used-fill: $highlight-red;
+$font-size-base: 12px;
+
+.container {
+    display: block;
+    margin: auto;
+
+    .unused {
+        fill: $grey-dark;
+    }
+
+    .used {
+        fill: $used-fill;
+    }
+
+    .needle {
+        fill: $white;
+    }
+
+    .label {
+        font-size: $font-size-base;
+        font-weight: $font-weight-regular;
+
+        &.limits {
+            fill: $grey-light;
+        }
+
+        &.max {
+            fill: $grey-light;
+        }
+
+        &.value {
+            font-size: $font-size-gauge-value;
+            font-weight: $font-weight-bold;
+            fill: $white;
+        }
+    }
+}

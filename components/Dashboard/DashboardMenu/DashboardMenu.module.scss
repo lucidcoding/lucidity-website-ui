@@ -1,0 +1,93 @@
+@import "../../../styles/common.scss";
+
+div.container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 100vh;
+
+    width: 280px;
+    background-color: $grey-mid;
+    display: flex;
+    flex-direction: column;
+
+    div.header {
+        height: $header-height;
+    }
+
+    h2 {
+        font-size: $font-size-regular;
+        color: $grey-light;
+        font-weight: $font-weight-semi-bold;
+        margin-block-start: $extra-large-padding;
+        margin-block-end: $large-padding;
+        margin-inline-start: $large-padding;
+        margin-inline-end: $large-padding;
+
+        &:first-of-type {
+            margin-block-start: 0;
+        }
+    }
+
+    button {
+        padding: $standard-padding $large-padding;
+        background-color: transparent;
+        color: $white;
+        border: 0;
+        cursor: pointer;
+        text-align: left;
+        font-size: $font-size-regular;
+        font-family: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &:hover {
+            background-color: $grey-dark;
+        }
+
+        &.noIcon {
+            padding-left: $large-padding-and-icon-shim;
+        }
+
+        div.icon {
+            border-radius: 50%;
+            margin-right: $standard-padding;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &.spinOnExpand {
+                transition: transform 1s;
+                &.expanded {
+                    transform: rotate(180deg);
+                }
+            }
+
+            svg {
+                fill: $grey-light;
+            }
+        }
+
+        div.text {
+            margin-top: -3px;
+            flex-grow: 1;
+        }
+    }
+
+    div.dropDown {
+        height: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: height 1s;
+
+        &.expanded {
+            height: auto;
+        }
+    }
+}

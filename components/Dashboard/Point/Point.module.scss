@@ -1,0 +1,19 @@
+@import "../../../styles/common.scss";
+
+.container {
+    .point {
+        fill: $grey-mid;
+        stroke-width: 2px;
+        stop-color: $white;
+    }
+
+    &.highlighted {
+        .point {
+            stroke-width: 4px;
+        }
+    }
+
+    .point:hover {
+        cursor: pointer;
+    }
+}

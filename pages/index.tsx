@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import HomeRoot from "../components/HomeRoot/HomeRoot";
-import NavigationBar from "../components/NavigationBar/NavigationBar";
+import HomeRoot from "../components/Home/HomeRoot/HomeRoot";
+import NavigationBar from "../components/Shared/NavigationBar/NavigationBar";
 
 const Index: React.FC = () => {
     return (
