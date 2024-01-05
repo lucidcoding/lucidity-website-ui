@@ -7,12 +7,9 @@ import GridStackTile from "../GridStackTile/GridStackTile";
 import LineChart from "../LineChart/LineChart";
 import styles from "./DashboardContainer.module.scss";
 import ITile from "./ITile";
-import engagements from "../../data/engagements.json";
 
 const DashboardContainer = (): JSX.Element => {
     const tileIdPrefix = "tl";
-
-    console.log(engagements);
 
     const initialTileData: ITile[] = [
         {
