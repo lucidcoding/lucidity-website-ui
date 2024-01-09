@@ -5,7 +5,7 @@ import DashboardMenu from "./DashboardMenu";
 
 describe("DashboardMenu", () => {
     let mockHandleAddTile: jest.Mock;
-    const renderElement = () => render(<DashboardMenu handleAddTile={mockHandleAddTile}></DashboardMenu>);
+    const renderElement = () => render(<DashboardMenu onAddTile={mockHandleAddTile}></DashboardMenu>);
 
     beforeEach(() => {
         mockHandleAddTile = jest.fn();

@@ -2,8 +2,37 @@ export type Response = {
     json: () => Promise<any>;
 }
 
-const ageGroupAggregator = (data: any[]) => {
-    const grouped = data.map((item) => {
+const filter = (data: any[], startDate: Date | null, endDate: Date | null) => {
+    const filtered = data.filter((item: {
+        ageGroup: {
+            id: string,
+            description: string
+        },
+        engagementCount: number,
+        date: string
+    }) => {
+        if (startDate === null || endDate === null) {
+            return true;
+        }
+
+        const itemDate = new Date(item.date);
+        return itemDate >= startDate && itemDate <= endDate;
+    });
+
+    return filtered;
+};
+
+const ageGroupAggregator = (data: any[], startDate: Date | null, endDate: Date | null) => {
+    const filtered = filter(data, startDate, endDate);
+
+    const grouped = filtered.map((item: {
+        ageGroup: {
+            id: string,
+            description: string
+        },
+        engagementCount: number,
+        date: string
+    }) => {
         const returnValue = {
             id: item.ageGroup.id,
             name: item.ageGroup.description,
@@ -29,8 +58,10 @@ const ageGroupAggregator = (data: any[]) => {
     return result;
 };
 
-const ageGroupAndTimePeriodAggregator = (data: any[]) => {
-    const grouped = data.map((item) => {
+const ageGroupAndTimePeriodAggregator = (data: any[], startDate: Date | null, endDate: Date | null) => {
+    const filtered = filter(data, startDate, endDate);
+
+    const grouped = filtered.map((item) => {
         const returnValue = {
             year: item.date.substring(0, 4),
             ageGroupDescription: item.ageGroup.description,
@@ -81,16 +112,23 @@ const ageGroupAndTimePeriodAggregator = (data: any[]) => {
 };
 
 const fetch = (url: string) => {
-    let aggregator: (data: any[]) => any[];
+    const [root, filterString] = url.split("?");
+    const filters = filterString ? filterString.split("&").map((item) => item.split("=")).map((item) => { return { field: item[0], value: item[1] } }) : [];
+    const startDateFilter = filters.find(item => item.field === "startDate");
+    const endDateFilter = filters.find(item => item.field === "endDate");
+    const startDate = startDateFilter ? new Date(startDateFilter.value) : null;
+    const endDate = endDateFilter ? new Date(endDateFilter.value) : null;
 
-    if (url == "/api/bar-chart") {
+    let aggregator: (data: any[], startDate: Date | null, endDate: Date | null) => any[];
+
+    if (root === "/api/bar-chart") {
         aggregator = ageGroupAggregator;
     }
     else {
         aggregator = ageGroupAndTimePeriodAggregator;
     }
 
-    const reducedData = aggregator(pageViewData);
+    const reducedData = aggregator(pageViewData, startDate, endDate);
     console.log(reducedData);
 
     return new Promise<Response>((resolve, reject) => {

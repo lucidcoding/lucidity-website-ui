@@ -58,6 +58,8 @@ const DashboardRoot = (): JSX.Element => {
 
     const [tileData, setTileData] = useState(initialTileData);
     const [cellWidth, setCellWidth] = useState(0);
+    const [startDate, setStartDate] = useState<Date | null>(null);
+    const [endDate, setEndDate] = useState<Date | null>(null);
 
     const onAddTile = () => {
         const newTileData = [...tileData];
@@ -106,6 +108,11 @@ const DashboardRoot = (): JSX.Element => {
         console.log("Bar clicked...");
     };
 
+    const onPeriodClick = (newStartDate: Date | null, newEndDate: Date | null) => {
+        setStartDate(newStartDate);
+        setEndDate(newEndDate);
+    };
+
     const tiles = tileData.map((tile, index) => {
         let widget: JSX.Element;
 
@@ -128,6 +135,10 @@ const DashboardRoot = (): JSX.Element => {
                 break;
             case "bar":
                 widget = <BarChartContainer
+                    dateRange={{
+                        endDate,
+                        startDate,
+                    }}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
@@ -137,6 +148,10 @@ const DashboardRoot = (): JSX.Element => {
                 break;
             case "line":
                 widget = <LineChartContainer
+                    dateRange={{
+                        endDate,
+                        startDate,
+                    }}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
@@ -161,7 +176,7 @@ const DashboardRoot = (): JSX.Element => {
 
     return (
         <div className={styles.container}>
-            <DashboardMenu handleAddTile={onAddTile} />
+            <DashboardMenu onAddTile={onAddTile} onPeriodClick={onPeriodClick} />
             <div className={styles.main}>
                 <div className={styles.header}>
                     <h1>Analytics Dashboard</h1>
