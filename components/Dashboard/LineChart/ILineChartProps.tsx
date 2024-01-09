@@ -21,7 +21,6 @@ export interface ILineChartProps {
         }>;
         id: string;
         name: string;
-        color: string;
     }>;
     loaded: boolean;
     error?: string;

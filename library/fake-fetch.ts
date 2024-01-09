@@ -2,7 +2,7 @@ export type Response = {
     json: () => Promise<any>;
 }
 
-const reducer1 = (data: any[]) => {
+const ageGroupAggregator = (data: any[]) => {
     const grouped = data.map((item) => {
         const returnValue = {
             id: item.ageGroup.id,
@@ -22,14 +22,14 @@ const reducer1 = (data: any[]) => {
             result.push({ ...element });
         }
         else {
-            target.pageViews += element.value;
+            target.value += element.value;
         }
     });
 
     return result;
 };
 
-const reducer2 = (data: any[]) => {
+const ageGroupAndTimePeriodAggregator = (data: any[]) => {
     const grouped = data.map((item) => {
         const returnValue = {
             year: item.date.substring(0, 4),
@@ -41,16 +41,39 @@ const reducer2 = (data: any[]) => {
         return returnValue;
     });
 
-    const result: any[] = [];
+    const result: {
+        id: string,
+        name: string,
+        color: string,
+        dateRanges: any[]
+    }[] = [];
 
     grouped.forEach(element => {
-        const target = result.find(x => x.year === element.year && x.ageGroupId === element.ageGroupId);
+        const target = result.find(x => x.id === element.ageGroupId);
 
         if (!target) {
-            result.push({ ...element });
+            result.push({
+                id: element.ageGroupId,
+                name: element.ageGroupDescription,
+                color: "rgb(143, 95, 232)",
+                dateRanges: []
+            });
         }
         else {
-            target.pageViews += element.pageViews;
+            const startDate = new Date(element.year, 0, 1, 0, 0, 0).toISOString();
+            const endDate = new Date(element.year, 11, 31, 23, 59, 59).toISOString();
+            const innerTarget = target.dateRanges.find(x => x.startDate.toISOString() === startDate);
+
+            if (!innerTarget) {
+                target.dateRanges.push({
+                    startDate: new Date(startDate),
+                    endDate: new Date(endDate),
+                    value: element.pageViews
+                })
+            }
+            else {
+                innerTarget.value += element.pageViews;
+            }
         }
     });
 
@@ -58,7 +81,17 @@ const reducer2 = (data: any[]) => {
 };
 
 const fetch = (url: string) => {
-    const reducedData = reducer1(pageViewData);
+    let aggregator: (data: any[]) => any[];
+
+    if (url == "/api/bar-chart") {
+        aggregator = ageGroupAggregator;
+    }
+    else {
+        aggregator = ageGroupAndTimePeriodAggregator;
+    }
+
+    const reducedData = aggregator(pageViewData);
+    console.log(reducedData);
 
     return new Promise<Response>((resolve, reject) => {
         const response: Response = {

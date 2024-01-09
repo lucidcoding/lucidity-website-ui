@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import fetch, { Response } from "../../../library/fake-fetch";
-import BarChart from "../BarChart/BarChart";
-import IBarChartContainerProps from "./IBarChartContainerProps";
+import DonutChart from "../DonutChart/DonutChart";
+import IDonutChartContainerProps from "./IDonutChartContainerProps";
 
-const BarChartContainer = (props: IBarChartContainerProps): JSX.Element => {
+const DonutChartContainer = (props: IDonutChartContainerProps): JSX.Element => {
     const [data, setDate] = useState([]);
 
     useEffect(() => {
@@ -15,20 +15,20 @@ const BarChartContainer = (props: IBarChartContainerProps): JSX.Element => {
     }, []);
 
     return (
-        <BarChart
+        <DonutChart
             key={props.tileId}
             data={data}
+            error="ERROR"
+            highlightedDataMaxChars={15}
+            legendLineHeight={18}
+            legendMaxChars={20}
             loaded={true}
+            onSliceClick={(id: string) => { return; }}
             width={props.width}
             height={props.height}
-            xAxisTitle=""
-            xAxisOrientation="horizontal"
-            xAxisTickFormat={(value: any) => value}
-            yAxisTitle=""
-            onBarClick={props.onBarClick}
-            data-testid="bar-chart"
+            data-testid={`${props["data-testid"]}`}
         />
     );
 };
 
-export default BarChartContainer;
+export default DonutChartContainer;

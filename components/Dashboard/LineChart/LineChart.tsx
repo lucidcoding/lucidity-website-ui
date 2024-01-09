@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import React, { useState } from "react";
-import { headerSize } from "../../../library/constants";
+import { headerSize, seriesColors } from "../../../library/constants";
 import Legend from "../Legend/Legend";
 import Series from "../Series/Series";
 import XAxis from "../XAxis/XAxis";
@@ -43,7 +43,6 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
 
     const data = props.data
         .map((currentSeries) => ({
-            color: currentSeries.color,
             dateRanges: currentSeries.dateRanges.map((dateRange) => ({
                 startDate: new Date(dateRange.startDate),
                 value: dateRange.value,
@@ -103,7 +102,7 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
                         title={props.xAxisTitle}
                         orientation={props.xAxisOrientation}
                         tickFormat={props.dateRange.xTicksFormat}
-                        ticks={0}
+                        ticks={props.dateRange.numberOfXTicks}
                     />
                     <YAxis
                         scale={yScale}
@@ -114,14 +113,14 @@ const LineChart = (props: ILineChartProps): JSX.Element => {
                         ticks={0}
                     />
                     {
-                        data.map((currentSeries) => (
+                        data.map((currentSeries, index) => (
                             <Series
                                 id={currentSeries.id}
                                 data={currentSeries.dateRanges}
                                 xScale={xScale}
                                 yScale={yScale}
                                 key={`series_${currentSeries.id}`}
-                                color={currentSeries.color}
+                                color={seriesColors[index % 5]}
                                 onMouseOver={onMouseOver}
                                 onMouseOut={onMouseOut}
                                 highlighted={currentSeries.id === highlightedId}

@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { GridStack } from "gridstack";
 import React from "react";
 import DashboardRoot from "./DashboardRoot";
@@ -24,24 +24,30 @@ describe("DashboardRoot", () => {
         jest.clearAllMocks();
     });
 
-    it("should remove tile when close button is clicked", () => {
+    it("should remove tile when close button is clicked", async () => {
         renderElement();
         const closeButton = screen.getByTestId("grid-stack-panel-tile-tl3-close-button");
         fireEvent.click(closeButton);
-        expect(screen.getByTestId("grid-stack-panel-tile-tl1")).toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-tl2")).toBeInTheDocument();
-        expect(screen.queryByTestId("grid-stack-panel-tile-tl3")).not.toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-tl4")).toBeInTheDocument();
+
+        await waitFor(() => {
+            expect(screen.getByTestId("grid-stack-panel-tile-tl1")).toBeInTheDocument();
+            expect(screen.getByTestId("grid-stack-panel-tile-tl2")).toBeInTheDocument();
+            expect(screen.queryByTestId("grid-stack-panel-tile-tl3")).not.toBeInTheDocument();
+            expect(screen.getByTestId("grid-stack-panel-tile-tl4")).toBeInTheDocument();
+        });
     });
 
-    it("adds tile when add button is clicked", () => {
+    it("adds tile when add button is clicked", async () => {
         renderElement();
         const addButton = screen.getByTestId("dashboard-menu-add-gauge");
         fireEvent.click(addButton);
-        expect(screen.getByTestId("grid-stack-panel-tile-tl1")).toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-tl2")).toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-tl3")).toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-tl4")).toBeInTheDocument();
-        expect(screen.getByTestId("grid-stack-panel-tile-tl5")).toBeInTheDocument();
+
+        await waitFor(() => {
+            expect(screen.getByTestId("grid-stack-panel-tile-tl1")).toBeInTheDocument();
+            expect(screen.getByTestId("grid-stack-panel-tile-tl2")).toBeInTheDocument();
+            expect(screen.getByTestId("grid-stack-panel-tile-tl3")).toBeInTheDocument();
+            expect(screen.getByTestId("grid-stack-panel-tile-tl4")).toBeInTheDocument();
+            expect(screen.getByTestId("grid-stack-panel-tile-tl5")).toBeInTheDocument();
+        });
     });
 });

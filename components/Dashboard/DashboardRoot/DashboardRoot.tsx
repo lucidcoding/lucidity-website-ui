@@ -3,6 +3,7 @@ import GridStackPanel from "../../Shared/GridStackPanel/GridStackPanel";
 import GridStackTile from "../../Shared/GridStackTile/GridStackTile";
 import BarChartContainer from "../BarChartContainer/BarChartContainer";
 import DashboardMenu from "../DashboardMenu/DashboardMenu";
+import DonutChartContainer from "../DonutChartContainer/DonutChartContainer";
 import GaugeContainer from "../GaugeContainer/GaugeContainer";
 import LineChartContainer from "../LineChartContainer/LineChartContainer";
 import styles from "./DashboardRoot.module.scss";
@@ -109,6 +110,14 @@ const DashboardRoot = (): JSX.Element => {
         let widget: JSX.Element;
 
         switch (tile.type) {
+            case "donut":
+                widget = <DonutChartContainer
+                    tileId={tile.id}
+                    width={cellWidth * tile.width}
+                    height={cellWidth * tile.height}
+                    data-testid="donut-chart"
+                />;
+                break;
             case "gauge":
                 widget = <GaugeContainer
                     tileId={tile.id}

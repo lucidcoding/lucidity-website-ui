@@ -11,5 +11,8 @@
     "no-implicit-dependencies": [true, "dev"],
     "object-literal-key-quotes": [true, "as-needed"],
     "no-submodule-imports": false
+  },
+  "linterOptions": {
+    "exclude": ["library/fake-fetch.ts"]
   }
 }

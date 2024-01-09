@@ -1,17 +1,29 @@
+import { useEffect, useState } from "react";
+import fetch, { Response } from "../../../library/fake-fetch";
 import LineChart from "../LineChart/LineChart";
 import ILineChartContainerProps from "./ILineChartContainerProps";
 
 const LineChartContainer = (props: ILineChartContainerProps): JSX.Element => {
+    const [data, setDate] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/line-chart")
+            .then((result: Response) => result.json())
+            .then((json) => {
+                setDate(json);
+            });
+    }, []);
+
     return (
         <LineChart
             key={props.tileId}
             dateRange={{
-                chartEndDate: new Date(2020, 1, 1, 9, 4, 0),
-                chartStartDate: new Date(2020, 1, 1, 9, 0, 0),
-                numberOfXTicks: 5,
+                chartEndDate: new Date(2023, 0, 1, 0, 0, 0),
+                chartStartDate: new Date(2020, 0, 1, 0, 0, 0),
+                numberOfXTicks: 4,
                 xTicksFormat: (value: any) => {
                     const date = value as Date;
-                    const time = ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
+                    const time = (date.getFullYear());
                     return time;
                 },
             }}
@@ -22,7 +34,8 @@ const LineChartContainer = (props: ILineChartContainerProps): JSX.Element => {
             xAxisOrientation="horizontal"
             legendWidth={100}
             legendLineHeight={20}
-            data={
+            data={data}
+            /*data={
                 [
                     {
                         color: "rgb(0, 210, 91)",
@@ -102,7 +115,7 @@ const LineChartContainer = (props: ILineChartContainerProps): JSX.Element => {
                         id: "2003",
                         name: "Series 3",
                     },
-                ]}
+                ]}*/
             loaded={true}
             data-testid="line-chart"
         />

@@ -2,7 +2,6 @@ export interface ILegendItemProps {
     data: Array<{
         id: string;
         name: string;
-        color: string;
     }>;
     width: number;
     height: number;

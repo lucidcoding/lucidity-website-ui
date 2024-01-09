@@ -10,7 +10,6 @@ describe("LineChart", () => {
     beforeEach(() => {
         props = {
             data: [{
-                color: "rgb(0, 210, 91)",
                 dateRanges: [{
                     endDate: new Date(2020, 1, 1, 9, 0, 59),
                     startDate: new Date(2020, 1, 1, 9, 0, 0),
@@ -36,7 +35,6 @@ describe("LineChart", () => {
                 name: "Series 1",
             },
             {
-                color: "rgb(255, 171, 0)",
                 dateRanges: [{
                     endDate: new Date(2020, 1, 1, 9, 0, 59),
                     startDate: new Date(2020, 1, 1, 9, 0, 0),
@@ -62,7 +60,6 @@ describe("LineChart", () => {
                 name: "Series 2",
             },
             {
-                color: "rgb(143, 95, 232)",
                 dateRanges: [{
                     endDate: new Date(2020, 1, 1, 9, 0, 59),
                     startDate: new Date(2020, 1, 1, 9, 0, 0),
