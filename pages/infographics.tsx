@@ -1,5 +1,4 @@
 import Head from "next/head";
-import React, { useState } from "react";
 import InfographicsRoot from "../components/Infographics/InfographicsRoot/InfographicsRoot";
 import NavigationBar from "../components/Shared/NavigationBar/NavigationBar";
 

@@ -1,17 +1,17 @@
 import Head from "next/head";
-import DashboardRoot from "../components/Dashboard/DashboardRoot/DashboardRoot";
+import AboutRoot from "../components/About/AboutRoot/AboutRoot";
 import NavigationBar from "../components/Shared/NavigationBar/NavigationBar";
 
-const Dashboard: React.FC = () => {
+const Index: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Lucidity | Dashboard</title>
+                <title>Lucidity | Home</title>
             </Head>
             <NavigationBar />
-            <DashboardRoot />
+            <AboutRoot />
         </>
     );
 };
 
-export default Dashboard;
+export default Index;
