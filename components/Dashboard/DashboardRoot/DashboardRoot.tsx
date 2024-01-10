@@ -17,43 +17,36 @@ const DashboardRoot = (): JSX.Element => {
         {
             height: 2,
             id: `${tileIdPrefix}0`,
-            title: "Gauge 1",
+            title: "Total Views & Target",
             type: "gauge",
             width: 3,
             x: 0,
             y: 0,
         },
         {
-            height: 2,
+            height: 3,
             id: `${tileIdPrefix}1`,
-            title: "Gauge 2",
-            type: "gauge",
+            title: "Proportion by Age Group",
+            type: "donut",
             width: 3,
             x: 0,
             y: 2,
         },
         {
-            height: 4,
+            height: 5,
             id: `${tileIdPrefix}2`,
-            title: "Bar Chart",
+            title: "Total by Age Group",
             type: "bar",
             width: 4,
             x: 3,
             y: 0,
         },
         {
-            height: 4,
+            height: 5,
             id: `${tileIdPrefix}3`,
-            title: "Line Chart",
+            title: "Total by Age Group & Date",
             type: "line",
             width: 5,
-        },
-        {
-            height: 3,
-            id: `${tileIdPrefix}4`,
-            title: "Donut Chart",
-            type: "donut",
-            width: 4,
         },
     ];
 
@@ -134,6 +127,11 @@ const DashboardRoot = (): JSX.Element => {
                 break;
             case "gauge":
                 widget = <GaugeContainer
+                    dateRange={{
+                        endDate,
+                        interval,
+                        startDate,
+                    }}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
@@ -187,7 +185,7 @@ const DashboardRoot = (): JSX.Element => {
             <DashboardMenu onAddTile={onAddTile} onPeriodClick={onPeriodClick} />
             <div className={styles.main}>
                 <div className={styles.header}>
-                    <h1>Analytics Dashboard</h1>
+                    <h1>Analytics Dashboard: Website Page Views</h1>
                 </div>
                 <GridStackPanel
                     onTileClose={onTileClose}

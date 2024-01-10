@@ -1,7 +1,7 @@
+import IGaugePropsData from "./IGaugePropsData";
+
 export interface IGaugeProps {
-    minValue: number;
-    maxValue: number;
-    value: number;
+    data: IGaugePropsData;
     width: number;
     height: number;
     units: string;

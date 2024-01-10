@@ -130,6 +130,35 @@ const ageGroupAndTimePeriodAggregator = (
     return result;
 };
 
+const totalAggregator = (
+    data: any[],
+    startDate: Date | null,
+    endDate: Date | null,
+    interval: Interval) => {
+    const filtered = filter(data, startDate, endDate);
+
+    const total = filtered.reduce((accumulator: number, item: any) =>
+        accumulator + item.engagementCount, 0);
+
+    let maxValue: number;
+
+    switch (interval) {
+        case Interval.month:
+            maxValue = 200000;
+            break;
+        case Interval.year:
+        default:
+            maxValue = 1000000;
+            break;
+    }
+
+    return {
+        maxValue,
+        minValue: 0,
+        value: total,
+    };
+};
+
 const fetch = (url: string) => {
     const [root, filterString] = url.split("?");
 
@@ -144,13 +173,19 @@ const fetch = (url: string) => {
     const endDate = endDateFilter ? new Date(endDateFilter.value) : null;
     const interval: Interval = intervalFilter ? parseInt(intervalFilter.value, 10) as Interval : Interval.year;
 
-    let aggregator: (data: any[], startDate: Date | null, endDate: Date | null, interval: Interval) => any[];
+    let aggregator: (data: any[], startDate: Date | null, endDate: Date | null, interval: Interval) => any;
 
-    if (root === "/api/bar-chart") {
-        aggregator = ageGroupAggregator;
-    }
-    else {
-        aggregator = ageGroupAndTimePeriodAggregator;
+    switch (root) {
+        case "/api/page-views/total":
+            aggregator = totalAggregator;
+            break;
+        case "/api/page-views/by-age-group-and-date-range":
+            aggregator = ageGroupAndTimePeriodAggregator;
+            break;
+        case "/api/page-views/by-age-group":
+        default:
+            aggregator = ageGroupAggregator;
+            break;
     }
 
     const reducedData = aggregator(pageViewData, startDate, endDate, interval);

@@ -33,15 +33,15 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
         let dialValue = 0;
 
         if (value) {
-            dialValue = value <= props.maxValue ? value : props.maxValue;
+            dialValue = value <= props.data.maxValue ? value : props.data.maxValue;
         }
 
         return startAngleRadians +
-            ((dialValue / props.maxValue) *
+            ((dialValue / props.data.maxValue) *
                 maxAngleRadians * 2);
     };
 
-    const valueAngleRadians = calculateAngleRadians(props.value);
+    const valueAngleRadians = calculateAngleRadians(props.data.value);
 
     const backgroundArc: any = d3.arc()
         .outerRadius(outerRadius)
@@ -60,9 +60,15 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
     const backgroundArcPath = backgroundArc();
     const valueArcPath = valueArc();
 
-    const addUnits = (value: number): string => {
+    const formatValue = (value: number): string => {
         const before = ["£", "$", "€"].includes(props.units);
-        return `${before ? props.units : ""}${value}${before ? "" : props.units}`;
+        let displayValue = (Math.round(value / 10) * 10).toString();
+
+        if (value > 999) {
+            displayValue = `${Math.round(value / 1000)}k`;
+        }
+
+        return `${before ? props.units : ""}${displayValue}${before ? "" : props.units}`;
     };
 
     return (
@@ -89,7 +95,7 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
                     x={textMinX}
                     y={textY}
                 >
-                    {addUnits(props.minValue)}
+                    {formatValue(props.data.minValue)}
                 </text>
                 <text
                     className={`${styles.label} ${styles.value}`}
@@ -97,7 +103,7 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
                     x={0}
                     y={textY}
                 >
-                    {addUnits(Math.round(props.value * 10) / 10)}
+                    {formatValue(props.data.value)}
                 </text>
                 <text
                     className={`${styles.label} ${styles.limits}`}
@@ -105,7 +111,7 @@ const Gauge = (props: IGaugeProps): JSX.Element => {
                     x={textMaxX}
                     y={textY}
                 >
-                    {addUnits(props.maxValue)}
+                    {formatValue(props.data.maxValue)}
                 </text>
             </g>
         </svg>

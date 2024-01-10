@@ -8,7 +8,7 @@ const BarChartContainer = (props: IBarChartContainerProps): JSX.Element => {
     const [data, setData] = useState<IBarChartPropsData[]>([]);
 
     useEffect(() => {
-        let url = "/api/bar-chart";
+        let url = "/api/page-views/by-age-group";
         const filters: string[] = [];
 
         if (props.dateRange.startDate) {

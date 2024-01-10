@@ -8,7 +8,7 @@ const DonutChartContainer = (props: IDonutChartContainerProps): JSX.Element => {
     const [data, setData] = useState<IDonutChartPropsData[]>([]);
 
     useEffect(() => {
-        let url = "/api/bar-chart";
+        let url = "/api/page-views/by-age-group";
         const filters: string[] = [];
 
         if (props.dateRange.startDate) {

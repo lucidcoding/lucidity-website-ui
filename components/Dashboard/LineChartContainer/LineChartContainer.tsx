@@ -8,7 +8,7 @@ const LineChartContainer = (props: ILineChartContainerProps): JSX.Element => {
     const [data, setData] = useState<ILineChartPropsData[]>([]);
 
     useEffect(() => {
-        let url = "/api/line-chart";
+        let url = "/api/page-views/by-age-group-and-date-range";
         const filters: string[] = [];
 
         if (props.dateRange.startDate) {
