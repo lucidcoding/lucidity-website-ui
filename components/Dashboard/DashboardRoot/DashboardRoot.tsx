@@ -84,7 +84,6 @@ const DashboardRoot = (): JSX.Element => {
     };
 
     const onTileResize = (id: string, x: number, y: number, width: number, height: number) => {
-        console.log(`Resizing ${id}: ${width}`);
         const newTileData = [...tileData];
         const currentTile = newTileData.find((element) => element.id === id);
 
