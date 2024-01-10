@@ -1,7 +1,10 @@
-export interface IBarChartContainerProps {
+import Interval from "../../../types/Interval";
+
+export interface ILineChartContainerProps {
     dateRange: {
         startDate: Date | null;
         endDate: Date | null;
+        interval: Interval;
     };
     tileId: string;
     width: number;
@@ -9,4 +12,4 @@ export interface IBarChartContainerProps {
     "data-testid": string;
 }
 
-export default IBarChartContainerProps;
+export default ILineChartContainerProps;

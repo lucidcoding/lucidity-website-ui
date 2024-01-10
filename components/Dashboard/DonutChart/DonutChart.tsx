@@ -4,7 +4,8 @@ import { seriesColors } from "../../../library/constants";
 import Legend from "../Legend/Legend";
 import Slice from "../Slice/Slice";
 import styles from "./DonutChart.module.scss";
-import IDonutChartProps, { IDonutChartPropsData } from "./IDonutChartProps";
+import IDonutChartProps from "./IDonutChartProps";
+import IDonutChartPropsData from "./IDonutChartPropsData";
 
 const DonutChart = (props: IDonutChartProps): JSX.Element => {
     const [highlightedId, setHighlightedId] = useState<string | null>(null);

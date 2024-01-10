@@ -1,8 +1,4 @@
-export interface IDonutChartPropsData {
-    id: string;
-    name: string;
-    value: number;
-}
+import IDonutChartPropsData from "./IDonutChartPropsData";
 
 export interface IDonutChartProps {
     width: number;

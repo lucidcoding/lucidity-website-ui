@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Interval from "../../../types/Interval";
 import GridStackPanel from "../../Shared/GridStackPanel/GridStackPanel";
 import GridStackTile from "../../Shared/GridStackTile/GridStackTile";
 import BarChartContainer from "../BarChartContainer/BarChartContainer";
@@ -59,6 +60,7 @@ const DashboardRoot = (): JSX.Element => {
     const [tileData, setTileData] = useState(initialTileData);
     const [cellWidth, setCellWidth] = useState(0);
     const [startDate, setStartDate] = useState<Date | null>(null);
+    const [interval, setInterval] = useState<Interval>(Interval.year);
     const [endDate, setEndDate] = useState<Date | null>(null);
 
     const onAddTile = () => {
@@ -108,9 +110,10 @@ const DashboardRoot = (): JSX.Element => {
         console.log("Bar clicked...");
     };
 
-    const onPeriodClick = (newStartDate: Date | null, newEndDate: Date | null) => {
+    const onPeriodClick = (newStartDate: Date | null, newEndDate: Date | null, newInterval: Interval) => {
         setStartDate(newStartDate);
         setEndDate(newEndDate);
+        setInterval(newInterval);
     };
 
     const tiles = tileData.map((tile, index) => {
@@ -119,6 +122,10 @@ const DashboardRoot = (): JSX.Element => {
         switch (tile.type) {
             case "donut":
                 widget = <DonutChartContainer
+                    dateRange={{
+                        endDate,
+                        startDate,
+                    }}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
@@ -150,6 +157,7 @@ const DashboardRoot = (): JSX.Element => {
                 widget = <LineChartContainer
                     dateRange={{
                         endDate,
+                        interval,
                         startDate,
                     }}
                     tileId={tile.id}

@@ -5,18 +5,44 @@ import ChartDonutIcon from "../../../icons/chart-donut";
 import ChartLineIcon from "../../../icons/chart-line";
 import ChevronDownIcon from "../../../icons/chevron-down";
 import GaugeIcon from "../../../icons/gauge";
+import Interval from "../../../types/Interval";
 import styles from "./DashboardMenu.module.scss";
 import IDashboardMenuProps from "./IDashboardMenuProps";
 
 const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
     const [periodExpanded, setPeriodExpanded] = useState(false);
 
-    const timePeriodOptions = [
-        { text: "2023", startDate: new Date(2023, 0, 1, 0, 0, 0), endDate: new Date(2023, 11, 31, 23, 59, 59) },
-        { text: "2022", startDate: new Date(2022, 0, 1, 0, 0, 0), endDate: new Date(2022, 11, 31, 23, 59, 59) },
-        { text: "2021", startDate: new Date(2021, 0, 1, 0, 0, 0), endDate: new Date(2021, 11, 31, 23, 59, 59) },
-        { text: "2020", startDate: new Date(2020, 0, 1, 0, 0, 0), endDate: new Date(2020, 11, 31, 23, 59, 59) },
-    ];
+    const timePeriodOptions: Array<{
+        text: string;
+        startDate: Date;
+        endDate: Date;
+        interval: Interval;
+    }> = [
+            {
+                endDate: new Date(2023, 11, 31, 23, 59, 59),
+                interval: Interval.month,
+                startDate: new Date(2023, 0, 1, 0, 0, 0),
+                text: "2023",
+            },
+            {
+                endDate: new Date(2022, 11, 31, 23, 59, 59),
+                interval: Interval.month,
+                startDate: new Date(2022, 0, 1, 0, 0, 0),
+                text: "2022",
+            },
+            {
+                endDate: new Date(2021, 11, 31, 23, 59, 59),
+                interval: Interval.month,
+                startDate: new Date(2021, 0, 1, 0, 0, 0),
+                text: "2021",
+            },
+            {
+                endDate: new Date(2020, 11, 31, 23, 59, 59),
+                interval: Interval.month,
+                startDate: new Date(2020, 0, 1, 0, 0, 0),
+                text: "2020",
+            },
+        ];
 
     const onPeriodHeadingClick = () => {
         setPeriodExpanded(!periodExpanded);
@@ -44,7 +70,7 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                 {timePeriodOptions.map((item, index) =>
                     <button type="button"
                         className={styles.noIcon}
-                        onClick={() => props.onPeriodClick(item.startDate, item.endDate)}
+                        onClick={() => props.onPeriodClick(item.startDate, item.endDate, item.interval)}
                         key={index}>
                         {item.text}
                     </button>)

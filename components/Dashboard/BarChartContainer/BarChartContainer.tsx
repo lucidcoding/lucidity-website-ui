@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import fetch, { Response } from "../../../library/fake-fetch";
 import BarChart from "../BarChart/BarChart";
+import IBarChartPropsData from "../BarChart/IBarChartPropsData";
 import IBarChartContainerProps from "./IBarChartContainerProps";
 
 const BarChartContainer = (props: IBarChartContainerProps): JSX.Element => {
-    const [data, setDate] = useState([]);
+    const [data, setData] = useState<IBarChartPropsData[]>([]);
 
     useEffect(() => {
         let url = "/api/bar-chart";
@@ -25,7 +26,7 @@ const BarChartContainer = (props: IBarChartContainerProps): JSX.Element => {
         fetch(url)
             .then((result: Response) => result.json())
             .then((json) => {
-                setDate(json);
+                setData(json);
             });
     }, [props.dateRange.startDate, props.dateRange.endDate]);
 

@@ -13,6 +13,6 @@
     "no-submodule-imports": false
   },
   "linterOptions": {
-    "exclude": ["library/fake-fetch.ts"]
+    "exclude": ["library/fake-fetch.ts", "library/fake-fetch-data.ts"]
   }
 }

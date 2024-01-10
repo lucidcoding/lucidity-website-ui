@@ -1,18 +1,34 @@
 import { useEffect, useState } from "react";
 import fetch, { Response } from "../../../library/fake-fetch";
 import DonutChart from "../DonutChart/DonutChart";
+import IDonutChartPropsData from "../DonutChart/IDonutChartPropsData";
 import IDonutChartContainerProps from "./IDonutChartContainerProps";
 
 const DonutChartContainer = (props: IDonutChartContainerProps): JSX.Element => {
-    const [data, setDate] = useState([]);
+    const [data, setData] = useState<IDonutChartPropsData[]>([]);
 
     useEffect(() => {
-        fetch("/api/bar-chart")
+        let url = "/api/bar-chart";
+        const filters: string[] = [];
+
+        if (props.dateRange.startDate) {
+            filters.push(`startDate=${props.dateRange.startDate.toISOString()}`);
+        }
+
+        if (props.dateRange.endDate) {
+            filters.push(`endDate=${props.dateRange.endDate.toISOString()}`);
+        }
+
+        if (filters.length > 0) {
+            url = `${url}?${filters.join("&")}`;
+        }
+
+        fetch(url)
             .then((result: Response) => result.json())
             .then((json) => {
-                setDate(json);
+                setData(json);
             });
-    }, []);
+    }, [props.dateRange.startDate, props.dateRange.endDate]);
 
     return (
         <DonutChart

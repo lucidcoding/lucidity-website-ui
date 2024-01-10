@@ -1,3 +1,5 @@
+import ILineChartPropsData from "./ILineChartPropsData";
+
 export interface ILineChartProps {
     dateRange: {
         chartStartDate: Date;
@@ -13,15 +15,7 @@ export interface ILineChartProps {
     xAxisOrientation: "vertical" | "horizontal" | "diagonal";
     legendWidth: number;
     legendLineHeight: number;
-    data: Array<{
-        dateRanges: Array<{
-            startDate: Date;
-            endDate: Date;
-            value: number;
-        }>;
-        id: string;
-        name: string;
-    }>;
+    data: ILineChartPropsData[];
     loaded: boolean;
     error?: string;
     "data-testid": string;
