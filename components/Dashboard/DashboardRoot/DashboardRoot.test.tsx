@@ -30,10 +30,10 @@ describe("DashboardRoot", () => {
         fireEvent.click(closeButton);
 
         await waitFor(() => {
+            expect(screen.getByTestId("grid-stack-panel-tile-tl0")).toBeInTheDocument();
             expect(screen.getByTestId("grid-stack-panel-tile-tl1")).toBeInTheDocument();
             expect(screen.getByTestId("grid-stack-panel-tile-tl2")).toBeInTheDocument();
             expect(screen.queryByTestId("grid-stack-panel-tile-tl3")).not.toBeInTheDocument();
-            expect(screen.getByTestId("grid-stack-panel-tile-tl4")).toBeInTheDocument();
         });
     });
 
@@ -43,11 +43,11 @@ describe("DashboardRoot", () => {
         fireEvent.click(addButton);
 
         await waitFor(() => {
+            expect(screen.getByTestId("grid-stack-panel-tile-tl0")).toBeInTheDocument();
             expect(screen.getByTestId("grid-stack-panel-tile-tl1")).toBeInTheDocument();
             expect(screen.getByTestId("grid-stack-panel-tile-tl2")).toBeInTheDocument();
             expect(screen.getByTestId("grid-stack-panel-tile-tl3")).toBeInTheDocument();
             expect(screen.getByTestId("grid-stack-panel-tile-tl4")).toBeInTheDocument();
-            expect(screen.getByTestId("grid-stack-panel-tile-tl5")).toBeInTheDocument();
         });
     });
 });
