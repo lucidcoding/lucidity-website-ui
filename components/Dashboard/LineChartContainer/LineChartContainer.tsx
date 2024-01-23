@@ -39,16 +39,7 @@ const LineChartContainer = (props: ILineChartContainerProps): JSX.Element => {
     return (
         <LineChart
             key={props.tileId}
-            dateRange={{
-                chartEndDate,
-                chartStartDate,
-                numberOfXTicks: 4,
-                xTicksFormat: (value: any) => {
-                    const date = value as Date;
-                    const time = (date.getMonth());
-                    return time;
-                },
-            }}
+            dateRange={props.dateRange}
             width={props.width}
             height={props.height}
             xAxisTitle=""

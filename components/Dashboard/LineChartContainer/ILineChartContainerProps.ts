@@ -1,11 +1,7 @@
-import Interval from "../../../types/Interval";
+import IDateRange from "../../../library/dateRanges/IDateRange";
 
 export interface ILineChartContainerProps {
-    dateRange: {
-        startDate: Date | null;
-        endDate: Date | null;
-        interval: Interval;
-    };
+    dateRange: IDateRange;
     tileId: string;
     width: number;
     height: number;

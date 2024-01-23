@@ -1,12 +1,8 @@
+import IDateRange from "../../../library/dateRanges/IDateRange";
 import ILineChartPropsData from "./ILineChartPropsData";
 
 export interface ILineChartProps {
-    dateRange: {
-        chartStartDate: Date;
-        chartEndDate: Date;
-        numberOfXTicks: number;
-        xTicksFormat: any;
-    };
+    dateRange: IDateRange;
     onPointClick?: () => void;
     width: number;
     height: number;

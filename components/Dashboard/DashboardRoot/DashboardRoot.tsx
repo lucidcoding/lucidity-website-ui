@@ -1,4 +1,8 @@
 import { useState } from "react";
+import AllTimeDateRange from "../../../library/dateRanges/AllTimeDateRange";
+import { generateDefaultDateRanges } from "../../../library/dateRanges/dateRangeGenerator";
+import IDateRange from "../../../library/dateRanges/IDateRange";
+import TwelveMonthsDateRange from "../../../library/dateRanges/TwelveMonthsDateRange";
 import Interval from "../../../types/Interval";
 import GridStackPanel from "../../Shared/GridStackPanel/GridStackPanel";
 import GridStackTile from "../../Shared/GridStackTile/GridStackTile";
@@ -12,6 +16,7 @@ import ITile from "./ITile";
 
 const DashboardRoot = (): JSX.Element => {
     const tileIdPrefix = "tl";
+    const defaultDateRange: IDateRange = new AllTimeDateRange();
 
     const initialTileData: ITile[] = [
         {
@@ -52,9 +57,10 @@ const DashboardRoot = (): JSX.Element => {
 
     const [tileData, setTileData] = useState(initialTileData);
     const [cellWidth, setCellWidth] = useState(0);
-    const [startDate, setStartDate] = useState<Date | null>(null);
+    /*const [startDate, setStartDate] = useState<Date | null>(null);
     const [interval, setInterval] = useState<Interval>(Interval.year);
-    const [endDate, setEndDate] = useState<Date | null>(null);
+    const [endDate, setEndDate] = useState<Date | null>(null);*/
+    const [dateRange, setDateRange] = useState(defaultDateRange);
 
     const onAddTile = () => {
         const newTileData = [...tileData];
@@ -103,9 +109,13 @@ const DashboardRoot = (): JSX.Element => {
     };
 
     const onPeriodClick = (newStartDate: Date | null, newEndDate: Date | null, newInterval: Interval) => {
-        setStartDate(newStartDate);
-        setEndDate(newEndDate);
-        setInterval(newInterval);
+        if (newStartDate) {
+            const newDateRange = defaultDateRange.drillDown(newStartDate);
+
+            if (newDateRange) {
+                setDateRange(newDateRange);
+            }
+        }
     };
 
     const tiles = tileData.map((tile, index) => {
@@ -114,10 +124,7 @@ const DashboardRoot = (): JSX.Element => {
         switch (tile.type) {
             case "donut":
                 widget = <DonutChartContainer
-                    dateRange={{
-                        endDate,
-                        startDate,
-                    }}
+                    dateRange={dateRange}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
@@ -126,11 +133,7 @@ const DashboardRoot = (): JSX.Element => {
                 break;
             case "gauge":
                 widget = <GaugeContainer
-                    dateRange={{
-                        endDate,
-                        interval,
-                        startDate,
-                    }}
+                    dateRange={dateRange}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
@@ -139,10 +142,7 @@ const DashboardRoot = (): JSX.Element => {
                 break;
             case "bar":
                 widget = <BarChartContainer
-                    dateRange={{
-                        endDate,
-                        startDate,
-                    }}
+                    dateRange={dateRange}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
@@ -152,11 +152,7 @@ const DashboardRoot = (): JSX.Element => {
                 break;
             case "line":
                 widget = <LineChartContainer
-                    dateRange={{
-                        endDate,
-                        interval,
-                        startDate,
-                    }}
+                    dateRange={dateRange}
                     tileId={tile.id}
                     width={cellWidth * tile.width}
                     height={cellWidth * tile.height}
