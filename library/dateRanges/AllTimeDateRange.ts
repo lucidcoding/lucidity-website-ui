@@ -7,6 +7,7 @@ class AllTimeDateRange extends YearIntervalDateRange implements IDateRange {
         this.title = "";
         this.numberOfXTicks = 4;
         // this.translationKey = "allTime";
+        this.shortTitle = "All Time";
     }
 }
 

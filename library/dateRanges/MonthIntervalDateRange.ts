@@ -13,6 +13,7 @@ class MonthIntervalDateRange implements IDateRange {
     public chartEndDate: Date;
     public interval: Interval;
     public title: string;
+    public shortTitle: string;
     public numberOfXTicks: number;
     public parentDateRange: IDateRange;
     public rootDateRange: IDateRange;
@@ -27,6 +28,7 @@ class MonthIntervalDateRange implements IDateRange {
         this.parentDateRange = parentDateRange;
         this.rootDateRange = rootDateRange;
         this.title = getTitle(startMoment, endMoment);
+        this.shortTitle = startMoment.format("YYYY"); // this.startDate.getFullYear().toString();
     }
 
     public xTicksFormat = (date: Date) => {
@@ -44,6 +46,22 @@ class MonthIntervalDateRange implements IDateRange {
         new OneMonthDateRange(Moment(startDate), this.parentDateRange, this.rootDateRange)
 
     public zoomOut = () => (this.rootDateRange ? this.rootDateRange : new AllTimeDateRange());
+
+    public getChildDateRanges = () => {
+        const childDateRanges: IDateRange[] = [];
+
+        for (let monthIndex = 0; monthIndex <= 11; monthIndex++) {
+            childDateRanges.push(
+                new OneMonthDateRange(
+                    Moment(new Date(this.startDate.getFullYear(), monthIndex, 1)),
+                    this.rootDateRange,
+                    this,
+                ),
+            );
+        }
+
+        return childDateRanges;
+    }
 }
 
 export default MonthIntervalDateRange;

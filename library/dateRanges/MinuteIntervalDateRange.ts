@@ -12,6 +12,7 @@ class MinuteIntervalDateRange implements IDateRange {
     public chartEndDate: Date;
     public interval: Interval;
     public title: string;
+    public shortTitle: string;
     public numberOfXTicks: number;
     public parentDateRange: IDateRange;
     public rootDateRange: IDateRange;
@@ -26,6 +27,7 @@ class MinuteIntervalDateRange implements IDateRange {
         this.parentDateRange = parentDateRange;
         this.rootDateRange = rootDateRange;
         this.title = getTitle(startMoment, endMoment);
+        this.shortTitle = startMoment.format("HH");
     }
 
     public xTicksFormat = (date: Date) => {
@@ -43,6 +45,25 @@ class MinuteIntervalDateRange implements IDateRange {
 
     public zoomOut = () => (this.parentDateRange ? this.parentDateRange : new TwentyFourHoursDateRange(
         Moment(this.startDate).clone().startOf("day"), null, this.rootDateRange))
+
+    public getChildDateRanges = () => {
+        const childDateRanges: IDateRange[] = [];
+
+        for (let minuteIndexIndex = 0; minuteIndexIndex <= 24; minuteIndexIndex++) {
+            childDateRanges.push(
+                new SixtyMinutesDateRange(
+                    Moment(new Date(this.startDate.getFullYear(),
+                        this.startDate.getMonth(),
+                        this.startDate.getDate(),
+                        this.startDate.getHours(),
+                        this.startDate.getMinutes(), 0)),
+                    this.rootDateRange, this,
+                ),
+            );
+        }
+
+        return childDateRanges;
+    }
 }
 
 export default MinuteIntervalDateRange;

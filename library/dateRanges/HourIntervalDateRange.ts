@@ -13,6 +13,7 @@ class HourIntervalDateRange implements IDateRange {
     public chartEndDate: Date;
     public interval: Interval;
     public title: string;
+    public shortTitle: string;
     public numberOfXTicks: number;
     public parentDateRange: IDateRange;
     public rootDateRange: IDateRange;
@@ -27,6 +28,7 @@ class HourIntervalDateRange implements IDateRange {
         this.parentDateRange = parentDateRange;
         this.rootDateRange = rootDateRange;
         this.title = getTitle(startMoment, endMoment);
+        this.shortTitle = startMoment.format("DD");
     }
 
     public xTicksFormat = (date: Date) => {
@@ -45,6 +47,31 @@ class HourIntervalDateRange implements IDateRange {
 
     public zoomOut = () => new OneMonthDateRange(
         Moment(this.startDate).clone().startOf("month"), this.parentDateRange, this.rootDateRange)
+
+    public getChildDateRanges = () => {
+        const childDateRanges: IDateRange[] = [];
+
+        for (let hourIndex = 0; hourIndex <= 24; hourIndex++) {
+            childDateRanges.push(
+                new SixtyMinutesDateRange(Moment
+                    (
+                        new Date(
+                            this.startDate.getFullYear(),
+                            this.startDate.getMonth(),
+                            this.startDate.getDate(),
+                            hourIndex,
+                            0,
+                            0,
+                        ),
+                    ),
+                    this.rootDateRange,
+                    this,
+                ),
+            );
+        }
+
+        return childDateRanges;
+    }
 }
 
 export default HourIntervalDateRange;

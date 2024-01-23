@@ -1,14 +1,22 @@
 import "@testing-library/jest-dom";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
+import AllTimeDateRange from "../../../library/dateRanges/AllTimeDateRange";
 import DashboardMenu from "./DashboardMenu";
 
 describe("DashboardMenu", () => {
     let mockHandleAddTile: jest.Mock;
-    const renderElement = () => render(<DashboardMenu onAddTile={mockHandleAddTile}></DashboardMenu>);
+    let mockOnPeriodClick: jest.Mock;
+    const dateRangeOptions = new AllTimeDateRange().getChildDateRanges();
+    const renderElement = () => render(<DashboardMenu
+        onAddTile={mockHandleAddTile}
+        dateRangeOptions={dateRangeOptions}
+        onPeriodClick={mockOnPeriodClick}
+    ></DashboardMenu>);
 
     beforeEach(() => {
         mockHandleAddTile = jest.fn();
+        mockOnPeriodClick = jest.fn();
     });
 
     afterEach(() => {
@@ -28,6 +36,6 @@ describe("DashboardMenu", () => {
         expect(screen.getByTestId("dashboard-menu-period-drop-down-list")).toHaveStyle({ height: 0 });
         const periodDropDownButton = screen.getByTestId("dashboard-menu-period-drop-down-button");
         fireEvent.click(periodDropDownButton);
-        expect(screen.getByTestId("dashboard-menu-period-drop-down-list")).toHaveStyle("height: 160px");
+        expect(screen.getByTestId("dashboard-menu-period-drop-down-list")).toHaveStyle("height: 200px");
     });
 });

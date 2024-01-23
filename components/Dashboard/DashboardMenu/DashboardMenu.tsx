@@ -12,7 +12,8 @@ import IDashboardMenuProps from "./IDashboardMenuProps";
 const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
     const [periodExpanded, setPeriodExpanded] = useState(false);
 
-    const timePeriodOptions: Array<{
+    const timePeriodOptions = props.dateRangeOptions;
+    /*const timePeriodOptions: Array<{
         text: string;
         startDate: Date;
         endDate: Date;
@@ -42,7 +43,7 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                 startDate: new Date(2020, 0, 1, 0, 0, 0),
                 text: "2020",
             },
-        ];
+        ];*/
 
     const onPeriodHeadingClick = () => {
         setPeriodExpanded(!periodExpanded);
@@ -72,7 +73,7 @@ const DashboardMenu = (props: IDashboardMenuProps): JSX.Element => {
                         className={styles.noIcon}
                         onClick={() => props.onPeriodClick(item.startDate, item.endDate, item.interval)}
                         key={index}>
-                        {item.text}
+                        {item.shortTitle}
                     </button>)
                 }
             </div>

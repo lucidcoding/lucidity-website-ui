@@ -12,6 +12,7 @@ class YearIntervalDateRange implements IDateRange {
     public chartEndDate: Date;
     public interval: Interval;
     public title: string;
+    public shortTitle: string;
     public numberOfXTicks: number;
     public parentDateRange: IDateRange | null;
     public rootDateRange: IDateRange;
@@ -25,6 +26,7 @@ class YearIntervalDateRange implements IDateRange {
         this.parentDateRange = parentDateRange;
         this.rootDateRange = this;
         this.title = getTitle(startMoment, endMoment);
+        this.shortTitle = "";
         this.numberOfXTicks = 0; // this.endDate.getFullYear() - this.startDate.getFullYear() + 1;
     }
 
@@ -38,10 +40,26 @@ class YearIntervalDateRange implements IDateRange {
 
     public pointDateFormat = d3.timeFormat("%Y"); // tslint:disable-line:member-ordering
 
-    public drillDown = (newStartDate: Date) =>
+    public drillDown = (newStartDate: Date): IDateRange =>
         new TwelveMonthsDateRange(Moment(newStartDate), this.rootDateRange, this)
 
     public zoomOut = () => null;
+
+    public getChildDateRanges = () => {
+        const childDateRanges: IDateRange[] = [];
+
+        for (let yearIndex = 2019; yearIndex <= 2023; yearIndex++) {
+            childDateRanges.push(
+                new TwelveMonthsDateRange(
+                    Moment(new Date(yearIndex, 0, 1)),
+                    this.rootDateRange,
+                    this,
+                ),
+            );
+        }
+
+        return childDateRanges;
+    }
 }
 
 export default YearIntervalDateRange;

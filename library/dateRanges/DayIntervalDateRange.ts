@@ -13,6 +13,7 @@ class DayIntervalDateRange implements IDateRange {
     public chartEndDate: Date;
     public interval: Interval;
     public title: string;
+    public shortTitle: string;
     public numberOfXTicks: number;
     public parentDateRange: IDateRange;
     public rootDateRange: IDateRange;
@@ -27,6 +28,7 @@ class DayIntervalDateRange implements IDateRange {
         this.parentDateRange = parentDateRange;
         this.rootDateRange = rootDateRange;
         this.title = getTitle(startMoment, endMoment);
+        this.shortTitle = startMoment.format("MMMM");
     }
 
     public xTicksFormat = (date: Date) => {
@@ -45,6 +47,22 @@ class DayIntervalDateRange implements IDateRange {
 
     public zoomOut = () => (this.parentDateRange ? this.parentDateRange : new TwelveMonthsDateRange(
         Moment(this.startDate).startOf("year"), this.rootDateRange, this.parentDateRange))
+
+    public getChildDateRanges = () => {
+        const childDateRanges: IDateRange[] = [];
+        const daysInMonth = Moment(this.startDate).daysInMonth();
+
+        for (let dayIndex = 1; dayIndex <= daysInMonth; dayIndex++) {
+            childDateRanges.push(
+                new TwentyFourHoursDateRange(
+                    Moment(new Date(this.startDate.getFullYear(), this.startDate.getMonth(), dayIndex)),
+                    this.rootDateRange, this,
+                ),
+            );
+        }
+
+        return childDateRanges;
+    }
 }
 
 export default DayIntervalDateRange;

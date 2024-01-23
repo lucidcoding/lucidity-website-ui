@@ -7,7 +7,6 @@ class TwentyFourHoursDateRange extends HourIntervalDateRange implements IDateRan
         super(startMoment, endMoment, parentDateRange, rootDateRange);
         this.chartEndDate = endMoment.clone().subtract(1, "hours").toDate();
         this.title = `${this.pointDateFormat(startMoment)} - ${this.pointDateFormat(endMoment)}`;
-        // this.translationKey = "last24Hours";
     }
 }
 

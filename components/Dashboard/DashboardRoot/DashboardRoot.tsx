@@ -1,8 +1,6 @@
 import { useState } from "react";
 import AllTimeDateRange from "../../../library/dateRanges/AllTimeDateRange";
-import { generateDefaultDateRanges } from "../../../library/dateRanges/dateRangeGenerator";
 import IDateRange from "../../../library/dateRanges/IDateRange";
-import TwelveMonthsDateRange from "../../../library/dateRanges/TwelveMonthsDateRange";
 import Interval from "../../../types/Interval";
 import GridStackPanel from "../../Shared/GridStackPanel/GridStackPanel";
 import GridStackTile from "../../Shared/GridStackTile/GridStackTile";
@@ -110,7 +108,7 @@ const DashboardRoot = (): JSX.Element => {
 
     const onPeriodClick = (newStartDate: Date | null, newEndDate: Date | null, newInterval: Interval) => {
         if (newStartDate) {
-            const newDateRange = defaultDateRange.drillDown(newStartDate);
+            const newDateRange = dateRange.drillDown(newStartDate);
 
             if (newDateRange) {
                 setDateRange(newDateRange);
@@ -177,7 +175,11 @@ const DashboardRoot = (): JSX.Element => {
 
     return (
         <div className={styles.container}>
-            <DashboardMenu onAddTile={onAddTile} onPeriodClick={onPeriodClick} />
+            <DashboardMenu
+                onAddTile={onAddTile}
+                onPeriodClick={onPeriodClick}
+                dateRangeOptions={dateRange.getChildDateRanges()}
+            />
             <div className={styles.main}>
                 <div className={styles.header}>
                     <h1>Analytics Dashboard: Website Page Views</h1>
