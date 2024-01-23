@@ -25,7 +25,7 @@ class YearIntervalDateRange implements IDateRange {
         this.parentDateRange = parentDateRange;
         this.rootDateRange = this;
         this.title = getTitle(startMoment, endMoment);
-        this.numberOfXTicks = 2;
+        this.numberOfXTicks = 0; // this.endDate.getFullYear() - this.startDate.getFullYear() + 1;
     }
 
     public xTicksFormat = (date: Date) => {
