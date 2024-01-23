@@ -105,7 +105,7 @@ const DonutChart = (props: IDonutChartProps): JSX.Element => {
         );
     };
 
-    const height = (props.width / 2);
+    const height = props.width * 0.7;
     const selectedRadius = height / 2;
     const standardRadius = selectedRadius * 0.9;
 
