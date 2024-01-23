@@ -19,7 +19,7 @@ const filter = (data: any[], startDate: Date | null, endDate: Date | null) => {
         }
 
         const itemDate = new Date(item.date);
-        return itemDate >= startDate && itemDate <= endDate;
+        return itemDate >= startDate && itemDate < endDate;
     });
 
     return filtered;
